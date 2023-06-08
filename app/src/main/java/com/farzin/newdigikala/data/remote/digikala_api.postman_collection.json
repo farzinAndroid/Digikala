@@ -1,0 +1,703 @@
+{
+	"info": {
+		"_postman_id": "8a565b8f-3fa9-4214-ba4b-dc26f95586ad",
+		"name": "digikala api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1691982"
+	},
+	"item": [
+		{
+			"name": "home page",
+			"item": [
+				{
+					"name": "getSlider",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getSlider",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getSlider"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get4Banners",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/get4Banners",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"get4Banners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCenterBanners",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getCenterBanners",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getCenterBanners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAmazingProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getAmazingProducts",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getAmazingProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSuperMarketAmazingProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getSuperMarketAmazingProducts",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getSuperMarketAmazingProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMostDiscountedProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getMostDiscountedProducts",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getMostDiscountedProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBestsellerProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getBestsellerProducts",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getBestsellerProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMostVisitedProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getMostVisitedProducts",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getMostVisitedProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMostFavoriteProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getMostFavoriteProducts",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getMostFavoriteProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCategories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getCategories",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getCategories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "category page",
+			"item": [
+				{
+					"name": "getSubCategories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getSubCategories",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getSubCategories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\" : \"093536396357\",\r\n    \"password\" : \"1234546\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/login",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BasketPage",
+			"item": [
+				{
+					"name": "getAllProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getAllProducts",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getAllProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "saveUserAddress",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNlMjU2MjU3MGM2MGIwMDQwNTBmNTQwIiwiaWF0IjoxNjc2MTEwNDI0LCJleHAiOjE2NzYxMTE2MjR9.wovw-6mOl6oipGzPbBUvCMe9adFjL1aC2S5s7Hsbr-s\",\r\n    \"address\" : \"آدرس تستی 1\",\r\n    \"postalCode\" : \"1234567890\",\r\n    \"phone\" : \"09353639630\",\r\n    \"name\" : \"تست\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/saveUserAddress",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"saveUserAddress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserAddress",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getUserAddress?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNlMjU2MjU3MGM2MGIwMDQwNTBmNTQwIiwiaWF0IjoxNjc2MzkyMTY4LCJleHAiOjE2NzYzOTMzNjh9.nmaK8WF_Cq5ta6BkuBSFOqslBd4IGxiRAwR9LknZgGI",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getUserAddress"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNlMjU2MjU3MGM2MGIwMDQwNTBmNTQwIiwiaWF0IjoxNjc2MzkyMTY4LCJleHAiOjE2NzYzOTMzNjh9.nmaK8WF_Cq5ta6BkuBSFOqslBd4IGxiRAwR9LknZgGI"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setNewOrder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNlMjU2MjU3MGM2MGIwMDQwNTBmNTQwIiwiaWF0IjoxNjc2ODQyMzY3LCJleHAiOjE2NzY4NDM1Njd9.pDIqVBzREHZnLnugSWvxFuKxctaG4CbPOHH3RV7YEVI\",\r\n    \"orderTotalPrice\": 550000,\r\n    \"orderTotalDiscount\": 23,\r\n    \"orderAddress\":\"تهران در قرمز رنگ\",\r\n    \"orderUserName\":\"محمد زارع\",\r\n    \"orderUserPhone\": \"09353639630\",\r\n    \"orderDate\": \"10 آبان 1401\",\r\n    \"orderProducts\": [\r\n        {\r\n          \"name\": \"هاب 5 پورت USB-C باسئوس مدل WKWG020013\",\r\n          \"seller\": \"موجود در انبار دیجی کالا\",\r\n          \"price\": 1099000,\r\n          \"discountPercent\": 12,\r\n          \"image\": \"https://dkstatics-public.digikala.com/digikala-products/7c96508748ecd0ee48555f33cc82fc7a10d7488f_1665477469.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80\",\r\n          \"productId\": \"63b9f7ce06661704dc22228d\",\r\n          \"count\" : 3\r\n        },\r\n        {\r\n          \"name\": \"پکیج دمنوش گیاهی2\",\r\n          \"seller\": \"موجود در انبار دیجی کالا\",\r\n          \"price\": 245000,\r\n          \"discountPercent\": 12,\r\n          \"image\": \"https://dkstatics-public.digikala.com/digikala-products/966764.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80\",\r\n          \"productId\": \"63b9fa5e06661704dc222290\",\r\n          \"count\" : 2\r\n          }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/setNewOrder",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"setNewOrder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "confirmPurchase",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \r\n         \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNlMjU2MjU3MGM2MGIwMDQwNTBmNTQwIiwiaWF0IjoxNjc2ODQyMzY3LCJleHAiOjE2NzY4NDM1Njd9.pDIqVBzREHZnLnugSWvxFuKxctaG4CbPOHH3RV7YEVI\",\r\n    \"orderId\" : \"63f2958e8caec4e6bd92ffaa\",\r\n    \"transactionId\": \"12343124312\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/confirmPurchase",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"confirmPurchase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserOrders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getUserOrders?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNlMjU2MjU3MGM2MGIwMDQwNTBmNTQwIiwiaWF0IjoxNjc2ODQyMDU2LCJleHAiOjE2NzY4NDMyNTZ9.I1zCFnCywJd8qHCrhYPpSA80g7F-EPzXtHS-fjg8vXc",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getUserOrders"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNlMjU2MjU3MGM2MGIwMDQwNTBmNTQwIiwiaWF0IjoxNjc2ODQyMDU2LCJleHAiOjE2NzY4NDMyNTZ9.I1zCFnCywJd8qHCrhYPpSA80g7F-EPzXtHS-fjg8vXc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product details page",
+			"item": [
+				{
+					"name": "getProductById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "EB43556E671B925B9C98E74643BCA",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "fa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dig-za0p.onrender.com/api/v1/getProductById?id=63b9f7ce06661704dc22228d",
+							"protocol": "https",
+							"host": [
+								"dig-za0p",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"getProductById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63b9f7ce06661704dc22228d"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

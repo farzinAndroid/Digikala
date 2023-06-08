@@ -1,0 +1,23 @@
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Digikala/app/src/main/res/drawable-v24/ic_increase_24.xml" value="0.169" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Digikala/app/src/main/res/drawable/arrow_back.xml" value="0.102" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Digikala/app/src/main/res/drawable/circle.xml" value="0.1" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Digikala/app/src/main/res/drawable/digi_delivered.xml" value="0.105" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Digikala/app/src/main/res/drawable/digi_processing.xml" value="0.105" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Digikala/app/src/main/res/drawable/digi_red_english.xml" value="0.1065" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Digikala/app/src/main/res/drawable/digi_returned.xml" value="0.105" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Digikala/app/src/main/res/drawable/ic_decrease_24.xml" value="0.169" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Digikala/app/src/main/res/drawable/ic_increase_24.xml" value="0.169" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" project-jdk-name="18" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
