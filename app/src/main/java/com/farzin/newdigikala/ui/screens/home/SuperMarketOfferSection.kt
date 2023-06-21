@@ -37,7 +37,7 @@ fun SuperMarketOfferSection(
         }
         is NetworkResult.Error -> {
             loading = false
-            Log.e("3636", "superMarketOfferSection error : ${superMarketItemResult.message}")
+            Log.e("TAG", "superMarketOfferSection error : ${superMarketItemResult.message}")
         }
         is NetworkResult.Loading -> {
             loading = true

@@ -25,7 +25,7 @@ import androidx.navigation.NavHostController
 import com.farzin.newdigikala.ui.components.CenterBannerItem
 import com.farzin.newdigikala.ui.theme.*
 import com.farzin.newdigikala.util.Constants
-import com.farzin.newdigikala.util.DigitHelper.digitByLocate
+import com.farzin.newdigikala.util.DigitHelper.digitByLang
 import com.farzin.newdigikala.viewmodel.DataStoreViewModel
 import com.farzin.newdigikala.viewmodel.ProfileViewModel
 
@@ -232,7 +232,7 @@ private fun ProfileHeaderSection() {
         textAlign = TextAlign.Center,
         style = MaterialTheme.typography.h6,
         color = MaterialTheme.colors.semiDarkText,
-        text = digitByLocate(Constants.USER_PHONE)
+        text = digitByLang(Constants.USER_PHONE)
     )
 
     Spacer(modifier = Modifier.height(MaterialTheme.spacing.biggerMedium))
@@ -268,7 +268,7 @@ private fun ProfileHeaderSection() {
                     Text(
                         style = MaterialTheme.typography.h5,
                         color = MaterialTheme.colors.semiDarkText,
-                        text = "${digitByLocate("975")} "
+                        text = "${digitByLang("975")} "
                     )
                     Text(
                         style = MaterialTheme.typography.h6,

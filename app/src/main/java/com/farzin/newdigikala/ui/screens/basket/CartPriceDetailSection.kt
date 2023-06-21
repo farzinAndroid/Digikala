@@ -21,14 +21,20 @@ import com.farzin.newdigikala.ui.theme.spacing
 import com.farzin.newdigikala.data.model.basket.CartDetails
 import com.farzin.newdigikala.ui.theme.DigikalaLightRed
 import com.farzin.newdigikala.util.DigitHelper
-import com.farzin.newdigikala.util.DigitHelper.digitByLocateAndSeparator
+import com.farzin.newdigikala.util.DigitHelper.digitByLangAndSeparator
 import com.farzin.newdigikala.R
 
 
 @Composable
 fun CartPriceDetailSection(
-    item: CartDetails
+    item: CartDetails,
+    shippingCost:Int = 0
 ) {
+
+    var title = stringResource(R.string.basket_summary)
+    if (shippingCost > 0){
+        title = stringResource(R.string.cost_details)
+    }
 
     Column(
         modifier = Modifier.padding(
@@ -44,13 +50,13 @@ fun CartPriceDetailSection(
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
-                text = stringResource(R.string.basket_summary),
+                text = title,
                 style = MaterialTheme.typography.h4,
                 color = MaterialTheme.colors.darkText
             )
 
             Text(
-                text = "${DigitHelper.digitByLocateAndSeparator(item.totalCount.toString())} ${
+                text = "${DigitHelper.digitByLangAndSeparator(item.totalCount.toString())} ${
                     stringResource(
                         R.string.goods
                     )
@@ -64,41 +70,51 @@ fun CartPriceDetailSection(
 
         PriceRow(
             stringResource(id = R.string.goods_price),
-            digitByLocateAndSeparator(item.totalPrice.toString())
+            digitByLangAndSeparator(item.totalPrice.toString())
         )
         val discountPercent = (1 - item.payablePrice.toDouble() / item.totalPrice.toDouble()) * 100
         PriceRow(
             stringResource(id = R.string.goods_discount),
-            digitByLocateAndSeparator(item.totalDiscount.toString()),
+            digitByLangAndSeparator(item.totalDiscount.toString()),
             discountPercent.toInt()
         )
         PriceRow(
             stringResource(id = R.string.goods_total_price),
-            digitByLocateAndSeparator(item.payablePrice.toString())
+            digitByLangAndSeparator(item.payablePrice.toString())
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = stringResource(R.string.dot_bullet),
-                color = Color.Gray,
-                style = MaterialTheme.typography.h2,
-                modifier = Modifier.padding(MaterialTheme.spacing.extraSmall)
+
+        if (shippingCost > 0){
+            Divider(
+                Modifier
+                    .padding(
+                        vertical = MaterialTheme.spacing.medium,
+                        horizontal = MaterialTheme.spacing.small
+                    )
+                    .alpha(0.6f),
+                color = Color.LightGray
             )
 
-            Text(
-                text = stringResource(R.string.shipping_cost_alert),
-                style = MaterialTheme.typography.h6,
-                color = Color.Gray,
-                modifier = Modifier.weight(1f)
+            PriceRow(
+                stringResource(id = R.string.delivery_cost),
+                digitByLangAndSeparator(shippingCost.toString())
             )
+
+            DotTextRow(text = stringResource(R.string.shipping_cost_last_alert))
+
+            PriceRow(
+                stringResource(id = R.string.final_price),
+                digitByLangAndSeparator((item.payablePrice + shippingCost).toString())
+            )
+        }else{
+            stringResource(R.string.shipping_cost_alert)
         }
+
+
+
+
 
         Divider(
             Modifier
@@ -113,6 +129,32 @@ fun CartPriceDetailSection(
 
     }
 
+
+}
+
+
+@Composable
+fun DotTextRow(text:String) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = stringResource(R.string.dot_bullet),
+            color = Color.Gray,
+            style = MaterialTheme.typography.h2,
+            modifier = Modifier.padding(MaterialTheme.spacing.extraSmall)
+        )
+
+        Text(
+            text = text,
+            style = MaterialTheme.typography.h6,
+            color = Color.Gray,
+            modifier = Modifier.weight(1f)
+        )
+    }
 
 }
 
@@ -148,7 +190,7 @@ private fun DigiClubScore(
         }
 
         Text(
-            text = "${digitByLocateAndSeparator(score.toString())} ${stringResource(id = R.string.score)}",
+            text = "${digitByLangAndSeparator(score.toString())} ${stringResource(id = R.string.score)}",
             style = MaterialTheme.typography.body2,
             textAlign = TextAlign.End,
             fontWeight = FontWeight.Medium,
@@ -181,7 +223,7 @@ private fun PriceRow(
     var ourPrice = price
     if (discount > 0) {
         color = MaterialTheme.colors.DigikalaLightRed
-        ourPrice = "(${digitByLocateAndSeparator(discount.toString())}%) $price"
+        ourPrice = "(${digitByLangAndSeparator(discount.toString())}%) $price"
     }
 
     Row(

@@ -20,7 +20,7 @@ import com.farzin.newdigikala.data.model.home.StoreProduct
 import com.farzin.newdigikala.data.remote.NetworkResult
 import com.farzin.newdigikala.ui.theme.darkText
 import com.farzin.newdigikala.ui.theme.spacing
-import com.farzin.newdigikala.util.DigitHelper.digitByLocate
+import com.farzin.newdigikala.util.DigitHelper.digitByLang
 import com.farzin.newdigikala.viewmodel.HomeViewModel
 
 @Composable
@@ -42,7 +42,7 @@ fun BestSellerOfferSection(
         }
         is NetworkResult.Error -> {
             loading = false
-            Log.e("3636", "BestSellerOfferSection error : ${bestSellerOfferResult.message}")
+            Log.e("TAG", "BestSellerOfferSection error : ${bestSellerOfferResult.message}")
         }
         is NetworkResult.Loading -> {
             loading = true
@@ -78,7 +78,7 @@ fun BestSellerOfferSection(
             itemsIndexed(bestSellerOfferList){index, item ->
                 ProductHorizontalCard(
                     name = item.name,
-                    id = digitByLocate((index+1).toString()),
+                    id = digitByLang((index+1).toString()),
                     imageUrl = item.image
                 )
             }

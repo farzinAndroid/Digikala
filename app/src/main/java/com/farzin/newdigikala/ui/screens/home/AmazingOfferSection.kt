@@ -36,7 +36,7 @@ fun AmazingOfferSection(
         }
         is NetworkResult.Error -> {
             loading = false
-            Log.e("3636", "AmazingOfferSection error : ${amazingItemResult.message}")
+            Log.e("TAG", "AmazingOfferSection error : ${amazingItemResult.message}")
         }
         is NetworkResult.Loading -> {
             loading = true

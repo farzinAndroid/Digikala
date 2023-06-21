@@ -47,7 +47,7 @@ fun SuggestListSection(
         }
         is NetworkResult.Error -> {
             loading = false
-            Log.e("3636", "SuggestListSection error : ${suggestedItemResult.message}")
+            Log.e("TAG", "SuggestListSection error : ${suggestedItemResult.message}")
         }
         is NetworkResult.Loading -> {
             loading = true

@@ -68,7 +68,7 @@ fun RegisterScreen(
 
                 is NetworkResult.Error -> {
                     profileViewModel.loadingState = false
-                    Log.e("3636", "loginResponse error : ${loginResponse.message}")
+                    Log.e("TAG", "loginResponse error : ${loginResponse.message}")
                 }
 
                 is NetworkResult.Loading -> {}

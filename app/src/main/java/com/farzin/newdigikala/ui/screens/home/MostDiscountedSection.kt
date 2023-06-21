@@ -37,7 +37,7 @@ fun MostDiscountedSection(
         }
         is NetworkResult.Error -> {
             loading = false
-            Log.e("3636", "MostDiscountedSection error : ${mostDiscountedListResult.message}")
+            Log.e("TAG", "MostDiscountedSection error : ${mostDiscountedListResult.message}")
         }
         is NetworkResult.Loading -> {
             loading = true

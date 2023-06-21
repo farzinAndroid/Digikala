@@ -19,8 +19,16 @@ import com.farzin.newdigikala.util.DigitHelper
 @Composable
 fun BuyProcessContinue(
     price: Long,
+    shippingCost:Int = 0,
     onClick: () -> Unit,
 ) {
+
+    var title = stringResource(R.string.goods_total_price)
+    if (shippingCost > 0){
+        title = stringResource(R.string.final_price)
+    }
+
+
     Card(
         shape = MaterialTheme.roundedShape.extraSmall,
         elevation = MaterialTheme.elevation.extraSmall,
@@ -59,14 +67,14 @@ fun BuyProcessContinue(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = stringResource(id = R.string.goods_total_price),
+                    text = title,
                     color = MaterialTheme.colors.semiDarkText,
                     style = MaterialTheme.typography.h6,
                 )
 
                 Row() {
                     Text(
-                        text = DigitHelper.digitByLocateAndSeparator(price.toString()),
+                        text = DigitHelper.digitByLangAndSeparator((price + shippingCost).toString()),
                         style = MaterialTheme.typography.body2,
                         fontWeight = FontWeight.SemiBold
                         )

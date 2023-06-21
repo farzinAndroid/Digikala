@@ -28,7 +28,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.farzin.newdigikala.data.model.basket.CartItem
 import com.farzin.newdigikala.data.model.basket.CartStatus
 import com.farzin.newdigikala.ui.theme.*
-import com.farzin.newdigikala.util.DigitHelper.digitByLocateAndSeparator
+import com.farzin.newdigikala.util.DigitHelper.digitByLangAndSeparator
 import com.farzin.newdigikala.viewmodel.BasketViewModel
 
 @Composable
@@ -70,7 +70,7 @@ fun CartItemCard(
                         color = MaterialTheme.colors.darkText
                     )
                     Text(
-                        text = "${digitByLocateAndSeparator(count.value.toString())} ${
+                        text = "${digitByLangAndSeparator(count.value.toString())} ${
                             stringResource(
                                 R.string.goods
                             )
@@ -261,7 +261,7 @@ fun CartItemCard(
                             )
 
                             Text(
-                                text = digitByLocateAndSeparator(count.value.toString()),
+                                text = digitByLangAndSeparator(count.value.toString()),
                                 style = MaterialTheme.typography.body2,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colors.digikalaRed,
@@ -333,14 +333,14 @@ fun CartItemCard(
 
                 Column {
                     Text(
-                        text = "${digitByLocateAndSeparator(discountAmount.toString())} ${stringResource(id = R.string.discount)}",
+                        text = "${digitByLangAndSeparator(discountAmount.toString())} ${stringResource(id = R.string.discount)}",
                         style = MaterialTheme.typography.extraSmall,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colors.DigikalaLightRed,
                     )
                     Row {
                         Text(
-                            text = digitByLocateAndSeparator(item.price.toString()),
+                            text = digitByLangAndSeparator(item.price.toString()),
                             style = MaterialTheme.typography.h3,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colors.darkText,

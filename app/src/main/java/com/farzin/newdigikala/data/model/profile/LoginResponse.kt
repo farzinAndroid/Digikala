@@ -1,4 +1,4 @@
-package com.farzin.newdigikala.data.model.prfile
+package com.farzin.newdigikala.data.model.profile
 
 data class LoginResponse(
     val phone: String,

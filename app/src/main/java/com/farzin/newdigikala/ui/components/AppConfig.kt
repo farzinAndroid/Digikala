@@ -39,7 +39,7 @@ fun AppConfig(
                             USER_TOKEN = user.token
                             getDataStoreVariables(dataStore)
 
-                            Log.e("3636" , "refresh token")
+                            Log.e("TAG" , "refresh token")
                         }
 
                     }

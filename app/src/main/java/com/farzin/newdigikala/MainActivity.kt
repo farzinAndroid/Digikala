@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
 
                 AppConfig()
 
-                Log.e("3636", USER_LANGUAGE)
+                Log.e("TAG", USER_LANGUAGE)
 
                 LocaleUtils.setLocale(LocalContext.current, USER_LANGUAGE)
 

@@ -41,7 +41,7 @@ fun MostVisitedOfferSection(
         }
         is NetworkResult.Error -> {
             loading = false
-            Log.e("3636", "MostVisitedOfferSection error : ${mostVisitedResult.message}")
+            Log.e("TAG", "MostVisitedOfferSection error : ${mostVisitedResult.message}")
         }
         is NetworkResult.Loading -> {
             loading = true
@@ -77,7 +77,7 @@ fun MostVisitedOfferSection(
             itemsIndexed(mostVisitedList){index, item ->
                 ProductHorizontalCard(
                     name = item.name,
-                    id = DigitHelper.digitByLocate((index+1).toString()),
+                    id = DigitHelper.digitByLang((index+1).toString()),
                     imageUrl = item.image
                 )
             }

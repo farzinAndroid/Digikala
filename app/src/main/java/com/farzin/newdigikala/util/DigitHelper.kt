@@ -5,7 +5,7 @@ import java.text.DecimalFormat
 object DigitHelper {
 
 
-    fun digitByLocate(englishStr: String): String {
+    fun digitByLang(englishStr: String): String {
         var result = ""
         var fa = '۰'
         for (ch in englishStr) {
@@ -32,9 +32,9 @@ object DigitHelper {
         return priceFormat.format(Integer.valueOf(price))
     }
 
-    fun digitByLocateAndSeparator(price: String): String {
+    fun digitByLangAndSeparator(price: String): String {
         val priceWithoutCommas = price.replace(",", "")
-        val persianDigit = digitByLocate(priceWithoutCommas)
+        val persianDigit = digitByLang(priceWithoutCommas)
         return digitBySeparator(persianDigit)
     }
 

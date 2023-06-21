@@ -22,7 +22,7 @@ import com.farzin.newdigikala.ui.theme.digikalaRed
 import com.farzin.newdigikala.ui.theme.extraSmall
 import com.farzin.newdigikala.ui.theme.roundedShape
 import com.farzin.newdigikala.ui.theme.spacing
-import com.farzin.newdigikala.util.DigitHelper.digitByLocateAndSeparator
+import com.farzin.newdigikala.util.DigitHelper.digitByLangAndSeparator
 
 @Composable
 fun IconWithBadge(
@@ -54,11 +54,11 @@ fun IconWithBadge(
             contentAlignment = Alignment.BottomStart
         ){
             Card(
-                shape = MaterialTheme.roundedShape.extraSmall,
+                shape = MaterialTheme.roundedShape.small,
                 border = BorderStroke(1.dp, Color.White)
             ){
                 Text(
-                    text = digitByLocateAndSeparator(cartCounter.toString()),
+                    text = digitByLangAndSeparator(cartCounter.toString()),
                     modifier = Modifier
                         .background(color = MaterialTheme.colors.digikalaRed)
                         .height(16.dp)

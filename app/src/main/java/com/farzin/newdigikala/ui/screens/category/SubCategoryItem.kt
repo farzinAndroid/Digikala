@@ -22,7 +22,7 @@ import com.farzin.newdigikala.ui.theme.darkText
 import com.farzin.newdigikala.ui.theme.grayCategory
 import com.farzin.newdigikala.ui.theme.roundedShape
 import com.farzin.newdigikala.ui.theme.spacing
-import com.farzin.newdigikala.util.DigitHelper.digitByLocate
+import com.farzin.newdigikala.util.DigitHelper.digitByLang
 
 @Composable
 fun SubCategoryItem(item: Sub) {
@@ -74,7 +74,7 @@ fun SubCategoryItem(item: Sub) {
                 color = Color.Gray,
                 fontWeight = FontWeight.Normal,
                 style = MaterialTheme.typography.h6,
-                text = "+${digitByLocate(item.count.toString())} ${stringResource(id = R.string.commodity)}"
+                text = "+${digitByLang(item.count.toString())} ${stringResource(id = R.string.commodity)}"
             )
         }
 

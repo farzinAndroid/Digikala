@@ -23,6 +23,7 @@ class BasketViewModel @Inject constructor(private val repository: BasketReposito
 
     val suggestedList = MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
     val cartDetail = MutableStateFlow(CartDetails(0, 0, 0, 0))
+    val ourCurrentCartItems = MutableStateFlow<List<CartItem>>(emptyList())
 
 
     private val _currentCartItems: MutableStateFlow<BasketScreenState<List<CartItem>>> =
@@ -42,6 +43,7 @@ class BasketViewModel @Inject constructor(private val repository: BasketReposito
             launch {
                 repository.currentCartItems.collectLatest { cartItems ->
                     _currentCartItems.emit(BasketScreenState.Success(cartItems))
+                    ourCurrentCartItems.emit(cartItems)
 
                 }
             }

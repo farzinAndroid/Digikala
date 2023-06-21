@@ -78,7 +78,7 @@ fun NextShoppingList(
                 }
             }
             is BasketScreenState.Error -> {
-                Log.e("3636", "err")
+                Log.e("TAG", "err")
             }
 
 

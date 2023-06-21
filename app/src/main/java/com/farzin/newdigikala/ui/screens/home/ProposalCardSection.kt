@@ -38,7 +38,7 @@ fun ProposalCardSection(
         }
         is NetworkResult.Error -> {
             loading = false
-            Log.e("3636", "Banners Section error : ${bannersResult.message}")
+            Log.e("TAG", "Banners Section error : ${bannersResult.message}")
         }
         is NetworkResult.Loading -> {
             loading = true

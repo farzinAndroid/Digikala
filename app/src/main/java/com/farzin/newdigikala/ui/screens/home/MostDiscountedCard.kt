@@ -130,7 +130,7 @@ fun MostDiscountedCard(item : StoreProduct) {
                             .wrapContentHeight(Alignment.CenterVertically)
                     ) {
                         Text(
-                            text = "${DigitHelper.digitByLocateAndSeparator(item.discountPercent.toString())}%",
+                            text = "${DigitHelper.digitByLangAndSeparator(item.discountPercent.toString())}%",
                             color = Color.White,
                             style = MaterialTheme.typography.h6,
                             fontWeight = FontWeight.Bold,
@@ -142,7 +142,7 @@ fun MostDiscountedCard(item : StoreProduct) {
 
                         Row {
                             Text(
-                                text = DigitHelper.digitByLocateAndSeparator(
+                                text = DigitHelper.digitByLangAndSeparator(
                                     DigitHelper.applyDiscount(item.price , item.discountPercent)
                                         .toString()),
                                 style = MaterialTheme.typography.body2,
@@ -160,7 +160,7 @@ fun MostDiscountedCard(item : StoreProduct) {
                         }
 
                         Text(
-                            text = DigitHelper.digitByLocateAndSeparator(item.price.toString()),
+                            text = DigitHelper.digitByLangAndSeparator(item.price.toString()),
                             color = Color.LightGray,
                             style = MaterialTheme.typography.body2,
                             textDecoration = TextDecoration.LineThrough

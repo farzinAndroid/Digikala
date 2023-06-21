@@ -43,7 +43,7 @@ fun CategoryListSection(
         }
         is NetworkResult.Error -> {
             loading = false
-            Log.e("3636", "CategoryListSection error : ${categoryResult.message}")
+            Log.e("TAG", "CategoryListSection error : ${categoryResult.message}")
         }
         is NetworkResult.Loading -> {
             loading = true

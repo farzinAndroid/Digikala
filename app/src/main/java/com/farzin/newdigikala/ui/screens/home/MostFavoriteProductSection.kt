@@ -40,7 +40,7 @@ fun MostFavoriteProductSection(
         }
         is NetworkResult.Error -> {
             loading = false
-            Log.e("3636", "MostFavoriteProductSection error : ${mostFavoriteResult.message}")
+            Log.e("TAG", "MostFavoriteProductSection error : ${mostFavoriteResult.message}")
         }
         is NetworkResult.Loading -> {
             loading = true

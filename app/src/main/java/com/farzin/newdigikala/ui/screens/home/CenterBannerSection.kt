@@ -29,7 +29,7 @@ fun CenterBannerSection(
         }
         is NetworkResult.Error -> {
             loading = false
-            Log.e("3636", "CenterBannerItem error : ${centerBannerResult.message}")
+            Log.e("TAG", "CenterBannerItem error : ${centerBannerResult.message}")
         }
         is NetworkResult.Loading -> {
             loading = true

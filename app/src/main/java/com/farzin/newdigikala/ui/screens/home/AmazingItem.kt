@@ -26,7 +26,7 @@ import com.farzin.newdigikala.R
 import com.farzin.newdigikala.ui.theme.*
 import com.farzin.newdigikala.util.Constants
 import com.farzin.newdigikala.util.DigitHelper.applyDiscount
-import com.farzin.newdigikala.util.DigitHelper.digitByLocateAndSeparator
+import com.farzin.newdigikala.util.DigitHelper.digitByLangAndSeparator
 
 @Composable
 fun AmazingItem(item: AmazingItem) {
@@ -145,7 +145,7 @@ fun AmazingItem(item: AmazingItem) {
                             .wrapContentHeight(Alignment.CenterVertically)
                     ) {
                         Text(
-                            text = "${digitByLocateAndSeparator(item.discountPercent.toString())}%",
+                            text = "${digitByLangAndSeparator(item.discountPercent.toString())}%",
                             color = Color.White,
                             style = MaterialTheme.typography.h6,
                             fontWeight = FontWeight.Bold,
@@ -157,7 +157,7 @@ fun AmazingItem(item: AmazingItem) {
 
                         Row {
                             Text(
-                                text = digitByLocateAndSeparator(applyDiscount(item.price , item.discountPercent).toString()),
+                                text = digitByLangAndSeparator(applyDiscount(item.price , item.discountPercent).toString()),
                                 style = MaterialTheme.typography.body2,
                                 fontWeight = FontWeight.SemiBold,
                             )
@@ -173,7 +173,7 @@ fun AmazingItem(item: AmazingItem) {
                         }
 
                         Text(
-                            text = digitByLocateAndSeparator(item.price.toString()),
+                            text = digitByLangAndSeparator(item.price.toString()),
                             color = Color.LightGray,
                             style = MaterialTheme.typography.body2,
                             textDecoration = TextDecoration.LineThrough

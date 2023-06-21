@@ -81,7 +81,7 @@ fun SubCategorySection(
         }
         is NetworkResult.Error -> {
             loading = false
-            Log.e("3636", "AmazingOfferSection error : ${subCategoryResult.message}")
+            Log.e("TAG", "AmazingOfferSection error : ${subCategoryResult.message}")
         }
         is NetworkResult.Loading -> {
             loading = true
