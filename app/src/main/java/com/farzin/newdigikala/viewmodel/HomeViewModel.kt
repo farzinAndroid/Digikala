@@ -14,23 +14,33 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(private val repo: HomeRepository) : ViewModel() {
 
     val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
+
     val amazingItems = MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
+
     val superMarketItems =
         MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
+
     val banners = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
+
     val categories = MutableStateFlow<NetworkResult<List<MainCategory>>>(NetworkResult.Loading())
+
     val centerBannerItems = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
+
     val bestSellerItems =
         MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
+
     val mostVisitedItems =
         MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
+
     val mostFavoriteItems =
         MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
+
     val mostDiscountedItems =
         MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
+
 
 
     suspend fun getAllDataFromServer() {
@@ -38,43 +48,43 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
 
             //fire and forget
             launch {
-                slider.emit(repository.getSlider())
+                slider.emit(repo.getSlider())
             }
 
             launch {
-                amazingItems.emit(repository.getAmazingItems())
+                amazingItems.emit(repo.getAmazingItems())
             }
 
             launch {
-                superMarketItems.emit(repository.getAmazingSuperMarketItems())
+                superMarketItems.emit(repo.getAmazingSuperMarketItems())
             }
 
             launch {
-                banners.emit(repository.getProposalBanners())
+                banners.emit(repo.getProposalBanners())
             }
 
             launch {
-                categories.emit(repository.getCategories())
+                categories.emit(repo.getCategories())
             }
 
             launch {
-                centerBannerItems.emit(repository.getCenterBanners())
+                centerBannerItems.emit(repo.getCenterBanners())
             }
 
             launch {
-                bestSellerItems.emit(repository.getBestSellerItems())
+                bestSellerItems.emit(repo.getBestSellerItems())
             }
 
             launch {
-                mostVisitedItems.emit(repository.getMostVisitedItems())
+                mostVisitedItems.emit(repo.getMostVisitedItems())
             }
 
             launch {
-                mostFavoriteItems.emit(repository.getMostFavoriteItems())
+                mostFavoriteItems.emit(repo.getMostFavoriteItems())
             }
 
             launch {
-                mostDiscountedItems.emit(repository.getMostDiscountedItems())
+                mostDiscountedItems.emit(repo.getMostDiscountedItems())
             }
 
         }

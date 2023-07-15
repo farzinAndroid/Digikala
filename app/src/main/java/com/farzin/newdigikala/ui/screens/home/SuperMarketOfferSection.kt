@@ -11,6 +11,7 @@ import com.farzin.newdigikala.R
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.farzin.newdigikala.data.model.home.AmazingItem
 import com.farzin.newdigikala.data.remote.NetworkResult
 import com.farzin.newdigikala.ui.theme.DigikalaLightGreen
@@ -19,6 +20,7 @@ import com.farzin.newdigikala.viewmodel.HomeViewModel
 
 @Composable
 fun SuperMarketOfferSection(
+    navController:NavController,
     viewModel: HomeViewModel = hiltViewModel()
 ){
 
@@ -57,7 +59,10 @@ fun SuperMarketOfferSection(
             }
 
             items(superMarketItemList) { item ->
-                AmazingItem(item = item)
+                AmazingItem(
+                    item = item,
+                    navController=navController
+                )
             }
 
             item {

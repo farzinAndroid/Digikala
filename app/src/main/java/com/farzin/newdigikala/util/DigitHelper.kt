@@ -38,7 +38,7 @@ object DigitHelper {
         return digitBySeparator(persianDigit)
     }
 
-    fun applyDiscount(price: Long, discountPercent: Int): Long {
+    fun calculateDiscount(price: Long, discountPercent: Int): Long {
         return if (discountPercent > 0) {
             val discountAmount = (price * discountPercent) / 100
             price - discountAmount

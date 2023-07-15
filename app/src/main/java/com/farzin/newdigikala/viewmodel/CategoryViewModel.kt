@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CategoryViewModel @Inject constructor(private val repository: CategoryRepository) :
+class CategoryViewModel @Inject constructor(private val repo: CategoryRepository) :
     ViewModel() {
 
     val subCategory = MutableStateFlow<NetworkResult<SubCategory>>(NetworkResult.Loading())
@@ -22,7 +22,7 @@ class CategoryViewModel @Inject constructor(private val repository: CategoryRepo
 
             //fire and forget
             launch {
-                subCategory.emit(repository.getSubCategories())
+                subCategory.emit(repo.getSubCategories())
             }
 
 

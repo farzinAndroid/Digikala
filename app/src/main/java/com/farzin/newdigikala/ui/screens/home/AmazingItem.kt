@@ -2,6 +2,7 @@ package com.farzin.newdigikala.ui.screens.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
@@ -20,16 +21,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.farzin.newdigikala.data.model.home.AmazingItem
 import com.farzin.newdigikala.R
+import com.farzin.newdigikala.navigation.Screen
 import com.farzin.newdigikala.ui.theme.*
 import com.farzin.newdigikala.util.Constants
-import com.farzin.newdigikala.util.DigitHelper.applyDiscount
+import com.farzin.newdigikala.util.DigitHelper.calculateDiscount
 import com.farzin.newdigikala.util.DigitHelper.digitByLangAndSeparator
 
 @Composable
-fun AmazingItem(item: AmazingItem) {
+fun AmazingItem(
+    item: AmazingItem,
+    navController: NavController
+) {
 
     Card(
         modifier = Modifier
@@ -37,7 +43,10 @@ fun AmazingItem(item: AmazingItem) {
             .padding(
                 vertical = MaterialTheme.spacing.semiLarge,
                 horizontal = MaterialTheme.spacing.semiSmall
-            ),
+            )
+            .clickable {
+                       navController.navigate(Screen.ProductDetail.withArgs(item._id))
+            },
         shape = MaterialTheme.roundedShape.small,
     ) {
 
@@ -157,7 +166,7 @@ fun AmazingItem(item: AmazingItem) {
 
                         Row {
                             Text(
-                                text = digitByLangAndSeparator(applyDiscount(item.price , item.discountPercent).toString()),
+                                text = digitByLangAndSeparator(calculateDiscount(item.price , item.discountPercent).toString()),
                                 style = MaterialTheme.typography.body2,
                                 fontWeight = FontWeight.SemiBold,
                             )

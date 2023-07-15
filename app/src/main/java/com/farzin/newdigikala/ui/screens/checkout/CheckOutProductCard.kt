@@ -24,6 +24,7 @@ import com.farzin.newdigikala.ui.theme.Typography
 import com.farzin.newdigikala.ui.theme.darkText
 import com.farzin.newdigikala.ui.theme.extraSmall
 import com.farzin.newdigikala.ui.theme.spacing
+import com.farzin.newdigikala.util.DigitHelper
 
 @Composable
 fun CheckOutProductCard(
@@ -51,7 +52,7 @@ fun CheckOutProductCard(
             contentAlignment = Alignment.BottomEnd
         ){
             Text(
-                text =cart.count.toString(),
+                text =DigitHelper.digitByLang(cart.count.toString()),
                 fontWeight = FontWeight.Bold,
                 style = Typography.extraSmall,
                 color = Color.Black

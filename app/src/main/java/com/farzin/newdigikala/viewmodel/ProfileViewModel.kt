@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(private val repository: ProfileRepository) :
+class ProfileViewModel @Inject constructor(private val repo: ProfileRepository) :
     ViewModel() {
     //sharedViewModel
     var screenState by mutableStateOf(ProfileScreenState.LOGIN_STATE)
@@ -31,7 +31,7 @@ class ProfileViewModel @Inject constructor(private val repository: ProfileReposi
         viewModelScope.launch {
             loadingState = true
             val loginRequest = LoginRequest(inputPhoneState, inputPasswordState)
-            loginResponse.emit(repository.login(loginRequest))
+            loginResponse.emit(repo.login(loginRequest))
         }
     }
 
@@ -39,7 +39,7 @@ class ProfileViewModel @Inject constructor(private val repository: ProfileReposi
     fun refreshToken(phone: String, password: String){
         viewModelScope.launch {
             val loginRequest = LoginRequest(phone , password)
-            loginResponse.emit(repository.login(loginRequest))
+            loginResponse.emit(repo.login(loginRequest))
         }
     }
 

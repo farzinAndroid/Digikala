@@ -11,6 +11,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.farzin.newdigikala.data.model.home.AmazingItem
 import com.farzin.newdigikala.data.remote.NetworkResult
 import com.farzin.newdigikala.ui.theme.DigikalaLightRed
@@ -18,6 +19,7 @@ import com.farzin.newdigikala.viewmodel.HomeViewModel
 
 @Composable
 fun AmazingOfferSection(
+    navController:NavController,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
 
@@ -56,7 +58,10 @@ fun AmazingOfferSection(
             }
 
             items(amazingItemList) { item ->
-                AmazingItem(item = item)
+                AmazingItem(
+                    item = item,
+                    navController =navController
+                )
             }
 
             item {

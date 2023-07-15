@@ -4,28 +4,26 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import com.farzin.newdigikala.data.model.address.UserAddress
+import com.farzin.newdigikala.data.model.product_detail.ProductDetail
 import com.farzin.newdigikala.data.remote.NetworkResult
 import com.farzin.newdigikala.repository.AddressRepository
+import com.farzin.newdigikala.repository.ProductDetailRepository
 import com.farzin.newdigikala.util.Constants
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddressViewModel @Inject constructor(private val repo: AddressRepository) :
+class ProductDetailViewModel @Inject constructor(private val repo: ProductDetailRepository) :
     ViewModel() {
 
-    val userAddressList =
-        MutableStateFlow<NetworkResult<List<UserAddress>>>(NetworkResult.Loading())
+    val productDetails =
+        MutableStateFlow<NetworkResult<ProductDetail>>(NetworkResult.Loading())
 
 
-    init {
-        getUserAddressList(Constants.USER_TOKEN)
-    }
-
-    private fun getUserAddressList(token: String) {
+    fun getProductById(id: String) {
         viewModelScope.launch {
-            userAddressList.emit(repo.getUserAddressList(token))
+           productDetails.emit(repo.getProductById(id))
         }
     }
 

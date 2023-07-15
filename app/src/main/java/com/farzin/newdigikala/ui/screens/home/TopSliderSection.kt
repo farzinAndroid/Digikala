@@ -54,19 +54,21 @@ fun TopSliderSection(vm: HomeViewModel = hiltViewModel()) {
             sliderList = sliderResult.data ?: emptyList()
             loading = false
         }
+
         is NetworkResult.Error -> {
             Log.e("TAG", "Top slider error : ${sliderResult.message}")
             loading = false
         }
+
         is NetworkResult.Loading -> {
             loading = true
         }
     }
 
-    if (loading){
+    if (loading) {
         val config = LocalConfiguration.current
         OurLoading(height = config.screenHeightDp.dp, isDark = isScreenDark())
-    }else{
+    } else {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -86,49 +88,51 @@ fun TopSliderSection(vm: HomeViewModel = hiltViewModel()) {
                     mutableStateOf("")
                 }
 
-                HorizontalPager(
-                    count = sliderList.size,
-                    state = pagerState,
-                    contentPadding = PaddingValues(horizontal = LocalSpacing.current.medium),
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxWidth()
-                ) { index ->
-                    imageUrl = sliderList[index].image
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.BottomCenter
-                    ) {
-                        val painter = rememberAsyncImagePainter(
-                            ImageRequest.Builder(LocalContext.current)
-                                .data(data = imageUrl)
-                                .scale(Scale.FIT)
-                                .build()
-                        )
-                        Image(
-                            painter = painter, contentDescription = "", modifier = Modifier
-                                .padding(LocalSpacing.current.small)
-                                .clip(LocalShape.current.medium)
-                                .fillMaxSize(),
-                            contentScale = ContentScale.FillBounds
-                        )
 
+                Box {
 
-                        HorizontalPagerIndicator(
-                            pagerState = pagerState,
-                            activeColor = Color.Black,
-                            inactiveColor = Color.LightGray,
-                            indicatorWidth = LocalSpacing.current.small,
-                            indicatorHeight = LocalSpacing.current.small,
-                            indicatorShape = CircleShape,
-                            modifier = Modifier
-                                .align(Alignment.BottomEnd)
-                                .padding(LocalSpacing.current.semiLarge)
-                        )
-
-
+                    HorizontalPager(
+                        count = sliderList.size,
+                        state = pagerState,
+                        contentPadding = PaddingValues(horizontal = LocalSpacing.current.medium),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) { index ->
+                        imageUrl = sliderList[index].image
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.BottomCenter
+                        ) {
+                            val painter = rememberAsyncImagePainter(
+                                ImageRequest.Builder(LocalContext.current)
+                                    .data(data = imageUrl)
+                                    .scale(Scale.FIT)
+                                    .build()
+                            )
+                            Image(
+                                painter = painter, contentDescription = "", modifier = Modifier
+                                    .padding(LocalSpacing.current.small)
+                                    .clip(LocalShape.current.medium)
+                                    .fillMaxSize(),
+                                contentScale = ContentScale.FillBounds
+                            )
+                        }
                     }
+
+                    HorizontalPagerIndicator(
+                        pagerState = pagerState,
+                        activeColor = Color.Black,
+                        inactiveColor = Color.LightGray,
+                        indicatorWidth = LocalSpacing.current.small,
+                        indicatorHeight = LocalSpacing.current.small,
+                        indicatorShape = CircleShape,
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .padding(LocalSpacing.current.semiLarge)
+                    )
+
                 }
+
 
                 val isDraggedState by pagerState.interactionSource.collectIsDraggedAsState()
                 LaunchedEffect(isDraggedState) {
@@ -141,8 +145,6 @@ fun TopSliderSection(vm: HomeViewModel = hiltViewModel()) {
                                 if (newPosition > sliderList.size - 1) newPosition = 0
                                 pagerState.animateScrollToPage(newPosition)
                             }
-
-
                         }
                 }
             }
@@ -150,14 +152,13 @@ fun TopSliderSection(vm: HomeViewModel = hiltViewModel()) {
     }
 
 
-
 }
 
 @Composable
-fun isScreenDark() : Boolean {
-    return if (MaterialTheme.colors.isLight){
+fun isScreenDark(): Boolean {
+    return if (MaterialTheme.colors.isLight) {
         true
-    }else
+    } else
         false
 
 }

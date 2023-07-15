@@ -11,6 +11,7 @@ import com.farzin.newdigikala.ui.screens.category.CategoryScreen
 import com.farzin.newdigikala.ui.screens.checkout.CheckoutScreen
 import com.farzin.newdigikala.ui.screens.home.HomeScreen
 import com.farzin.newdigikala.ui.screens.home.WebPageScreen
+import com.farzin.newdigikala.ui.screens.product_detail.ProductDetailSectionScreen
 import com.farzin.newdigikala.ui.screens.profile.ProfileScreen
 import com.farzin.newdigikala.ui.screens.splash.SplashScreen
 
@@ -59,6 +60,25 @@ fun SetupNavGraph(navController: NavHostController) {
             url?.let {
                 WebPageScreen(navController = navController, url = url)
             }
+        }
+
+
+        composable(
+            route = Screen.ProductDetail.route + "/{id}",
+            arguments = listOf(
+                navArgument("id"){
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = ""
+                }
+            )
+        ) {
+
+            it.arguments?.getString("id")?.let {id->
+                ProductDetailSectionScreen(navController = navController, id = id)
+            }
+
+
         }
 
     }

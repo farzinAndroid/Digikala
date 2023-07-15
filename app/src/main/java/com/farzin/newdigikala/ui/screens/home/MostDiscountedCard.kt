@@ -143,7 +143,7 @@ fun MostDiscountedCard(item : StoreProduct) {
                         Row {
                             Text(
                                 text = DigitHelper.digitByLangAndSeparator(
-                                    DigitHelper.applyDiscount(item.price , item.discountPercent)
+                                    DigitHelper.calculateDiscount(item.price , item.discountPercent)
                                         .toString()),
                                 style = MaterialTheme.typography.body2,
                                 fontWeight = FontWeight.SemiBold,

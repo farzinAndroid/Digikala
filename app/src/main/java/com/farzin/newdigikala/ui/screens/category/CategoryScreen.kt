@@ -2,10 +2,13 @@ package com.farzin.newdigikala.ui.screens.category
 
 
 import android.util.Log
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import com.farzin.newdigikala.R
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
@@ -40,22 +43,23 @@ fun Category(
 }
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun SwipeRefreshSection(
-    viewModel: CategoryViewModel,
+    vm: CategoryViewModel,
     navController: NavHostController
 ) {
-    val refreshScope = rememberCoroutineScope()
-    val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = false)
+    val onRefresh = rememberCoroutineScope()
+    val swipeRefreshState = rememberPullRefreshState(refreshing = false, onRefresh = {
+        onRefresh.launch {
+            refreshDataFromServer(vm)
+            Log.e("TAG", "Refresh")
+        }
+    })
 
-    SwipeRefresh(
-        state = swipeRefreshState,
-        onRefresh = {
-            refreshScope.launch {
-                refreshDataFromServer(viewModel)
-                Log.e("TAG", "swipeRefresh")
-            }
-        }) {
+    Box(
+        Modifier.pullRefresh(swipeRefreshState)
+    ){
 
 
         LazyColumn(
@@ -68,7 +72,6 @@ private fun SwipeRefreshSection(
             item { SubCategorySection() }
 
         }
-
 
     }
 }

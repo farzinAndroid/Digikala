@@ -33,7 +33,7 @@ fun SetBadgeToTab(
         Text(
             text = digitByLangAndSeparator(cartCounter.toString()),
             style = MaterialTheme.typography.h6,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
             color = Color.White,
             modifier = Modifier

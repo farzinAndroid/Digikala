@@ -18,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.farzin.newdigikala.ui.theme.digikalaRed
+import com.farzin.newdigikala.ui.theme.searchBarBg
 import com.farzin.newdigikala.ui.theme.spacing
 import com.farzin.newdigikala.viewmodel.BasketViewModel
 
@@ -53,7 +54,7 @@ fun Basket(
                 .padding(horizontal = MaterialTheme.spacing.medium),
             selectedTabIndex = selectedTabIndex,
             contentColor = MaterialTheme.colors.digikalaRed,
-            backgroundColor = Color.White,
+            backgroundColor = MaterialTheme.colors.searchBarBg,
             indicator = { line ->
                 Box(
                     modifier = Modifier

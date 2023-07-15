@@ -10,7 +10,7 @@ import com.farzin.newdigikala.data.model.home.StoreProduct
 import com.farzin.newdigikala.data.remote.NetworkResult
 import com.farzin.newdigikala.repository.BasketRepository
 import com.farzin.newdigikala.ui.screens.basket.BasketScreenState
-import com.farzin.newdigikala.util.DigitHelper.applyDiscount
+import com.farzin.newdigikala.util.DigitHelper.calculateDiscount
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class BasketViewModel @Inject constructor(private val repository: BasketRepository) : ViewModel() {
+class BasketViewModel @Inject constructor(private val repo: BasketRepository) : ViewModel() {
 
 
     val suggestedList = MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
@@ -35,26 +35,26 @@ class BasketViewModel @Inject constructor(private val repository: BasketReposito
     val nextCartItems: StateFlow<BasketScreenState<List<CartItem>>> = _nextCartItems
 
 
-    val currentCartItemsCount = repository.currentCartItemsCount
-    val nextCartItemsCount = repository.nextCartItemsCount
+    val currentCartItemsCount = repo.currentCartItemsCount
+    val nextCartItemsCount = repo.nextCartItemsCount
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
             launch {
-                repository.currentCartItems.collectLatest { cartItems ->
+                repo.currentCartItems.collectLatest { cartItems ->
                     _currentCartItems.emit(BasketScreenState.Success(cartItems))
                     ourCurrentCartItems.emit(cartItems)
 
                 }
             }
             launch {
-                repository.currentCartItems.collectLatest { cartItems ->
+                repo.currentCartItems.collectLatest { cartItems ->
                     calculateCartDetails(cartItems)
 
                 }
             }
             launch {
-                repository.nextCartItems.collectLatest { nextCartItems ->
+                repo.nextCartItems.collectLatest { nextCartItems ->
                     _nextCartItems.emit(BasketScreenState.Success(nextCartItems))
                 }
             }
@@ -69,7 +69,7 @@ class BasketViewModel @Inject constructor(private val repository: BasketReposito
         var payablePrice = 0L
         items.forEach { item ->
             totalPrice += item.price * item.count
-            payablePrice += applyDiscount(item.price, item.discountPercent) * item.count
+            payablePrice += calculateDiscount(item.price, item.discountPercent) * item.count
             totalCount += item.count
         }
         totalDiscount = totalPrice - payablePrice
@@ -79,33 +79,33 @@ class BasketViewModel @Inject constructor(private val repository: BasketReposito
 
     fun getSuggestedItems() {
         viewModelScope.launch {
-            suggestedList.emit(repository.getSuggestedItems())
+            suggestedList.emit(repo.getSuggestedItems())
         }
     }
 
 
     fun insertCartItem(item: CartItem) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.insertCartItem(item)
+            repo.insertCartItem(item)
         }
     }
 
 
     fun removeCartItem(item: CartItem) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.removeFromCart(item)
+            repo.removeFromCart(item)
         }
     }
 
     fun changeCartItemCount(id: String, newCount: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.changeCartItemCount(id, newCount)
+            repo.changeCartItemCount(id, newCount)
         }
     }
 
     fun changeCartItemStatus(id: String, newStatus: CartStatus) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.changeCartItemStatus(id, newStatus)
+            repo.changeCartItemStatus(id, newStatus)
         }
     }
 

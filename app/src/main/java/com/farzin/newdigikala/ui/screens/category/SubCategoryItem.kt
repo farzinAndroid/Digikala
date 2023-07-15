@@ -21,6 +21,7 @@ import com.farzin.newdigikala.data.model.category.Sub
 import com.farzin.newdigikala.ui.theme.darkText
 import com.farzin.newdigikala.ui.theme.grayCategory
 import com.farzin.newdigikala.ui.theme.roundedShape
+import com.farzin.newdigikala.ui.theme.searchBarBg
 import com.farzin.newdigikala.ui.theme.spacing
 import com.farzin.newdigikala.util.DigitHelper.digitByLang
 
@@ -33,7 +34,8 @@ fun SubCategoryItem(item: Sub) {
                 vertical = MaterialTheme.spacing.medium,
                 horizontal = MaterialTheme.spacing.extraSmall
             ),
-        shape = MaterialTheme.roundedShape.small
+        shape = MaterialTheme.roundedShape.small,
+        backgroundColor = MaterialTheme.colors.searchBarBg
     ) {
         Column(
             modifier = Modifier

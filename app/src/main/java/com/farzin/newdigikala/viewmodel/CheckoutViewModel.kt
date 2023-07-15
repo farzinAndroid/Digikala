@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CheckoutViewModel @Inject constructor(private val repository: CheckoutRepository) :
+class CheckoutViewModel @Inject constructor(private val repo: CheckoutRepository) :
     ViewModel() {
 
     val shippingCost = MutableStateFlow<NetworkResult<Int>>(NetworkResult.Loading())
@@ -20,13 +20,13 @@ class CheckoutViewModel @Inject constructor(private val repository: CheckoutRepo
 
     fun getShippingCost(address: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            shippingCost.emit(repository.getShippingCost(address))
+            shippingCost.emit(repo.getShippingCost(address))
         }
     }
 
     fun setNewOrder(orderDetails: OrderDetails) {
         viewModelScope.launch(Dispatchers.IO) {
-            orderResponse.emit(repository.setNewOrder(orderDetails))
+            orderResponse.emit(repo.setNewOrder(orderDetails))
         }
     }
 
