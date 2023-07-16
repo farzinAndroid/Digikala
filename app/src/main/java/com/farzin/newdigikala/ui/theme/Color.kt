@@ -95,3 +95,12 @@ val Colors.DigikalaLightGreen: Color
 val Colors.Orange: Color
     @Composable
     get() = if (isLight) Color(0xffff5722) else Color(0xFFFF7144)
+
+val Colors.Gold : Color
+    @Composable
+    get() = Color(0xFFf9bc01)
+
+
+val Colors.grayAlpha: Color
+    @Composable
+    get() = Color(0xFFc1c2c6)

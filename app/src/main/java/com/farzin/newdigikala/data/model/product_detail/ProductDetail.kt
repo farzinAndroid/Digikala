@@ -18,7 +18,7 @@ data class ProductDetail(
     val agreeCount: Int? = null,
     val agreePercent: Int? = null,
     val imageSlider: List<SliderImage>? = null,
-    val colors: List<Color>? = null,
+    val colors: List<ProductColor>? = null,
     val comments: List<Comment>? = null
 )
 
@@ -28,7 +28,7 @@ data class SliderImage(
     val productId: String
 )
 
-data class Color(
+data class ProductColor(
     val _id: String,
     val color: String,
     val code: String

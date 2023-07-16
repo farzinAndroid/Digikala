@@ -4,10 +4,8 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -16,7 +14,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.farzin.newdigikala.data.model.home.Slider
+import com.farzin.newdigikala.data.model.product_detail.ProductColor
 import com.farzin.newdigikala.data.model.product_detail.ProductDetail
 import com.farzin.newdigikala.data.model.product_detail.SliderImage
 import com.farzin.newdigikala.data.remote.NetworkResult
@@ -38,11 +36,15 @@ fun ProductDetailSectionScreen(
     }
 
     var productDetailList by remember {
-        mutableStateOf<ProductDetail>(ProductDetail())
+        mutableStateOf(ProductDetail())
     }
 
     var sliderImage by remember {
         mutableStateOf<List<SliderImage>>(emptyList())
+    }
+
+    var colorList by remember {
+        mutableStateOf<List<ProductColor>>(emptyList())
     }
 
 
@@ -54,7 +56,8 @@ fun ProductDetailSectionScreen(
             when (productDetailResult) {
                 is NetworkResult.Success -> {
                     productDetailList = productDetailResult.data!!
-                    sliderImage = productDetailResult.data.imageSlider!!
+                    sliderImage = productDetailResult.data.imageSlider ?: emptyList()
+                    colorList = productDetailResult.data.colors ?: emptyList()
                     loading = false
                 }
 
@@ -83,6 +86,8 @@ fun ProductDetailSectionScreen(
             content = {
                 LazyColumn {
                     item { ProductDetailImageSlider(sliderImage) }
+                    item { ProductDetailHeaderSection(item = productDetailList) }
+                    item { ProductDetailSelectedColorSection(colors = colorList) }
                 }
             }
         )
