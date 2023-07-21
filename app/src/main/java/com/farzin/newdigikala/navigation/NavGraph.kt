@@ -11,7 +11,7 @@ import com.farzin.newdigikala.ui.screens.category.CategoryScreen
 import com.farzin.newdigikala.ui.screens.checkout.CheckoutScreen
 import com.farzin.newdigikala.ui.screens.home.HomeScreen
 import com.farzin.newdigikala.ui.screens.home.WebPageScreen
-import com.farzin.newdigikala.ui.screens.product_detail.ProductDetailSectionScreen
+import com.farzin.newdigikala.ui.screens.product_detail.ProductDetailScreen
 import com.farzin.newdigikala.ui.screens.profile.ProfileScreen
 import com.farzin.newdigikala.ui.screens.splash.SplashScreen
 
@@ -75,7 +75,7 @@ fun SetupNavGraph(navController: NavHostController) {
         ) {
 
             it.arguments?.getString("id")?.let {id->
-                ProductDetailSectionScreen(navController = navController, id = id)
+                ProductDetailScreen(navController = navController, id = id)
             }
 
 

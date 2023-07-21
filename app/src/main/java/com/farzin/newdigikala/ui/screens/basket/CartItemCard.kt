@@ -416,7 +416,7 @@ fun CartItemCard(
 
 
 @Composable
-private fun DetailRow(
+fun DetailRow(
     icon: Painter,
     text: String,
     color: Color,

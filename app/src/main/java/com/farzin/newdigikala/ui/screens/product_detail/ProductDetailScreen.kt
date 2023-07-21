@@ -2,6 +2,7 @@ package com.farzin.newdigikala.ui.screens.product_detail
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -10,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -25,7 +27,7 @@ import kotlinx.coroutines.flow.collectLatest
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ProductDetailSectionScreen(
+fun ProductDetailScreen(
     navController: NavController,
     id: String,
     productDetailViewModel: ProductDetailViewModel = hiltViewModel(),
@@ -33,6 +35,10 @@ fun ProductDetailSectionScreen(
 
     var loading by remember {
         mutableStateOf(false)
+    }
+
+    var categoryId by remember {
+        mutableStateOf("")
     }
 
     var productDetailList by remember {
@@ -58,6 +64,7 @@ fun ProductDetailSectionScreen(
                     productDetailList = productDetailResult.data!!
                     sliderImage = productDetailResult.data.imageSlider ?: emptyList()
                     colorList = productDetailResult.data.colors ?: emptyList()
+                    categoryId = productDetailResult.data.categoryId ?: ""
                     loading = false
                 }
 
@@ -84,10 +91,14 @@ fun ProductDetailSectionScreen(
                 ProductDetailBottomBarSection(item = productDetailList)
             },
             content = {
-                LazyColumn {
+                LazyColumn(
+                    modifier = Modifier.padding(bottom = 70.dp)
+                ) {
                     item { ProductDetailImageSlider(sliderImage) }
                     item { ProductDetailHeaderSection(item = productDetailList) }
                     item { ProductDetailSelectedColorSection(colors = colorList) }
+                    item { SellerInfoSection() }
+                    item { SimilarProductSection(categoryId = categoryId) }
                 }
             }
         )

@@ -24,7 +24,10 @@ fun ProductDetailSelectedColorSection(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = MaterialTheme.spacing.medium)
+            .padding(
+                horizontal = MaterialTheme.spacing.medium,
+                vertical = MaterialTheme.spacing.small,
+            )
     ) {
 
         Text(

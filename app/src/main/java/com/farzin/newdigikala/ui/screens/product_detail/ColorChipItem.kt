@@ -2,6 +2,7 @@ package com.farzin.newdigikala.ui.screens.product_detail
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -24,7 +25,7 @@ import com.farzin.newdigikala.ui.theme.spacing
 
 @Composable
 fun ColorChipItem(
-    item:ProductColor
+    item: ProductColor,
 ) {
 
     Surface(
@@ -32,20 +33,26 @@ fun ColorChipItem(
         shape = MaterialTheme.roundedShape.biggerSmall,
         modifier = Modifier
             .padding(MaterialTheme.spacing.extraSmall)
+            .clickable { }
     ) {
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.extraSmall),
-            modifier = Modifier.padding(MaterialTheme.spacing.small)
+            modifier = Modifier
+                .padding(MaterialTheme.spacing.small)
         ) {
 
             Canvas(
                 modifier = Modifier
                     .size(20.dp)
                     .border(1.dp, Color.Gray, CircleShape),
-                onDraw ={
-                    drawCircle(color = Color(("ff" + item.code.removePrefix("#").lowercase()).toLong(16)))
+                onDraw = {
+                    drawCircle(
+                        color = Color(
+                            ("ff" + item.code.removePrefix("#").lowercase()).toLong(16)
+                        )
+                    )
                 }
             )
 

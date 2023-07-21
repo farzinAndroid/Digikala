@@ -1,5 +1,6 @@
 package com.farzin.newdigikala.ui.screens.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -23,7 +24,8 @@ fun MostFavoriteProductsShowMore() {
                 end = MaterialTheme.spacing.medium,
                 start = MaterialTheme.spacing.semiSmall,
                 top = MaterialTheme.spacing.semiLarge
-            ),
+            )
+            .clickable {  },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
