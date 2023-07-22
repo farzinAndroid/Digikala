@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class BasketRepository @Inject constructor(
     private val api: BasketApiInterface,
-    private val dao: CartDao
+    private val dao: CartDao,
 ) : BaseApiResponse() {
 
     val currentCartItems = dao.getAllItems(CartStatus.CURRENT_CART)

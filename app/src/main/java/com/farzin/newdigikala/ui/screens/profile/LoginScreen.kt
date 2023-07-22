@@ -26,7 +26,7 @@ import com.farzin.newdigikala.viewmodel.ProfileViewModel
 
 @Composable
 fun LoginScreen(
-    profileViewModel: ProfileViewModel = hiltViewModel()
+    profileViewModel: ProfileViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
 

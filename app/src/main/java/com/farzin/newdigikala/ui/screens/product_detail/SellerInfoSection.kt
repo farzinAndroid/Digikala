@@ -369,7 +369,7 @@ fun SellerInfoSection() {
                 style = Typography.extraSmall,
                 color = MaterialTheme.colors.unSelectedBottomBar,
                 modifier = Modifier
-                    .clickable {  }
+                    .clickable { }
             )
 
             Image(

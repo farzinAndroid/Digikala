@@ -21,7 +21,7 @@ import com.farzin.newdigikala.ui.theme.spacing
 fun ProductHorizontalCard(
     name: String,
     id: String,
-    imageUrl: String
+    imageUrl: String,
 ) {
     Row(
         modifier = Modifier

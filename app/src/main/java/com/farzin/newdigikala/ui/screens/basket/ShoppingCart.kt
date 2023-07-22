@@ -27,7 +27,7 @@ import com.farzin.newdigikala.viewmodel.BasketViewModel
 @Composable
 fun ShoppingCart(
     navController: NavController,
-    viewModel: BasketViewModel = hiltViewModel()
+    viewModel: BasketViewModel = hiltViewModel(),
 ) {
 
     val cartDetail by viewModel.cartDetail.collectAsState()
@@ -53,7 +53,7 @@ fun ShoppingCart(
 
             item {
                 if (Constants.USER_TOKEN == "null") {
-                   LoginOrRegisterSection(navController)
+                    LoginOrRegisterSection(navController)
                 }
             }
 
@@ -74,6 +74,7 @@ fun ShoppingCart(
                         }
                     }
                 }
+
                 is BasketScreenState.Loading -> {
                     item {
                         Column(
@@ -93,6 +94,7 @@ fun ShoppingCart(
                         }
                     }
                 }
+
                 is BasketScreenState.Error -> {
                     Log.e("TAG", "err")
                 }
@@ -101,17 +103,17 @@ fun ShoppingCart(
 
         }
 
-        if(!isCartEmpty){
+        if (!isCartEmpty) {
             Row(
                 Modifier
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 60.dp)
             ) {
-                BuyProcessContinue(cartDetail.payablePrice){
+                BuyProcessContinue(cartDetail.payablePrice) {
                     if (Constants.USER_TOKEN == "null") {
                         navController.navigate(Screen.Profile.route)
-                    }else{
+                    } else {
                         navController.navigate(Screen.Checkout.route)
                     }
                 }

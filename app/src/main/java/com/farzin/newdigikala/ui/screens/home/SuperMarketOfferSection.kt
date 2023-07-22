@@ -20,9 +20,9 @@ import com.farzin.newdigikala.viewmodel.HomeViewModel
 
 @Composable
 fun SuperMarketOfferSection(
-    navController:NavController,
-    viewModel: HomeViewModel = hiltViewModel()
-){
+    navController: NavController,
+    viewModel: HomeViewModel = hiltViewModel(),
+) {
 
     var superMarketItemList by remember {
         mutableStateOf<List<AmazingItem>>(emptyList())
@@ -37,10 +37,12 @@ fun SuperMarketOfferSection(
             superMarketItemList = superMarketItemResult.data ?: emptyList()
             loading = false
         }
+
         is NetworkResult.Error -> {
             loading = false
             Log.e("TAG", "superMarketOfferSection error : ${superMarketItemResult.message}")
         }
+
         is NetworkResult.Loading -> {
             loading = true
         }
@@ -61,7 +63,7 @@ fun SuperMarketOfferSection(
             items(superMarketItemList) { item ->
                 AmazingItem(
                     item = item,
-                    navController=navController
+                    navController = navController
                 )
             }
 

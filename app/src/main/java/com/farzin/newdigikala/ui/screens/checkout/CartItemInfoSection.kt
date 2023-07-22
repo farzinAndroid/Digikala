@@ -41,7 +41,7 @@ fun CartItemInfoSection() {
 
         Icon(
             painter = painterResource(R.drawable.info),
-            contentDescription ="",
+            contentDescription = "",
             modifier = Modifier
                 .weight(0.1f)
                 .size(26.dp)

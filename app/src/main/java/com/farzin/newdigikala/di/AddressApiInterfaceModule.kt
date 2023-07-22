@@ -15,7 +15,7 @@ object AddressApiInterfaceModule {
 
     @Singleton
     @Provides
-    fun provideAddressApiService(retrofit: Retrofit) : AddressApiInterface =
+    fun provideAddressApiService(retrofit: Retrofit): AddressApiInterface =
         retrofit.create(AddressApiInterface::class.java)
 
 }

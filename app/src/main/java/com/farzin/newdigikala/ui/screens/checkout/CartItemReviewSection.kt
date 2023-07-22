@@ -41,8 +41,8 @@ import com.farzin.newdigikala.util.DigitHelper
 fun CartItemReviewSection(
     currentCartItem: List<CartItem>,
     cartDetails: CartDetails,
-    onClick:()->Unit
-    ) {
+    onClick: () -> Unit,
+) {
 
     Column(
         modifier = Modifier

@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 @Composable
 fun WebPageScreen(
     navController: NavController,
-    url: String
+    url: String,
 ) {
 
     AndroidView(factory = {

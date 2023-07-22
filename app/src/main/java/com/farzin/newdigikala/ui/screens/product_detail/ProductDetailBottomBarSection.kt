@@ -100,9 +100,9 @@ fun ProductDetailBottomBarSection(
                             .background(MaterialTheme.colors.digikalaRed, CircleShape)
                             .wrapContentWidth(Alignment.CenterHorizontally)
                             .wrapContentHeight(Alignment.CenterVertically)
-                    ){
+                    ) {
                         Text(
-                            text ="${digitByLang(discountPercent.toString())}%",
+                            text = "${digitByLang(discountPercent.toString())}%",
                             color = Color.White,
                             style = Typography.h6,
                             fontWeight = FontWeight.Bold,
@@ -113,7 +113,7 @@ fun ProductDetailBottomBarSection(
                     Spacer(modifier = Modifier.width(MaterialTheme.spacing.extraSmall))
 
                     Text(
-                        text =digitByLangAndSeparator(price.toString()),
+                        text = digitByLangAndSeparator(price.toString()),
                         color = Color.Gray,
                         style = Typography.body2,
                         textDecoration = TextDecoration.LineThrough
@@ -121,18 +121,23 @@ fun ProductDetailBottomBarSection(
 
                 }
 
-                Row(verticalAlignment = Alignment.CenterVertically){
+                Row(verticalAlignment = Alignment.CenterVertically) {
 
 
                     Text(
-                        text = digitByLangAndSeparator(calculateDiscount(price,discountPercent).toString()).toString(),
+                        text = digitByLangAndSeparator(
+                            calculateDiscount(
+                                price,
+                                discountPercent
+                            ).toString()
+                        ).toString(),
                         style = Typography.body1,
                         fontWeight = FontWeight.SemiBold
                     )
 
                     Image(
-                        painter = painterResource(R.drawable.toman) ,
-                        contentDescription ="",
+                        painter = painterResource(R.drawable.toman),
+                        contentDescription = "",
                         Modifier
                             .size(MaterialTheme.spacing.semiLarge)
                             .padding(horizontal = MaterialTheme.spacing.extraSmall)
@@ -141,9 +146,6 @@ fun ProductDetailBottomBarSection(
                 }
 
             }
-
-
-
 
 
         }

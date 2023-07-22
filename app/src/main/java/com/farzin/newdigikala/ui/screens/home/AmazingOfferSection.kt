@@ -19,8 +19,8 @@ import com.farzin.newdigikala.viewmodel.HomeViewModel
 
 @Composable
 fun AmazingOfferSection(
-    navController:NavController,
-    viewModel: HomeViewModel = hiltViewModel()
+    navController: NavController,
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
 
     var amazingItemList by remember {
@@ -36,10 +36,12 @@ fun AmazingOfferSection(
             amazingItemList = amazingItemResult.data ?: emptyList()
             loading = false
         }
+
         is NetworkResult.Error -> {
             loading = false
             Log.e("TAG", "AmazingOfferSection error : ${amazingItemResult.message}")
         }
+
         is NetworkResult.Loading -> {
             loading = true
         }
@@ -60,7 +62,7 @@ fun AmazingOfferSection(
             items(amazingItemList) { item ->
                 AmazingItem(
                     item = item,
-                    navController =navController
+                    navController = navController
                 )
             }
 

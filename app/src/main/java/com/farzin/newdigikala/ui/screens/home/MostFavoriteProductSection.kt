@@ -23,7 +23,7 @@ import com.farzin.newdigikala.ui.theme.darkText
 
 @Composable
 fun MostFavoriteProductSection(
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     var mostFavoriteList by remember {
         mutableStateOf<List<StoreProduct>>(emptyList())
@@ -38,10 +38,12 @@ fun MostFavoriteProductSection(
             mostFavoriteList = mostFavoriteResult.data ?: emptyList()
             loading = false
         }
+
         is NetworkResult.Error -> {
             loading = false
             Log.e("TAG", "MostFavoriteProductSection error : ${mostFavoriteResult.message}")
         }
+
         is NetworkResult.Loading -> {
             loading = true
         }
@@ -85,7 +87,7 @@ fun MostFavoriteProductSection(
             items(mostFavoriteList) { item ->
                 MostFavoriteProductsOffer(item)
             }
-            item{
+            item {
                 MostFavoriteProductsShowMore()
             }
         }

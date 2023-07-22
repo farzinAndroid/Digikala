@@ -26,7 +26,7 @@ import com.farzin.newdigikala.ui.theme.darkText
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CategoryListSection(
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     var categoryList by remember {
         mutableStateOf<List<MainCategory>>(emptyList())
@@ -41,15 +41,17 @@ fun CategoryListSection(
             categoryList = categoryResult.data ?: emptyList()
             loading = false
         }
+
         is NetworkResult.Error -> {
             loading = false
             Log.e("TAG", "CategoryListSection error : ${categoryResult.message}")
         }
+
         is NetworkResult.Loading -> {
             loading = true
         }
     }
-    
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -77,13 +79,13 @@ fun CategoryListSection(
             }
         }
     }
-    
+
 }
 
 @Composable
-fun CircularCategoryItem(item:MainCategory){
+fun CircularCategoryItem(item: MainCategory) {
     Column(
-        modifier = Modifier.size(100.dp , 160.dp),
+        modifier = Modifier.size(100.dp, 160.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {

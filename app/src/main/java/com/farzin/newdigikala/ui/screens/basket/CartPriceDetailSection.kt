@@ -28,11 +28,11 @@ import com.farzin.newdigikala.R
 @Composable
 fun CartPriceDetailSection(
     item: CartDetails,
-    shippingCost:Int = 0
+    shippingCost: Int = 0,
 ) {
 
     var title = stringResource(R.string.basket_summary)
-    if (shippingCost > 0){
+    if (shippingCost > 0) {
         title = stringResource(R.string.cost_details)
     }
 
@@ -86,7 +86,7 @@ fun CartPriceDetailSection(
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
 
 
-        if (shippingCost > 0){
+        if (shippingCost > 0) {
             Divider(
                 Modifier
                     .padding(
@@ -108,7 +108,7 @@ fun CartPriceDetailSection(
                 stringResource(id = R.string.final_price),
                 digitByLangAndSeparator((item.payablePrice + shippingCost).toString())
             )
-        }else{
+        } else {
             stringResource(R.string.shipping_cost_alert)
         }
 
@@ -134,7 +134,7 @@ fun CartPriceDetailSection(
 
 
 @Composable
-fun DotTextRow(text:String) {
+fun DotTextRow(text: String) {
     Row(
         modifier = Modifier
             .fillMaxWidth(),
@@ -160,7 +160,7 @@ fun DotTextRow(text:String) {
 
 @Composable
 private fun DigiClubScore(
-    payedPrice: Long
+    payedPrice: Long,
 ) {
 
     val score = payedPrice / 100_000

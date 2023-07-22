@@ -23,7 +23,7 @@ fun TermsAndRulesText(
     underlinedTextFontWeight: FontWeight = FontWeight.Medium,
     underlinedTextDecoration: TextDecoration = TextDecoration.Underline,
     fontSize: TextUnit,
-    textAlign: TextAlign
+    textAlign: TextAlign,
 ) {
     Text(
         text = buildAnnotatedString {
@@ -44,7 +44,7 @@ fun TermsAndRulesText(
                     style = SpanStyle(
                         fontSize = fontSize,
                         fontFamily = font_standard,
-                       color = textColor
+                        color = textColor
                     ),
                     start = 0,
                     end = fullText.length

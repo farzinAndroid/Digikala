@@ -15,7 +15,7 @@ object HomeApiInterfaceModule {
 
     @Singleton
     @Provides
-    fun provideHomeApiService(retrofit: Retrofit) : HomeApiInterface =
+    fun provideHomeApiService(retrofit: Retrofit): HomeApiInterface =
         retrofit.create(HomeApiInterface::class.java)
 
 }

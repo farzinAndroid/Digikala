@@ -14,7 +14,7 @@ data class CartItem(
     val discountPercent: Int,
     val image: String,
     val count: Int,
-    val cartStatus: CartStatus
+    val cartStatus: CartStatus,
 )
 
 

@@ -6,16 +6,17 @@ import com.farzin.newdigikala.data.model.product_detail.ProductDetail
 import com.farzin.newdigikala.data.remote.*
 import javax.inject.Inject
 
-class ProductDetailRepository @Inject constructor(private val api: ProductDetailApiInterface) : BaseApiResponse() {
+class ProductDetailRepository @Inject constructor(private val api: ProductDetailApiInterface) :
+    BaseApiResponse() {
 
     suspend fun getProductById(id: String): NetworkResult<ProductDetail> =
         safeApiCall {
-          api.getProductById(id)
+            api.getProductById(id)
         }
 
     suspend fun getSimilarProducts(categoryId: String): NetworkResult<List<StoreProduct>> =
         safeApiCall {
-          api.getSimilarProducts(categoryId)
+            api.getSimilarProducts(categoryId)
         }
 
 

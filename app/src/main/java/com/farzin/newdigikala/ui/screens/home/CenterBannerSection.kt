@@ -12,7 +12,7 @@ import com.farzin.newdigikala.viewmodel.HomeViewModel
 @Composable
 fun CenterBannerSection(
     bannerNumber: Int,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     var centerBannerList by remember {
         mutableStateOf<List<Slider>>(emptyList())
@@ -27,10 +27,12 @@ fun CenterBannerSection(
             centerBannerList = centerBannerResult.data ?: emptyList()
             loading = false
         }
+
         is NetworkResult.Error -> {
             loading = false
             Log.e("TAG", "CenterBannerItem error : ${centerBannerResult.message}")
         }
+
         is NetworkResult.Loading -> {
             loading = true
         }

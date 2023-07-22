@@ -44,9 +44,11 @@ fun ProfileScreen(
             ProfileScreenState.LOGIN_STATE -> {
                 LoginScreen()
             }
+
             ProfileScreenState.PROFILE_STATE -> {
                 Profile()
             }
+
             ProfileScreenState.REGISTER_STATE -> {
                 RegisterScreen()
             }
@@ -69,14 +71,14 @@ fun Profile() {
         item { ProfileMiddleSection() }
         item { MyOrdersSection() }
         item { CenterBannerItem(painter = painterResource(id = R.drawable.digiclub1)) }
-        item {ProfileMenuSection() }
+        item { ProfileMenuSection() }
         item { CenterBannerItem(painter = painterResource(id = R.drawable.digiclub2)) }
     }
 }
 
 
 @Composable
-private fun ProfileMenuSection(){
+private fun ProfileMenuSection() {
     MenuRowItem(
         painter = painterResource(id = R.drawable.digi_plus_icon),
         text = stringResource(id = R.string.digi_plus),
@@ -152,7 +154,7 @@ private fun MyOrdersSection() {
 @Composable
 private fun MyOrdersItem(
     text: String,
-    painter: Painter
+    painter: Painter,
 ) {
     Row(
         modifier = Modifier.padding(vertical = MaterialTheme.spacing.biggerMedium)
@@ -160,7 +162,7 @@ private fun MyOrdersItem(
         Column(
             modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium),
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
+        ) {
             Image(
                 painter = painter,
                 contentDescription = "",

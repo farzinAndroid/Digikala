@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -41,6 +42,14 @@ fun ProductDetailScreen(
         mutableStateOf("")
     }
 
+    var description by rememberSaveable {
+        mutableStateOf("")
+    }
+
+    var technical by remember {
+        mutableStateOf("")
+    }
+
     var productDetailList by remember {
         mutableStateOf(ProductDetail())
     }
@@ -65,6 +74,8 @@ fun ProductDetailScreen(
                     sliderImage = productDetailResult.data.imageSlider ?: emptyList()
                     colorList = productDetailResult.data.colors ?: emptyList()
                     categoryId = productDetailResult.data.categoryId ?: ""
+                    description = productDetailResult.data.description ?: ""
+                    technical = productDetailResult.data.technicalFeatures.toString()
                     loading = false
                 }
 
@@ -99,6 +110,7 @@ fun ProductDetailScreen(
                     item { ProductDetailSelectedColorSection(colors = colorList) }
                     item { SellerInfoSection() }
                     item { SimilarProductSection(categoryId = categoryId) }
+                    item { ProductDescriptionSection(navController, description, technical) }
                 }
             }
         )

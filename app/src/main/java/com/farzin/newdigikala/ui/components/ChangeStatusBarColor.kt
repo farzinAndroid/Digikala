@@ -32,6 +32,7 @@ fun ChangeStatusBarColor(navController: NavHostController) {
                 )
             }
         }
+
         else -> {
             SideEffect {
                 systemUiController.setStatusBarColor(

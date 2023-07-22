@@ -24,7 +24,7 @@ object AES {
         val keySpec: SecretKey = SecretKeySpec(key.toByteArray(), "AES")
         val ivSpec = IvParameterSpec(iv.toByteArray())
         cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec)
-        val decode = Base64.decode(value , Base64.DEFAULT)
+        val decode = Base64.decode(value, Base64.DEFAULT)
         val decrypted = cipher.doFinal(decode)
         return String(decrypted)
     }

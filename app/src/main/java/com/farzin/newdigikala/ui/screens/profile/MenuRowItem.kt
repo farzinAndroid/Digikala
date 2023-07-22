@@ -24,7 +24,7 @@ import com.farzin.newdigikala.ui.theme.spacing
 @Composable
 fun MenuRowItem(
     painter: Painter,
-    text : String,
+    text: String,
     isHaveDivider: Boolean,
 ) {
 

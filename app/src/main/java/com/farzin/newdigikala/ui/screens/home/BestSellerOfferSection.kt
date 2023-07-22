@@ -25,7 +25,7 @@ import com.farzin.newdigikala.viewmodel.HomeViewModel
 
 @Composable
 fun BestSellerOfferSection(
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     var bestSellerOfferList by remember {
         mutableStateOf<List<StoreProduct>>(emptyList())
@@ -40,10 +40,12 @@ fun BestSellerOfferSection(
             bestSellerOfferList = bestSellerOfferResult.data ?: emptyList()
             loading = false
         }
+
         is NetworkResult.Error -> {
             loading = false
             Log.e("TAG", "BestSellerOfferSection error : ${bestSellerOfferResult.message}")
         }
+
         is NetworkResult.Loading -> {
             loading = true
         }
@@ -54,7 +56,7 @@ fun BestSellerOfferSection(
         modifier = Modifier
             .fillMaxSize()
             .padding(MaterialTheme.spacing.small)
-    ){
+    ) {
 
         Text(
             text = stringResource(id = R.string.best_selling_products),
@@ -73,12 +75,12 @@ fun BestSellerOfferSection(
                 .height(250.dp),
             horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp)
-        ){
+        ) {
 
-            itemsIndexed(bestSellerOfferList){index, item ->
+            itemsIndexed(bestSellerOfferList) { index, item ->
                 ProductHorizontalCard(
                     name = item.name,
-                    id = digitByLang((index+1).toString()),
+                    id = digitByLang((index + 1).toString()),
                     imageUrl = item.image
                 )
             }

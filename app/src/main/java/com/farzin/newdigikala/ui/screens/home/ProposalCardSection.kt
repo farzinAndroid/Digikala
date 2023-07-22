@@ -20,7 +20,7 @@ import com.farzin.newdigikala.viewmodel.HomeViewModel
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ProposalCardSection(
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
 
     var bannersList by remember {
@@ -36,10 +36,12 @@ fun ProposalCardSection(
             bannersList = bannersResult.data ?: emptyList()
             loading = false
         }
+
         is NetworkResult.Error -> {
             loading = false
             Log.e("TAG", "Banners Section error : ${bannersResult.message}")
         }
+
         is NetworkResult.Loading -> {
             loading = true
         }

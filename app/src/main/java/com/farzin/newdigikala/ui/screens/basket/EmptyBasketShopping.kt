@@ -25,12 +25,12 @@ fun EmptyBasketShopping() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-       Image(
-           painter = painterResource(id = R.drawable.empty_cart),
-           contentDescription = "",
-           contentScale = ContentScale.FillBounds,
-           modifier = Modifier.height(200.dp)
-       )
+        Image(
+            painter = painterResource(id = R.drawable.empty_cart),
+            contentDescription = "",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.height(200.dp)
+        )
 
         Text(
             text = stringResource(R.string.cart_is_empty),

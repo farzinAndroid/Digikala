@@ -19,13 +19,13 @@ import javax.inject.Inject
 private val Context.datastore: DataStore<Preferences> by preferencesDataStore(name = DATASTORE_NAME)
 
 class DataStoreRepositoryImpl @Inject constructor(
-    private val context: Context
+    private val context: Context,
 ) : DataStoreRepository {
 
 
     override suspend fun putString(key: String, value: String) {
-        val encrypted = AES.encryptAES(value , KEY , IV)
-        Log.e("TAG" , encrypted)
+        val encrypted = AES.encryptAES(value, KEY, IV)
+        Log.e("TAG", encrypted)
         val preferencesKey = stringPreferencesKey(key)
         context.datastore.edit { preferences ->
             preferences[preferencesKey] = encrypted
@@ -43,7 +43,7 @@ class DataStoreRepositoryImpl @Inject constructor(
         return try {
             val preferencesKey = stringPreferencesKey(key)
             val preferences = context.datastore.data.first()
-            preferences[preferencesKey]?.let { AES.decryptAES(it, KEY , IV) }
+            preferences[preferencesKey]?.let { AES.decryptAES(it, KEY, IV) }
         } catch (e: Exception) {
             e.printStackTrace()
             null

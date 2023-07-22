@@ -15,6 +15,6 @@ object CartDaoModule {
     @Provides
     @Singleton
     fun provideCartDao(
-        database: DigikalaDatabase
+        database: DigikalaDatabase,
     ): CartDao = database.cartDao()
 }

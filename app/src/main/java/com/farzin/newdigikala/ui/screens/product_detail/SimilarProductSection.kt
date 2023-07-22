@@ -31,8 +31,8 @@ import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun SimilarProductSection(
-    categoryId:String,
-    viewModel: ProductDetailViewModel = hiltViewModel()
+    categoryId: String,
+    viewModel: ProductDetailViewModel = hiltViewModel(),
 ) {
     var similarProductList by remember {
         mutableStateOf<List<StoreProduct>>(emptyList())
@@ -41,23 +41,28 @@ fun SimilarProductSection(
         mutableStateOf(false)
     }
 
-    LaunchedEffect(true){
-        viewModel.getSimilarProducts(categoryId)
-       viewModel.similarProducts.collectLatest { similarProductResult->
-           when (similarProductResult) {
-               is NetworkResult.Success -> {
-                   similarProductList = similarProductResult.data ?: emptyList()
-                   loading = false
-               }
-               is NetworkResult.Error -> {
-                   loading = false
-                   Log.e("TAG", "SimilarProductSection error : ${similarProductResult.message}")
-               }
-               is NetworkResult.Loading -> {
-                   loading = true
-               }
-           }
-       }
+    viewModel.getSimilarProducts(categoryId)
+
+
+    LaunchedEffect(true) {
+
+        viewModel.similarProducts.collectLatest { similarProductResult ->
+            when (similarProductResult) {
+                is NetworkResult.Success -> {
+                    similarProductList = similarProductResult.data ?: emptyList()
+                    loading = false
+                }
+
+                is NetworkResult.Error -> {
+                    loading = false
+                    Log.e("TAG", "SimilarProductSection error : ${similarProductResult.message}")
+                }
+
+                is NetworkResult.Loading -> {
+                    loading = true
+                }
+            }
+        }
 
     }
 

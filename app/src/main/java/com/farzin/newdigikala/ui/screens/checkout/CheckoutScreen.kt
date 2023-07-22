@@ -82,7 +82,7 @@ fun CheckoutScreen(
     when (setNewOrderResult) {
         is NetworkResult.Success -> {
             orderId = setNewOrderResult.data ?: ""
-            Log.e("TAG",orderId)
+            Log.e("TAG", orderId)
 //            loading = false
         }
 

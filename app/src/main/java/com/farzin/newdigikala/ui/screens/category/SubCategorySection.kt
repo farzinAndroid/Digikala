@@ -17,7 +17,7 @@ import com.farzin.newdigikala.viewmodel.CategoryViewModel
 
 @Composable
 fun SubCategorySection(
-    viewModel: CategoryViewModel = hiltViewModel()
+    viewModel: CategoryViewModel = hiltViewModel(),
 ) {
 
     var toolList by remember {
@@ -79,10 +79,12 @@ fun SubCategorySection(
 
             loading = false
         }
+
         is NetworkResult.Error -> {
             loading = false
             Log.e("TAG", "AmazingOfferSection error : ${subCategoryResult.message}")
         }
+
         is NetworkResult.Loading -> {
             loading = true
         }

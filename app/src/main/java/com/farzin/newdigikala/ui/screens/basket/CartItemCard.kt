@@ -35,7 +35,7 @@ import com.farzin.newdigikala.viewmodel.BasketViewModel
 fun CartItemCard(
     item: CartItem,
     mode: CartStatus,
-    viewModel: BasketViewModel = hiltViewModel()
+    viewModel: BasketViewModel = hiltViewModel(),
 ) {
 
     val count = remember {
@@ -333,7 +333,11 @@ fun CartItemCard(
 
                 Column {
                     Text(
-                        text = "${digitByLangAndSeparator(discountAmount.toString())} ${stringResource(id = R.string.discount)}",
+                        text = "${digitByLangAndSeparator(discountAmount.toString())} ${
+                            stringResource(
+                                id = R.string.discount
+                            )
+                        }",
                         style = MaterialTheme.typography.extraSmall,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colors.DigikalaLightRed,
@@ -420,7 +424,7 @@ fun DetailRow(
     icon: Painter,
     text: String,
     color: Color,
-    fontStyle: TextStyle
+    fontStyle: TextStyle,
 ) {
     Row(
         modifier = Modifier

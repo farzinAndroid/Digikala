@@ -34,7 +34,7 @@ import com.farzin.newdigikala.util.DigitHelper.digitByLangAndSeparator
 @Composable
 fun AmazingItem(
     item: AmazingItem,
-    navController: NavController
+    navController: NavController,
 ) {
 
     Card(
@@ -45,7 +45,7 @@ fun AmazingItem(
                 horizontal = MaterialTheme.spacing.semiSmall
             )
             .clickable {
-                       navController.navigate(Screen.ProductDetail.withArgs(item._id))
+                navController.navigate(Screen.ProductDetail.withArgs(item._id))
             },
         shape = MaterialTheme.roundedShape.small,
     ) {
@@ -166,7 +166,12 @@ fun AmazingItem(
 
                         Row {
                             Text(
-                                text = digitByLangAndSeparator(calculateDiscount(item.price , item.discountPercent).toString()),
+                                text = digitByLangAndSeparator(
+                                    calculateDiscount(
+                                        item.price,
+                                        item.discountPercent
+                                    ).toString()
+                                ),
                                 style = MaterialTheme.typography.body2,
                                 fontWeight = FontWeight.SemiBold,
                             )

@@ -20,7 +20,7 @@ import com.farzin.newdigikala.ui.theme.darkText
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun MostDiscountedSection(
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     var mostDiscountedList by remember {
         mutableStateOf<List<StoreProduct>>(emptyList())
@@ -35,10 +35,12 @@ fun MostDiscountedSection(
             mostDiscountedList = mostDiscountedListResult.data ?: emptyList()
             loading = false
         }
+
         is NetworkResult.Error -> {
             loading = false
             Log.e("TAG", "MostDiscountedSection error : ${mostDiscountedListResult.message}")
         }
+
         is NetworkResult.Loading -> {
             loading = true
         }

@@ -19,12 +19,12 @@ import com.farzin.newdigikala.util.DigitHelper
 @Composable
 fun BuyProcessContinue(
     price: Long,
-    shippingCost:Int = 0,
+    shippingCost: Int = 0,
     onClick: () -> Unit,
 ) {
 
     var title = stringResource(R.string.goods_total_price)
-    if (shippingCost > 0){
+    if (shippingCost > 0) {
         title = stringResource(R.string.final_price)
     }
 
@@ -77,7 +77,7 @@ fun BuyProcessContinue(
                         text = DigitHelper.digitByLangAndSeparator((price + shippingCost).toString()),
                         style = MaterialTheme.typography.body2,
                         fontWeight = FontWeight.SemiBold
-                        )
+                    )
 
                     Image(
                         painter = painterResource(id = R.drawable.toman),

@@ -16,7 +16,7 @@ object ProductDetailApiInterfaceModule {
 
     @Singleton
     @Provides
-    fun provideProductDetailApiService(retrofit: Retrofit) : ProductDetailApiInterface =
+    fun provideProductDetailApiService(retrofit: Retrofit): ProductDetailApiInterface =
         retrofit.create(ProductDetailApiInterface::class.java)
 
 }

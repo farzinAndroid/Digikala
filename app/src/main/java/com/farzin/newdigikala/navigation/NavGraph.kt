@@ -11,7 +11,9 @@ import com.farzin.newdigikala.ui.screens.category.CategoryScreen
 import com.farzin.newdigikala.ui.screens.checkout.CheckoutScreen
 import com.farzin.newdigikala.ui.screens.home.HomeScreen
 import com.farzin.newdigikala.ui.screens.home.WebPageScreen
+import com.farzin.newdigikala.ui.screens.product_detail.ProductDescription
 import com.farzin.newdigikala.ui.screens.product_detail.ProductDetailScreen
+import com.farzin.newdigikala.ui.screens.product_detail.ProductTechnicalFeaturesScreen
 import com.farzin.newdigikala.ui.screens.profile.ProfileScreen
 import com.farzin.newdigikala.ui.screens.splash.SplashScreen
 
@@ -66,7 +68,7 @@ fun SetupNavGraph(navController: NavHostController) {
         composable(
             route = Screen.ProductDetail.route + "/{id}",
             arguments = listOf(
-                navArgument("id"){
+                navArgument("id") {
                     type = NavType.StringType
                     nullable = true
                     defaultValue = ""
@@ -74,12 +76,49 @@ fun SetupNavGraph(navController: NavHostController) {
             )
         ) {
 
-            it.arguments?.getString("id")?.let {id->
+            it.arguments?.getString("id")?.let { id ->
                 ProductDetailScreen(navController = navController, id = id)
             }
 
 
         }
+
+
+        composable(route = Screen.ProductDescription.route + "/{description}",
+            arguments = listOf(
+                navArgument("description") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
+                }
+            )) {
+
+            it.arguments?.getString("description")?.let { description ->
+                ProductDescription(
+                    navController = navController,
+                    desc = description
+                )
+            }
+        }
+
+
+        composable(route = Screen.TechnicalFeatures.route + "/{jsonString}",
+            arguments = listOf(
+                navArgument("jsonString") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
+                }
+            )) {
+
+            it.arguments?.getString("jsonString")?.let { jsonString ->
+                ProductTechnicalFeaturesScreen(
+                    navController = navController,
+                    jsonString = jsonString
+                )
+            }
+        }
+
 
     }
 }

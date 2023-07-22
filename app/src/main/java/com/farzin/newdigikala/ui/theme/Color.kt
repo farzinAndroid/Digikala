@@ -15,8 +15,7 @@ val Colors.splashBg: Color
     get() = Color(0xFFed1b34)
 
 
-
-val Colors.CursorColor : Color
+val Colors.CursorColor: Color
     @Composable
     get() = Color(0xFF018577)
 
@@ -47,7 +46,7 @@ val Colors.darkText: Color
 
 val Colors.amber: Color
     @Composable
-    get() =  Color(0xffFFBF00)
+    get() = Color(0xffFFBF00)
 
 
 val Colors.grayCategory: Color
@@ -87,7 +86,6 @@ val Colors.LightCyan: Color
     get() = Color(0xFF17BFD3)
 
 
-
 val Colors.DigikalaLightGreen: Color
     @Composable
     get() = if (isLight) Color(0xff86bf3c) else Color(0xFF3A531A)
@@ -96,7 +94,7 @@ val Colors.Orange: Color
     @Composable
     get() = if (isLight) Color(0xffff5722) else Color(0xFFFF7144)
 
-val Colors.Gold : Color
+val Colors.Gold: Color
     @Composable
     get() = Color(0xFFf9bc01)
 

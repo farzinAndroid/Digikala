@@ -27,7 +27,7 @@ class ProductDetailViewModel @Inject constructor(private val repo: ProductDetail
 
     fun getProductById(id: String) {
         viewModelScope.launch {
-           productDetails.emit(repo.getProductById(id))
+            productDetails.emit(repo.getProductById(id))
         }
     }
 
@@ -36,7 +36,6 @@ class ProductDetailViewModel @Inject constructor(private val repo: ProductDetail
             similarProducts.emit(repo.getSimilarProducts(categoryId))
         }
     }
-
 
 
 }

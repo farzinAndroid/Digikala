@@ -45,7 +45,7 @@ fun DeliveryBottomSheet() {
 
                 RadioButton(
                     selected = true,
-                    onClick = {  }
+                    onClick = { }
                 )
 
                 Text(

@@ -22,23 +22,23 @@ import com.farzin.newdigikala.ui.theme.*
 
 @Composable
 fun LoginOrRegisterSection(
-    navController: NavController
-){
+    navController: NavController,
+) {
 
     Card(
         modifier = Modifier
             .padding(MaterialTheme.spacing.medium)
-            .clickable {navController.navigate(Screen.Profile.route) },
+            .clickable { navController.navigate(Screen.Profile.route) },
         shape = MaterialTheme.roundedShape.small,
-        elevation = MaterialTheme.elevation.extraSmall ,
-    ){
+        elevation = MaterialTheme.elevation.extraSmall,
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(MaterialTheme.spacing.medium),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Top
-        ){
+        ) {
 
             Icon(
                 painter = painterResource(id = R.drawable.import_96_orenge),
@@ -56,7 +56,7 @@ fun LoginOrRegisterSection(
                 modifier = Modifier.weight(0.8f),
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Center,
-            ){
+            ) {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth(),

@@ -26,7 +26,7 @@ import com.farzin.newdigikala.viewmodel.BasketViewModel
 @Composable
 fun NextShoppingList(
     navController: NavController,
-    viewModel: BasketViewModel = hiltViewModel()
+    viewModel: BasketViewModel = hiltViewModel(),
 ) {
 
     val nextCartItemsState: BasketScreenState<List<CartItem>> by viewModel.nextCartItems
@@ -58,6 +58,7 @@ fun NextShoppingList(
                     }
                 }
             }
+
             is BasketScreenState.Loading -> {
                 item {
                     Column(
@@ -77,6 +78,7 @@ fun NextShoppingList(
                     }
                 }
             }
+
             is BasketScreenState.Error -> {
                 Log.e("TAG", "err")
             }

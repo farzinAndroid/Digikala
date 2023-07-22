@@ -25,7 +25,7 @@ fun RoundedIconBox(
     title: String,
     image: Painter,
     bgColor: Color = Color.Transparent,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
 
     Column(
@@ -57,7 +57,7 @@ fun RoundedIconBox(
             style = MaterialTheme.typography.h6,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colors.darkText,
-            maxLines = 1 ,
+            maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
 

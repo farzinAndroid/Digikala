@@ -32,7 +32,7 @@ fun BasketScreen(navController: NavHostController) {
 @Composable
 fun Basket(
     navController: NavController,
-    viewModel: BasketViewModel = hiltViewModel()
+    viewModel: BasketViewModel = hiltViewModel(),
 ) {
 
     val currentCartItemsCount by viewModel.currentCartItemsCount.collectAsState(0)

@@ -22,7 +22,7 @@ import com.farzin.newdigikala.ui.theme.LightCyan
 @Composable
 fun CategoryItem(
     title: String,
-    subList: List<Sub>
+    subList: List<Sub>,
 ) {
     Row(
         modifier = Modifier
@@ -51,8 +51,8 @@ fun CategoryItem(
 
     LazyRow(
 
-    ){
-        items(subList){ list->
+    ) {
+        items(subList) { list ->
             SubCategoryItem(list)
         }
     }

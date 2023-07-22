@@ -11,8 +11,8 @@ interface ProfileApiInterface {
 
     @POST("v1/login")
     suspend fun login(
-        @Body login : LoginRequest
-    ) : Response<ResponseResult<LoginResponse>>
+        @Body login: LoginRequest,
+    ): Response<ResponseResult<LoginResponse>>
 
 
 }

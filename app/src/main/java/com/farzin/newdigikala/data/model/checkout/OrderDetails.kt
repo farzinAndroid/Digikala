@@ -9,6 +9,6 @@ data class OrderDetails(
     val orderTotalPrice: Long,
     val orderUserName: String,
     val orderUserPhone: String,
-    val orderProducts : List<CartItem>
+    val orderProducts: List<CartItem>,
 
-)
+    )

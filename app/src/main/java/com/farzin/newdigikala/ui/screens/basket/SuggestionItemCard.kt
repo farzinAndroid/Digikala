@@ -32,7 +32,7 @@ import com.farzin.newdigikala.util.DigitHelper
 @Composable
 fun SuggestionItemCard(
     item: StoreProduct,
-    onAddClick: (StoreProduct) -> Unit
+    onAddClick: (StoreProduct) -> Unit,
 ) {
 
     Card(
@@ -80,7 +80,7 @@ fun SuggestionItemCard(
                                 .size(26.dp)
                                 .clip(CircleShape)
                                 .border(1.dp, MaterialTheme.colors.digikalaRed, CircleShape)
-                                .clickable{
+                                .clickable {
                                     onAddClick(item)
                                 }
                         ) {

@@ -42,7 +42,6 @@ class HomeViewModel @Inject constructor(private val repo: HomeRepository) : View
         MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
 
 
-
     suspend fun getAllDataFromServer() {
         viewModelScope.launch {
 

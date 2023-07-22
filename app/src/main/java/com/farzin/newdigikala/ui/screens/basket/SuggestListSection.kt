@@ -26,7 +26,7 @@ import com.farzin.newdigikala.data.model.basket.CartStatus
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SuggestListSection(
-    viewModel: BasketViewModel = hiltViewModel()
+    viewModel: BasketViewModel = hiltViewModel(),
 ) {
 
 
@@ -45,10 +45,12 @@ fun SuggestListSection(
             suggestedList = suggestedItemResult.data ?: emptyList()
             loading = false
         }
+
         is NetworkResult.Error -> {
             loading = false
             Log.e("TAG", "SuggestListSection error : ${suggestedItemResult.message}")
         }
+
         is NetworkResult.Loading -> {
             loading = true
         }
@@ -82,7 +84,7 @@ fun SuggestListSection(
     ) {
 
         for (item in suggestedList) {
-            SuggestionItemCard(item){
+            SuggestionItemCard(item) {
                 viewModel.insertCartItem(
                     CartItem(
                         it._id,
@@ -99,7 +101,6 @@ fun SuggestListSection(
         }
 
     }
-
 
 
 }

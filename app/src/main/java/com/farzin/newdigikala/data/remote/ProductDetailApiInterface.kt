@@ -11,14 +11,14 @@ interface ProductDetailApiInterface {
 
     @GET("v1/getProductById")
     suspend fun getProductById(
-        @Query("id") id: String
-    ) : Response<ResponseResult<ProductDetail>>
+        @Query("id") id: String,
+    ): Response<ResponseResult<ProductDetail>>
 
 
     @GET("v1/getSimilarProducts")
     suspend fun getSimilarProducts(
-        @Query("categoryId") categoryId: String
-    ) : Response<ResponseResult<List<StoreProduct>>>
+        @Query("categoryId") categoryId: String,
+    ): Response<ResponseResult<List<StoreProduct>>>
 
 
 }

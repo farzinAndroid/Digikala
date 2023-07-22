@@ -27,7 +27,7 @@ import com.farzin.newdigikala.util.Constants
 import com.farzin.newdigikala.util.DigitHelper
 
 @Composable
-fun MostDiscountedCard(item : StoreProduct) {
+fun MostDiscountedCard(item: StoreProduct) {
 
     Card(
         modifier = Modifier
@@ -143,8 +143,9 @@ fun MostDiscountedCard(item : StoreProduct) {
                         Row {
                             Text(
                                 text = DigitHelper.digitByLangAndSeparator(
-                                    DigitHelper.calculateDiscount(item.price , item.discountPercent)
-                                        .toString()),
+                                    DigitHelper.calculateDiscount(item.price, item.discountPercent)
+                                        .toString()
+                                ),
                                 style = MaterialTheme.typography.body2,
                                 fontWeight = FontWeight.SemiBold,
                             )

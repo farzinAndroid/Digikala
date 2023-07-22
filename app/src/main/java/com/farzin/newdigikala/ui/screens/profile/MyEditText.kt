@@ -18,13 +18,13 @@ import com.farzin.newdigikala.ui.theme.*
 @Composable
 fun MyEditText(
     value: String,
-    placeholder:String,
-    onValueChange: (it:String) -> Unit
+    placeholder: String,
+    onValueChange: (it: String) -> Unit,
 ) {
 
     TextField(
         value = value,
-        onValueChange = {onValueChange(it)},
+        onValueChange = { onValueChange(it) },
         modifier = Modifier
             .fillMaxWidth()
             .height(92.dp)
@@ -38,14 +38,14 @@ fun MyEditText(
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = MaterialTheme.colors.searchBarBg,
             focusedIndicatorColor = MaterialTheme.colors.DarkCyan,
-            unfocusedIndicatorColor =  MaterialTheme.colors.searchBarBg,
-            cursorColor =  MaterialTheme.colors.CursorColor,
+            unfocusedIndicatorColor = MaterialTheme.colors.searchBarBg,
+            cursorColor = MaterialTheme.colors.CursorColor,
         ),
         placeholder = {
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
-            ){
+            ) {
                 Text(
                     text = placeholder,
                     style = MaterialTheme.typography.h6,

@@ -18,7 +18,7 @@ import com.farzin.newdigikala.util.DigitHelper.digitByLangAndSeparator
 fun SetBadgeToTab(
     selectedTabIndex: Int,
     index: Int,
-    cartCounter: Int
+    cartCounter: Int,
 ) {
 
     Card(

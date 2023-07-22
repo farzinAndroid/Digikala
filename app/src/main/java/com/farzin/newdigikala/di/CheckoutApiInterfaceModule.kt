@@ -15,7 +15,7 @@ object CheckoutApiInterfaceModule {
 
     @Singleton
     @Provides
-    fun provideCheckoutApiService(retrofit: Retrofit) : CheckoutApiInterface =
+    fun provideCheckoutApiService(retrofit: Retrofit): CheckoutApiInterface =
         retrofit.create(CheckoutApiInterface::class.java)
 
 }

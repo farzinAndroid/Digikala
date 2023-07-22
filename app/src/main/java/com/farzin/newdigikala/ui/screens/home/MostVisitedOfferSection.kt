@@ -24,7 +24,7 @@ import com.farzin.newdigikala.viewmodel.HomeViewModel
 
 @Composable
 fun MostVisitedOfferSection(
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     var mostVisitedList by remember {
         mutableStateOf<List<StoreProduct>>(emptyList())
@@ -39,10 +39,12 @@ fun MostVisitedOfferSection(
             mostVisitedList = mostVisitedResult.data ?: emptyList()
             loading = false
         }
+
         is NetworkResult.Error -> {
             loading = false
             Log.e("TAG", "MostVisitedOfferSection error : ${mostVisitedResult.message}")
         }
+
         is NetworkResult.Loading -> {
             loading = true
         }
@@ -53,7 +55,7 @@ fun MostVisitedOfferSection(
         modifier = Modifier
             .fillMaxSize()
             .padding(MaterialTheme.spacing.small)
-    ){
+    ) {
 
         Text(
             text = stringResource(id = R.string.most_visited_products),
@@ -72,12 +74,12 @@ fun MostVisitedOfferSection(
                 .height(250.dp),
             horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp)
-        ){
+        ) {
 
-            itemsIndexed(mostVisitedList){index, item ->
+            itemsIndexed(mostVisitedList) { index, item ->
                 ProductHorizontalCard(
                     name = item.name,
-                    id = DigitHelper.digitByLang((index+1).toString()),
+                    id = DigitHelper.digitByLang((index + 1).toString()),
                     imageUrl = item.image
                 )
             }

@@ -32,27 +32,27 @@ fun CheckOutProductCard(
 ) {
 
     Box(
-        modifier =Modifier
+        modifier = Modifier
             .size(75.dp)
-    ){
+    ) {
         Box(
-            modifier =Modifier
+            modifier = Modifier
                 .size(75.dp)
-        ){
+        ) {
             Image(
-                painter = rememberAsyncImagePainter(cart.image) ,
+                painter = rememberAsyncImagePainter(cart.image),
                 contentDescription = "",
                 contentScale = ContentScale.FillBounds
             )
         }
 
         Box(
-            modifier =Modifier
+            modifier = Modifier
                 .size(75.dp),
             contentAlignment = Alignment.BottomEnd
-        ){
+        ) {
             Text(
-                text =DigitHelper.digitByLang(cart.count.toString()),
+                text = DigitHelper.digitByLang(cart.count.toString()),
                 fontWeight = FontWeight.Bold,
                 style = Typography.extraSmall,
                 color = Color.Black

@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 fun AppConfig(
     profileViewModel: ProfileViewModel = hiltViewModel(),
-    dataStore: DataStoreViewModel = hiltViewModel()
+    dataStore: DataStoreViewModel = hiltViewModel(),
 ) {
 
     getDataStoreVariables(dataStore)
@@ -27,7 +27,7 @@ fun AppConfig(
 
 
     LaunchedEffect(Dispatchers.Main) {
-        profileViewModel.loginResponse.collectLatest { loginResponse->
+        profileViewModel.loginResponse.collectLatest { loginResponse ->
             when (loginResponse) {
                 is NetworkResult.Success -> {
                     loginResponse.data?.let { user ->
@@ -39,11 +39,12 @@ fun AppConfig(
                             USER_TOKEN = user.token
                             getDataStoreVariables(dataStore)
 
-                            Log.e("TAG" , "refresh token")
+                            Log.e("TAG", "refresh token")
                         }
 
                     }
                 }
+
                 else -> {}
             }
         }

@@ -31,9 +31,9 @@ import com.farzin.newdigikala.R
 fun BottomNavigationBar(
     navController: NavController,
     onItemClick: (BottomNavItem) -> Unit,
-    viewModel: BasketViewModel = hiltViewModel()
+    viewModel: BasketViewModel = hiltViewModel(),
 
-) {
+    ) {
     LocaleUtils.setLocale(LocalContext.current, Constants.USER_LANGUAGE)
 
     val items = listOf(
@@ -86,8 +86,8 @@ fun BottomNavigationBar(
                             if (selected) {
                                 if (index == 2 && cartCounter > 0) {
                                     IconWithBadge(
-                                       cartCounter = cartCounter,
-                                       icon =  item.selectedIcon
+                                        cartCounter = cartCounter,
+                                        icon = item.selectedIcon
                                     )
                                 } else {
                                     Icon(

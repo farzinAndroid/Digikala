@@ -10,8 +10,8 @@ interface AddressApiInterface {
 
     @GET("v1/getUserAddress")
     suspend fun getUserAddressList(
-        @Query("token") token: String
-    ) : Response<ResponseResult<List<UserAddress>>>
+        @Query("token") token: String,
+    ): Response<ResponseResult<List<UserAddress>>>
 
 
 }

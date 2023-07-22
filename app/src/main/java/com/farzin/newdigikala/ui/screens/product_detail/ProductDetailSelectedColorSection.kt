@@ -17,7 +17,7 @@ import com.farzin.newdigikala.ui.theme.spacing
 
 @Composable
 fun ProductDetailSelectedColorSection(
-    colors: List<ProductColor>
+    colors: List<ProductColor>,
 ) {
 
 
@@ -40,9 +40,9 @@ fun ProductDetailSelectedColorSection(
         )
 
 
-        LazyRow(modifier = Modifier.fillMaxWidth()){
+        LazyRow(modifier = Modifier.fillMaxWidth()) {
 
-            items(colors){color->
+            items(colors) { color ->
                 ColorChipItem(color)
             }
 

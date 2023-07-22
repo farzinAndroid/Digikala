@@ -25,7 +25,7 @@ fun MostFavoriteProductsShowMore() {
                 start = MaterialTheme.spacing.semiSmall,
                 top = MaterialTheme.spacing.semiLarge
             )
-            .clickable {  },
+            .clickable { },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {

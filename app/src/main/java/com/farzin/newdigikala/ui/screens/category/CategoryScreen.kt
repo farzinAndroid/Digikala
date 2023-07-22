@@ -30,7 +30,7 @@ fun CategoryScreen(navController: NavHostController) {
 @Composable
 fun Category(
     navController: NavHostController,
-    viewModel: CategoryViewModel = hiltViewModel()
+    viewModel: CategoryViewModel = hiltViewModel(),
 ) {
 
 
@@ -47,7 +47,7 @@ fun Category(
 @Composable
 private fun SwipeRefreshSection(
     vm: CategoryViewModel,
-    navController: NavHostController
+    navController: NavHostController,
 ) {
     val onRefresh = rememberCoroutineScope()
     val swipeRefreshState = rememberPullRefreshState(refreshing = false, onRefresh = {
@@ -59,7 +59,7 @@ private fun SwipeRefreshSection(
 
     Box(
         Modifier.pullRefresh(swipeRefreshState)
-    ){
+    ) {
 
 
         LazyColumn(

@@ -7,5 +7,5 @@ data class UserAddress(
     val phone: String,
     val postalCode: String,
     val updatedAt: String,
-    val userId: String
+    val userId: String,
 )

@@ -25,11 +25,11 @@ fun CenterBannerItem(imageUrl: String) {
             .fillMaxWidth()
             .height(170.dp)
             .padding(MaterialTheme.spacing.medium)
-    ){
+    ) {
 
         Image(
             painter = rememberAsyncImagePainter(imageUrl),
-            contentDescription ="" ,
+            contentDescription = "",
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
         )
@@ -47,11 +47,11 @@ fun CenterBannerItem(painter: Painter) {
             .fillMaxWidth()
             .height(170.dp)
             .padding(MaterialTheme.spacing.medium)
-    ){
+    ) {
 
         Image(
             painter = painter,
-            contentDescription ="" ,
+            contentDescription = "",
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
         )

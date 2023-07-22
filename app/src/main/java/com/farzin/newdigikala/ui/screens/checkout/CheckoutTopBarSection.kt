@@ -24,7 +24,7 @@ import com.farzin.newdigikala.ui.theme.searchBarBg
 @Composable
 fun CheckoutTopBarSection(
     navController: NavHostController,
-){
+) {
 
     Row(
         modifier = Modifier
@@ -32,7 +32,7 @@ fun CheckoutTopBarSection(
             .padding(vertical = MaterialTheme.spacing.medium),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
-    ){
+    ) {
         Icon(
             imageVector = Icons.Filled.ArrowForward,
             contentDescription = "",
