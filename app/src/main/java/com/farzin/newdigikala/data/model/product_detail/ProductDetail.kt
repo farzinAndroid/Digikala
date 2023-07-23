@@ -41,6 +41,7 @@ data class Comment(
     val _id: String,
     val title: String,
     val description: String,
+    val star: Int,
     val productId: String,
     val userId: String,
     val userName: String,

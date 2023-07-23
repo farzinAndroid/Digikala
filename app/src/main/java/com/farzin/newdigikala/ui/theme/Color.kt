@@ -102,3 +102,8 @@ val Colors.Gold: Color
 val Colors.grayAlpha: Color
     @Composable
     get() = Color(0xFFc1c2c6)
+
+
+val Colors.Green : Color
+    @Composable
+    get() = Color(0xFF00A049)

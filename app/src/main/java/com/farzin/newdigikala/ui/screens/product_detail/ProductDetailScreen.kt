@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.farzin.newdigikala.data.model.product_detail.Comment
 import com.farzin.newdigikala.data.model.product_detail.ProductColor
 import com.farzin.newdigikala.data.model.product_detail.ProductDetail
 import com.farzin.newdigikala.data.model.product_detail.SliderImage
@@ -62,6 +63,14 @@ fun ProductDetailScreen(
         mutableStateOf<List<ProductColor>>(emptyList())
     }
 
+    var commentsList by remember {
+        mutableStateOf<List<Comment>>(emptyList())
+    }
+
+    var commentsCount by remember {
+        mutableStateOf(0)
+    }
+
 
     LaunchedEffect(true) {
 
@@ -73,6 +82,8 @@ fun ProductDetailScreen(
                     productDetailList = productDetailResult.data!!
                     sliderImage = productDetailResult.data.imageSlider ?: emptyList()
                     colorList = productDetailResult.data.colors ?: emptyList()
+                    commentsList = productDetailResult.data.comments ?: emptyList()
+                    commentsCount = productDetailResult.data.commentCount ?: 0
                     categoryId = productDetailResult.data.categoryId ?: ""
                     description = productDetailResult.data.description ?: ""
                     technical = productDetailResult.data.technicalFeatures.toString()
@@ -111,6 +122,7 @@ fun ProductDetailScreen(
                     item { SellerInfoSection() }
                     item { SimilarProductSection(categoryId = categoryId) }
                     item { ProductDescriptionSection(navController, description, technical) }
+                    item { ProductCommentsSection(commentsList,commentsCount) }
                 }
             }
         )
