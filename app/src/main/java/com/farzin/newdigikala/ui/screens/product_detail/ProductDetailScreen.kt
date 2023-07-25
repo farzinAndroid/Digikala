@@ -123,6 +123,7 @@ fun ProductDetailScreen(
                     item { SimilarProductSection(categoryId = categoryId) }
                     item { ProductDescriptionSection(navController, description, technical) }
                     item { ProductCommentsSection(commentsList,commentsCount) }
+                    item { ProductSetCommentsSection(navController,productDetailList) }
                 }
             }
         )

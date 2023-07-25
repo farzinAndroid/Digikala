@@ -67,7 +67,7 @@ fun AmazingItem(
                     modifier = Modifier
                         .padding(start = MaterialTheme.spacing.small),
                     style = MaterialTheme.typography.extraSmall,
-                    fontWeight = FontWeight.SemiBold,
+                    fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colors.DigikalaLightRedText,
                 )
 

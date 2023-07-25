@@ -14,6 +14,7 @@ import com.farzin.newdigikala.ui.screens.home.WebPageScreen
 import com.farzin.newdigikala.ui.screens.product_detail.ProductDescription
 import com.farzin.newdigikala.ui.screens.product_detail.ProductDetailScreen
 import com.farzin.newdigikala.ui.screens.product_detail.ProductTechnicalFeaturesScreen
+import com.farzin.newdigikala.ui.screens.product_detail.SetNewCommentScreen
 import com.farzin.newdigikala.ui.screens.profile.ProfileScreen
 import com.farzin.newdigikala.ui.screens.splash.SplashScreen
 
@@ -120,5 +121,42 @@ fun SetupNavGraph(navController: NavHostController) {
         }
 
 
+        composable(route = Screen.SetNewComment.route + "?productId={productId}?productName={productName}?imageUrl={imageUrl}",
+            arguments = listOf(
+                navArgument("productId") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = " "
+                },
+                navArgument("productName") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = " "
+                },
+                navArgument("imageUrl") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = " "
+                }
+            )
+        ) {
+
+            it.arguments!!.getString("productId")?.let { productId ->
+                it.arguments!!.getString("productName")?.let { productName ->
+                    it.arguments!!.getString("imageUrl")?.let { imageUrl ->
+                        SetNewCommentScreen(
+                            navController = navController,
+                            productName = productName,
+                            productId = productId,
+                            imageUrl = imageUrl
+                        )
+                    }
+                }
+
+
+            }
+
+
+        }
     }
 }
