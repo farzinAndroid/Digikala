@@ -1,19 +1,25 @@
 package com.farzin.newdigikala.ui.screens.product_detail
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Checkbox
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
@@ -22,6 +28,7 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,14 +37,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.farzin.newdigikala.R
+import com.farzin.newdigikala.data.model.product_detail.NewComment
+import com.farzin.newdigikala.data.remote.NetworkResult
+import com.farzin.newdigikala.ui.components.OurLoading
 import com.farzin.newdigikala.ui.theme.DarkCyan
 import com.farzin.newdigikala.ui.theme.Typography
 import com.farzin.newdigikala.ui.theme.amber
@@ -47,6 +59,9 @@ import com.farzin.newdigikala.ui.theme.grayCategory
 import com.farzin.newdigikala.ui.theme.roundedShape
 import com.farzin.newdigikala.ui.theme.semiDarkText
 import com.farzin.newdigikala.ui.theme.spacing
+import com.farzin.newdigikala.util.Constants
+import com.farzin.newdigikala.viewmodel.ProductDetailViewModel
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun SetNewCommentScreen(
@@ -68,8 +83,7 @@ fun SetNewCommentScreen(
             imageUrl = imageUrl
         )
 
-        SeekBarSection()
-        CommentForm()
+        CommentForm(productId, navController)
 
 
     }
@@ -147,7 +161,12 @@ private fun Header(
 
 
 @Composable
-private fun SeekBarSection() {
+private fun CommentForm(
+    productId: String,
+    navController: NavController,
+    viewModel: ProductDetailViewModel = hiltViewModel(),
+) {
+
 
     var sliderValue by remember {
         mutableStateOf(0f)
@@ -204,86 +223,230 @@ private fun SeekBarSection() {
         thickness = 1.dp,
     )
 
-}
 
-
-@Composable
-private fun CommentForm(){
+    //////////////////////////////////////////////////////////////////////////////////////
 
     var commentTitle by remember { mutableStateOf("") }
     var commentBody by remember { mutableStateOf("") }
 
 
-   Column(
-       modifier = Modifier
-           .fillMaxWidth()
-           .padding(horizontal = MaterialTheme.spacing.medium)
-   ) {
-       Text(
-           text = stringResource(R.string.say_your_comment) ,
-           style = Typography.h3,
-           color = MaterialTheme.colors.darkText,
-           fontWeight = FontWeight.Bold,
-           modifier = Modifier
-               .padding(vertical = MaterialTheme.spacing.medium)
-           )
+    var loading by remember {
+        mutableStateOf(false)
+    }
 
-       Text(
-           modifier = Modifier
-               .padding(MaterialTheme.spacing.extraSmall),
-           text = stringResource(id = R.string.comment_title),
-           style = MaterialTheme.typography.h5,
-           color = MaterialTheme.colors.darkText,
-       )
+    val c = LocalContext.current
 
+    LaunchedEffect(true) {
 
-       OutlinedTextField(
-           modifier = Modifier
-               .fillMaxWidth(),
-           value = commentTitle,
-           onValueChange = { commentTitle = it },
-           maxLines = 1,
-           singleLine = true,
-           shape = MaterialTheme.roundedShape.small,
-           colors = TextFieldDefaults.textFieldColors(
-               textColor = MaterialTheme.colors.darkText,
-               backgroundColor = MaterialTheme.colors.grayCategory,
-               focusedIndicatorColor = MaterialTheme.colors.DarkCyan,
-               unfocusedIndicatorColor = Color.Transparent,
-               disabledIndicatorColor = Color.Transparent
-           )
-       )
+        viewModel.newCommentResult.collectLatest { newCommentResult ->
+            when (newCommentResult) {
+                is NetworkResult.Success -> {
+
+                    if (newCommentResult.message.equals("کامنت با موفقیت ثبت شد")) {
+                        navController.popBackStack()
+                    }
+
+                    loading = false
+                }
+
+                is NetworkResult.Error -> {
+                    Log.e("TAG", "newCommentResult error : ${newCommentResult.message}")
+                    loading = false
+                }
+
+                is NetworkResult.Loading -> {
+                }
+            }
+        }
+    }
 
 
 
-       Text(
-           modifier = Modifier
-               .padding(MaterialTheme.spacing.extraSmall),
-           text = stringResource(id = R.string.comment_text),
-           style = MaterialTheme.typography.h5,
-           color = MaterialTheme.colors.darkText,
-       )
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = MaterialTheme.spacing.medium)
+    ) {
+        Text(
+            text = stringResource(R.string.say_your_comment),
+            style = Typography.h3,
+            color = MaterialTheme.colors.darkText,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(vertical = MaterialTheme.spacing.medium)
+        )
+
+        Text(
+            modifier = Modifier
+                .padding(MaterialTheme.spacing.extraSmall),
+            text = stringResource(id = R.string.comment_title),
+            style = MaterialTheme.typography.h5,
+            color = MaterialTheme.colors.darkText,
+        )
 
 
-       OutlinedTextField(
-           modifier = Modifier
-               .fillMaxWidth()
-               .height(100.dp),
-           value = commentBody,
-           onValueChange = { commentBody = it },
-           shape = MaterialTheme.roundedShape.small,
-           colors = TextFieldDefaults.textFieldColors(
-               textColor = MaterialTheme.colors.darkText,
-               backgroundColor = MaterialTheme.colors.grayCategory,
-               focusedIndicatorColor = MaterialTheme.colors.DarkCyan,
-               unfocusedIndicatorColor = Color.Transparent,
-               disabledIndicatorColor = Color.Transparent
-           ),
-           maxLines = 3,
-       )
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth(),
+            value = commentTitle,
+            onValueChange = { commentTitle = it },
+            maxLines = 1,
+            singleLine = true,
+            shape = MaterialTheme.roundedShape.small,
+            colors = TextFieldDefaults.textFieldColors(
+                textColor = MaterialTheme.colors.darkText,
+                backgroundColor = MaterialTheme.colors.grayCategory,
+                focusedIndicatorColor = MaterialTheme.colors.DarkCyan,
+                unfocusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent
+            )
+        )
 
 
 
-   }
+        Text(
+            modifier = Modifier
+                .padding(MaterialTheme.spacing.extraSmall),
+            text = stringResource(id = R.string.comment_text),
+            style = MaterialTheme.typography.h5,
+            color = MaterialTheme.colors.darkText,
+        )
+
+
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(100.dp),
+            value = commentBody,
+            onValueChange = { commentBody = it },
+            shape = MaterialTheme.roundedShape.small,
+            colors = TextFieldDefaults.textFieldColors(
+                textColor = MaterialTheme.colors.darkText,
+                backgroundColor = MaterialTheme.colors.grayCategory,
+                focusedIndicatorColor = MaterialTheme.colors.DarkCyan,
+                unfocusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent
+            ),
+            maxLines = 3,
+        )
+
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    vertical = MaterialTheme.spacing.semiMedium,
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
+
+            var checkValue by remember { mutableStateOf(false) }
+
+            Checkbox(
+                checked = checkValue,
+                onCheckedChange = {
+                    checkValue = it
+                }
+            )
+
+            Text(
+                text = stringResource(R.string.comment_anonymously),
+                style = Typography.h4,
+                color = MaterialTheme.colors.semiDarkText,
+                modifier = Modifier
+                    .padding(
+                        horizontal = MaterialTheme.spacing.extraSmall
+                    )
+            )
+
+
+        }
+
+
+        Spacer(
+            modifier = Modifier
+                .padding(MaterialTheme.spacing.medium)
+                .fillMaxWidth()
+                .height(1.dp)
+                .background(MaterialTheme.colors.grayCategory)
+        )
+
+        OutlinedButton(
+            onClick = {
+                loading = true
+
+                val newComment = NewComment(
+                    token = Constants.USER_TOKEN,
+                    productId = productId,
+                    title = commentTitle,
+                    description = commentBody,
+                    star = (sliderValue - 1).toInt(),
+                    userName = "کاربر مهمان" //todo change user name
+                )
+
+                if (newComment.title.isBlank()) {
+
+                    loading = false
+
+                    Toast.makeText(
+                        c,
+                        c.getString(R.string.comment_title_null),
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                } else if (newComment.description.isBlank()) {
+
+                    loading = false
+
+                    Toast.makeText(
+                        c,
+                        c.getString(R.string.comment_body_null),
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                } else if (newComment.star == 0) {
+
+                    loading = false
+
+                    Toast.makeText(
+                        c,
+                        c.getString(R.string.comment_star_null),
+                        Toast.LENGTH_LONG
+                    ).show()
+
+
+                } else {
+                    viewModel.setNewComment(newComment)
+                }
+
+
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = MaterialTheme.spacing.medium)
+        ) {
+
+            if (loading){
+                OurLoading(height = 30.dp, isDark = true)
+            } else{
+
+                Text(
+                    text = stringResource(R.string.set_new_comment),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = MaterialTheme.spacing.extraSmall),
+                    textAlign = TextAlign.Center,
+                    style = Typography.h4,
+                    color = MaterialTheme.colors.semiDarkText
+                )
+
+            }
+
+
+        }
+
+
+    }
 
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import com.farzin.newdigikala.data.model.address.UserAddress
 import com.farzin.newdigikala.data.model.home.StoreProduct
+import com.farzin.newdigikala.data.model.product_detail.NewComment
 import com.farzin.newdigikala.data.model.product_detail.ProductDetail
 import com.farzin.newdigikala.data.remote.NetworkResult
 import com.farzin.newdigikala.repository.AddressRepository
@@ -25,6 +26,10 @@ class ProductDetailViewModel @Inject constructor(private val repo: ProductDetail
         MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
 
 
+  val newCommentResult =
+        MutableStateFlow<NetworkResult<String>>(NetworkResult.Loading())
+
+
     fun getProductById(id: String) {
         viewModelScope.launch {
             productDetails.emit(repo.getProductById(id))
@@ -34,6 +39,12 @@ class ProductDetailViewModel @Inject constructor(private val repo: ProductDetail
     fun getSimilarProducts(categoryId: String) {
         viewModelScope.launch {
             similarProducts.emit(repo.getSimilarProducts(categoryId))
+        }
+    }
+
+    fun setNewComment(newComment: NewComment) {
+        viewModelScope.launch {
+            newCommentResult.emit(repo.setNewComment(newComment))
         }
     }
 
