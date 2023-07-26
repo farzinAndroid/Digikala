@@ -1,5 +1,6 @@
 package com.farzin.newdigikala.ui.screens.product_detail
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,8 +21,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.farzin.newdigikala.R
 import com.farzin.newdigikala.data.model.product_detail.Comment
+import com.farzin.newdigikala.navigation.Screen
 import com.farzin.newdigikala.ui.theme.LightCyan
 import com.farzin.newdigikala.ui.theme.Typography
 import com.farzin.newdigikala.ui.theme.darkText
@@ -31,6 +34,8 @@ import com.farzin.newdigikala.ui.theme.spacing
 fun ProductCommentsSection(
     comments:List<Comment>,
     commentsCount:Int,
+    navController: NavController,
+    productId:String
 ) {
 
     Divider(
@@ -68,7 +73,11 @@ fun ProductCommentsSection(
                 text = "$commentsCount ${stringResource(R.string.comment)}",
                 style = Typography.h5,
                 fontWeight = FontWeight.Normal,
-                color = MaterialTheme.colors.LightCyan
+                color = MaterialTheme.colors.LightCyan,
+                modifier = Modifier
+                    .clickable {
+                        navController.navigate(Screen.AllComment.withArgs(productId))
+                    }
             )
 
         }
@@ -83,6 +92,13 @@ fun ProductCommentsSection(
             items(comments){comment->
                 CommentsCard(comment)
             }
+
+            item {
+                CommentsCardShowMore(){
+                    navController.navigate(Screen.AllComment.withArgs(productId))
+                }
+            }
+
 
         }
 

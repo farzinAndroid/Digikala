@@ -11,6 +11,7 @@ import com.farzin.newdigikala.ui.screens.category.CategoryScreen
 import com.farzin.newdigikala.ui.screens.checkout.CheckoutScreen
 import com.farzin.newdigikala.ui.screens.home.HomeScreen
 import com.farzin.newdigikala.ui.screens.home.WebPageScreen
+import com.farzin.newdigikala.ui.screens.product_detail.AllCommentScreen
 import com.farzin.newdigikala.ui.screens.product_detail.ProductDescription
 import com.farzin.newdigikala.ui.screens.product_detail.ProductDetailScreen
 import com.farzin.newdigikala.ui.screens.product_detail.ProductTechnicalFeaturesScreen
@@ -158,5 +159,26 @@ fun SetupNavGraph(navController: NavHostController) {
 
 
         }
+
+
+        composable(
+            route = Screen.AllComment.route + "/{productId}",
+            arguments = listOf(
+                navArgument("productId") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = ""
+                }
+            )
+        ) {
+
+            it.arguments?.getString("productId")?.let { id ->
+                AllCommentScreen(navController = navController, id = id)
+            }
+
+
+        }
+
+
     }
 }

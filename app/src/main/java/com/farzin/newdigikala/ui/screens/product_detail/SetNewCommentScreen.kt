@@ -51,6 +51,10 @@ import com.farzin.newdigikala.data.model.product_detail.NewComment
 import com.farzin.newdigikala.data.remote.NetworkResult
 import com.farzin.newdigikala.ui.components.OurLoading
 import com.farzin.newdigikala.ui.theme.DarkCyan
+import com.farzin.newdigikala.ui.theme.DigikalaDarkRed
+import com.farzin.newdigikala.ui.theme.DigikalaLightGreen
+import com.farzin.newdigikala.ui.theme.DigikalaLightRed
+import com.farzin.newdigikala.ui.theme.Green
 import com.farzin.newdigikala.ui.theme.Typography
 import com.farzin.newdigikala.ui.theme.amber
 import com.farzin.newdigikala.ui.theme.darkText
@@ -182,6 +186,16 @@ private fun CommentForm(
         else -> ""
     }
 
+    val scoreColor = when (sliderValue.toInt()) {
+        1 -> MaterialTheme.colors.amber
+        2 -> MaterialTheme.colors.DigikalaDarkRed
+        3 -> MaterialTheme.colors.DigikalaLightRed
+        4 -> MaterialTheme.colors.amber
+        5 -> MaterialTheme.colors.DigikalaLightGreen
+        6 -> MaterialTheme.colors.Green
+        else -> MaterialTheme.colors.amber
+    }
+
 
 
     Text(
@@ -205,10 +219,10 @@ private fun CommentForm(
             .padding(horizontal = MaterialTheme.spacing.large),
         onValueChangeFinished = {},
         colors = SliderDefaults.colors(
-            thumbColor = MaterialTheme.colors.amber,
-            activeTrackColor = MaterialTheme.colors.amber,
+            thumbColor = scoreColor,
+            activeTrackColor = scoreColor,
             inactiveTrackColor = MaterialTheme.colors.grayCategory,
-            activeTickColor = MaterialTheme.colors.amber,
+            activeTickColor = scoreColor,
             inactiveTickColor = MaterialTheme.colors.grayAlpha,
         ),
         steps = 4,
