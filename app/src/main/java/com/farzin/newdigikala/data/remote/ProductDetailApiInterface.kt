@@ -2,6 +2,7 @@ package com.farzin.newdigikala.data.remote
 
 import com.farzin.newdigikala.data.model.ResponseResult
 import com.farzin.newdigikala.data.model.home.StoreProduct
+import com.farzin.newdigikala.data.model.product_detail.Comment
 import com.farzin.newdigikala.data.model.product_detail.NewComment
 import com.farzin.newdigikala.data.model.product_detail.ProductDetail
 import retrofit2.Response
@@ -29,5 +30,12 @@ interface ProductDetailApiInterface {
         @Body newComment: NewComment
     ): Response<ResponseResult<String>>
 
+
+    @GET("v1/getAllProductComments")
+    suspend fun getAllProductComments(
+        @Query("id") id: String,
+        @Query("pageSize") pageSize: Int,
+        @Query("pageNumber") pageNumber: Int,
+    ) : Response<ResponseResult<List<Comment>>>
 
 }

@@ -76,7 +76,7 @@ fun ProductCommentsSection(
                 color = MaterialTheme.colors.LightCyan,
                 modifier = Modifier
                     .clickable {
-                        navController.navigate(Screen.AllComment.withArgs(productId))
+                        navController.navigate(Screen.AllComment.withArgs(productId,commentsCount))
                     }
             )
 
@@ -95,7 +95,7 @@ fun ProductCommentsSection(
 
             item {
                 CommentsCardShowMore(){
-                    navController.navigate(Screen.AllComment.withArgs(productId))
+                    navController.navigate(Screen.AllComment.withArgs(productId,commentsCount))
                 }
             }
 
