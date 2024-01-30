@@ -161,6 +161,53 @@
     <string name="comment_body_null">متن کامنت وارد نشده است!</string>
 
 
+    <string name="share_product">به اشتراک گذاری</string>
+    <string name="price_chart">نمودار قیمت</string>
+
+    <string name="product_price_chart">نمودار قیمت محصول در 6 ماه اخیر</string>
+    <string name="product_price_chart_time">مشاهده تغییرات قیمت این محصول نسبت به زمان</string>
+
+
+    <string name="setting">تنظیمات</string>
+    <string name="repetitive_questions">پرسش‌های متداول</string>
+    <string name="privacy">حریم خصوصی</string>
+    <string name="terms_of_use">شرایط استفاده</string>
+    <string name="error_report">گزارش خطا</string>
+    <string name="rating_to_digikal">امتیاز به دیجی‌کالا</string>
+    <string name="send_information_to_improve_user_experience">ارسال اطلاعات برای بهبود تجربه کاربری</string>
+    <string name="report_error_by_shaking_the_phone">گزارش خطا با تکان دادن گوشی</string>
+    <string name="sign_out">خروج از حساب کاربری</string>
+    <string name="changing_lang">تغییر زبان</string>
+    <string name="version_app">App Version: %s</string>
+    <string name="truelearn_technical_team">Truelearn Technical Team (3T)</string>
+
+
+
+    <string name="farsi">فارسی</string>
+    <string name="english">English</string>
+
+
+    <string name="completion_of_user_information"> تکمیل اطلاعات کاربری </string>
+    <string name="user_information">اطلاعات حساب کاربری </string>
+    <string name="enter_name_lastname">نام و نام خانوادگی خود را وارد نمایید</string>
+    <string name="firstname">نام</string>
+    <string name="lastname"> نام خانوادگی </string>
+    <string name="confirm_information"> تایید اطلاعات </string>
+
+
+    <string name="my_fav_list">لیست علاقه مندی ها</string>
+    <string name="remove_from_list">حذف از لیست</string>
+    <string name="watch_and_buy_product">مشاهده و خرید کالا</string>
+    <string name="fav_products">کالاهای مورد علاقه</string>
+    <string name="product">کالا</string>
+    <string name="sure_to_remove_fav_item">آیا از حذف کالا از لیست علاقه مندی ها اطمینان دارید؟</string>
+    <string name="remove_fav_item">حذف کالا</string>
+    <string name="cancel">انصراف</string>
+
+    <string name="all_comments">تمام نظرات ثبت شده توسط شما</string>
+
+
+
 
 
 </resources>

@@ -112,6 +112,9 @@ fun ProductDetailScreen(
             bottomBar = {
                 ProductDetailBottomBarSection(item = productDetailList)
             },
+            topBar = {
+                     ProductTopBarSection(navController)
+            },
             content = {
                 LazyColumn(
                     modifier = Modifier.padding(bottom = 70.dp)

@@ -156,4 +156,49 @@ After confirming the comment, go to the club missions page and get your points</
     <string name="comment_star_null">Comment rating (star) has not been entered!</string>
     <string name="comment_body_null">Comment text is not entered!Q</string>
 
+
+
+    <string name="share_product">share product</string>
+    <string name="price_chart">price chart</string>
+
+    <string name="product_price_chart">Product price chart</string>
+    <string name="product_price_chart_time">View the price changes of this product over time</string>
+
+    <string name="setting">Setting</string>
+    <string name="repetitive_questions">Repetitive Question</string>
+    <string name="privacy">Privacy</string>
+    <string name="terms_of_use">Terms of use</string>
+    <string name="error_report">Error report</string>
+    <string name="rating_to_digikal">Rating to digikal</string>
+    <string name="send_information_to_improve_user_experience">Send information to improve UX</string>
+    <string name="report_error_by_shaking_the_phone">Report error by shaking the phone</string>
+    <string name="sign_out">Sign out</string>
+    <string name="changing_lang">Change Language</string>
+    <string name="version_app">App Version: %s</string>
+    <string name="truelearn_technical_team">Truelearn Technical Team (3T)</string>
+
+    <string name="farsi">فارسی</string>
+    <string name="english">English</string>
+
+    <string name="completion_of_user_information"> Completion of user information </string>
+    <string name="user_information">User Account Information</string>
+    <string name="enter_name_lastname">Enter Your Name and LastName</string>
+    <string name="firstname">FirstName</string>
+    <string name="lastname">LastName</string>
+    <string name="confirm_information"> Confirm Information </string>
+
+
+    <string name="my_fav_list">Favorite List</string>
+    <string name="remove_from_list">Remove from list</string>
+    <string name="watch_and_buy_product">Watch and buy product</string>
+    <string name="fav_products">Favorite Products</string>
+    <string name="product">Product</string>
+    <string name="sure_to_remove_fav_item">Are you sure you want to remove this item?</string>
+    <string name="remove_fav_item">Remove Product</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="all_comments">All comments posted by you</string>
+
+
+
 </resources>
