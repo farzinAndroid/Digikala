@@ -41,7 +41,8 @@ import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.PagingSource
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import com.farzin.newdigikala.R
 import com.farzin.newdigikala.data.model.product_detail.Comment
 import com.farzin.newdigikala.ui.components.Loading3Dots
@@ -109,11 +110,24 @@ fun AllCommentScreen(
         )
 
         LazyColumn(Modifier.fillMaxSize()){
-            items(commentsList){comment->
+
+            items(
+                count = commentsList.itemCount,
+                key = commentsList.itemKey {comment->
+                    comment._id
+                },
+                contentType = commentsList.itemContentType { "Comments" }
+            ){
+                CommentsItem(item = commentsList[it]!!)
+            }
+
+
+            // paging 2
+            /*items(commentsList){comment->
                 if (comment != null) {
                     CommentsItem(item = comment)
                 }
-            }
+            }*/
 
             commentsList.loadState.apply {
 

@@ -1,6 +1,5 @@
 package com.farzin.newdigikala.ui.screens.checkout
 
-import androidx.compose.animation.AnimatedContentScope.SlideDirection.Companion.Start
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
