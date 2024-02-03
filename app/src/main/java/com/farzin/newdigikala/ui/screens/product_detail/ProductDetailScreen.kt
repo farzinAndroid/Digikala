@@ -53,7 +53,7 @@ fun ProductDetailScreen(
         mutableStateOf("")
     }
 
-    var productDetailList by remember {
+    var productDetail by remember {
         mutableStateOf(ProductDetail())
     }
 
@@ -85,7 +85,7 @@ fun ProductDetailScreen(
         productDetailViewModel.productDetails.collectLatest { productDetailResult ->
             when (productDetailResult) {
                 is NetworkResult.Success -> {
-                    productDetailList = productDetailResult.data!!
+                    productDetail = productDetailResult.data!!
                     sliderImage = productDetailResult.data.imageSlider ?: emptyList()
                     colorList = productDetailResult.data.colors ?: emptyList()
                     commentsList = productDetailResult.data.comments ?: emptyList()
@@ -117,17 +117,17 @@ fun ProductDetailScreen(
 
         Scaffold(
             bottomBar = {
-                ProductDetailBottomBarSection(item = productDetailList)
+                ProductDetailBottomBarSection(item = productDetail)
             },
             topBar = {
-                ProductTopBarSection(navController,priceList)
+                ProductTopBarSection(navController,productDetail)
             },
             content = {
                 LazyColumn(
                     modifier = Modifier.padding(bottom = 70.dp)
                 ) {
                     item { ProductDetailImageSlider(sliderImage) }
-                    item { ProductDetailHeaderSection(item = productDetailList) }
+                    item { ProductDetailHeaderSection(item = productDetail) }
                     item { ProductDetailSelectedColorSection(colors = colorList) }
                     item { SellerInfoSection() }
                     item { SimilarProductSection(categoryId = categoryId) }
@@ -140,7 +140,7 @@ fun ProductDetailScreen(
                             navController = navController
                         )
                     }
-                    item { ProductSetCommentsSection(navController, productDetailList) }
+                    item { ProductSetCommentsSection(navController, productDetail) }
                 }
             }
         )

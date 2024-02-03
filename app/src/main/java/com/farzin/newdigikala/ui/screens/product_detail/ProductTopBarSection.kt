@@ -1,5 +1,7 @@
 package com.farzin.newdigikala.ui.screens.product_detail
 
+import android.content.Context
+import android.content.Intent
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.layout.Arrangement
@@ -28,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,13 +38,16 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.farzin.newdigikala.R
 import com.farzin.newdigikala.data.model.product_detail.Price
+import com.farzin.newdigikala.data.model.product_detail.ProductDetail
 import com.farzin.newdigikala.navigation.Screen
 import com.farzin.newdigikala.ui.theme.darkText
 import com.farzin.newdigikala.ui.theme.spacing
+import com.farzin.newdigikala.util.DigitHelper
 import com.google.gson.Gson
 
 @Composable
-fun ProductTopBarSection(navController: NavController,priceList: List<Price>) {
+fun ProductTopBarSection(navController: NavController, product: ProductDetail) {
+    val context = LocalContext.current
 
     Row(
         modifier = Modifier
@@ -73,7 +79,9 @@ fun ProductTopBarSection(navController: NavController,priceList: List<Price>) {
                 .weight(0.4f),
             horizontalArrangement = Arrangement.Start
         ) {
-            IconButton(onClick = { }) {
+            IconButton(onClick = {
+                navController.navigate(Screen.Basket.route)
+            }) {
                 Icon(
                     painter = painterResource(R.drawable.basket),
                     contentDescription = "",
@@ -123,7 +131,7 @@ fun ProductTopBarSection(navController: NavController,priceList: List<Price>) {
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
-                val priceListJsonString = Gson().toJson(priceList)
+                val priceListJsonString = Gson().toJson(product.priceList)
                 DropdownMenuItem(
                     onClick = {
                         expanded = false
@@ -160,7 +168,15 @@ fun ProductTopBarSection(navController: NavController,priceList: List<Price>) {
                 }
 
                 DropdownMenuItem(
-                    onClick = { expanded = false }
+                    onClick = {
+                        expanded = false
+                        shareToSocialMedia(
+                            context = context,
+                            productName = product.name!!,
+                            productPrice = DigitHelper.digitByLangAndSeparator(product.price.toString()),
+                            url = "https://truelearn.ir/"
+                        )
+                    }
                 ) {
                     Row(
                         modifier = Modifier
@@ -194,5 +210,26 @@ fun ProductTopBarSection(navController: NavController,priceList: List<Price>) {
 
 
     }
+
+}
+
+
+fun shareToSocialMedia(
+    context: Context,
+    productName: String,
+    productPrice: String,
+    url: String,
+) {
+
+    val shareIntent = Intent(Intent.ACTION_SEND)
+
+    shareIntent.type = "text/plain"
+
+    shareIntent.putExtra(
+        Intent.EXTRA_TEXT,
+        "$productName با قیمت باورنکردنی $productPrice تومان فقط در فروشگاه زیر \n $url"
+    )
+
+    context.startActivity(Intent.createChooser(shareIntent, "Share to..."))
 
 }
