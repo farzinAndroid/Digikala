@@ -22,6 +22,7 @@ data class ProductDetail(
     val imageSlider: List<SliderImage>? = null,
     val colors: List<ProductColor>? = null,
     val comments: List<Comment>? = null,
+    val priceList: List<Price>? = null,
     val technicalFeatures: JsonObject? = null,
 )
 
@@ -48,4 +49,9 @@ data class Comment(
     val updatedAt: String,
     val createdAt: String,
     val __v: Int,
+)
+
+data class Price(
+    val persianDate:String,
+    val price:Long
 )

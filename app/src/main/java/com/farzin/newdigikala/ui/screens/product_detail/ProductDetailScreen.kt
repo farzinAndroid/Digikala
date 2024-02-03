@@ -8,6 +8,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -18,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.farzin.newdigikala.data.model.product_detail.Comment
+import com.farzin.newdigikala.data.model.product_detail.Price
 import com.farzin.newdigikala.data.model.product_detail.ProductColor
 import com.farzin.newdigikala.data.model.product_detail.ProductDetail
 import com.farzin.newdigikala.data.model.product_detail.SliderImage
@@ -68,7 +70,11 @@ fun ProductDetailScreen(
     }
 
     var commentsCount by remember {
-        mutableStateOf(0)
+        mutableIntStateOf(0)
+    }
+
+    var priceList by remember {
+        mutableStateOf<List<Price>>(emptyList())
     }
 
 
@@ -87,6 +93,7 @@ fun ProductDetailScreen(
                     categoryId = productDetailResult.data.categoryId ?: ""
                     description = productDetailResult.data.description ?: ""
                     technical = productDetailResult.data.technicalFeatures.toString()
+                    priceList = productDetailResult.data.priceList ?: emptyList()
                     loading = false
                 }
 
@@ -113,7 +120,7 @@ fun ProductDetailScreen(
                 ProductDetailBottomBarSection(item = productDetailList)
             },
             topBar = {
-                     ProductTopBarSection(navController)
+                ProductTopBarSection(navController,priceList)
             },
             content = {
                 LazyColumn(

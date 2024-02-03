@@ -34,11 +34,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.farzin.newdigikala.R
+import com.farzin.newdigikala.data.model.product_detail.Price
+import com.farzin.newdigikala.navigation.Screen
 import com.farzin.newdigikala.ui.theme.darkText
 import com.farzin.newdigikala.ui.theme.spacing
+import com.google.gson.Gson
 
 @Composable
-fun ProductTopBarSection(navController: NavController) {
+fun ProductTopBarSection(navController: NavController,priceList: List<Price>) {
 
     Row(
         modifier = Modifier
@@ -56,7 +59,7 @@ fun ProductTopBarSection(navController: NavController) {
             IconButton(onClick = { navController.popBackStack() }) {
                 Icon(
                     painter = painterResource(R.drawable.exit),
-                    contentDescription ="",
+                    contentDescription = "",
                     modifier = Modifier
                         .size(25.dp),
                     tint = MaterialTheme.colors.darkText
@@ -70,10 +73,10 @@ fun ProductTopBarSection(navController: NavController) {
                 .weight(0.4f),
             horizontalArrangement = Arrangement.Start
         ) {
-            IconButton(onClick = {  }) {
+            IconButton(onClick = { }) {
                 Icon(
                     painter = painterResource(R.drawable.basket),
-                    contentDescription ="",
+                    contentDescription = "",
                     modifier = Modifier
                         .size(25.dp),
                     tint = MaterialTheme.colors.darkText
@@ -89,14 +92,14 @@ fun ProductTopBarSection(navController: NavController) {
                 }
             ) {
 
-                val transition = updateTransition(checked,"icon transition")
-                val tint by transition.animateColor(label = "icon transition") { isChecked->
+                val transition = updateTransition(checked, "icon transition")
+                val tint by transition.animateColor(label = "icon transition") { isChecked ->
                     if (isChecked) Color.Red else MaterialTheme.colors.darkText
                 }
 
                 Icon(
                     imageVector = if (checked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                    contentDescription ="",
+                    contentDescription = "",
                     modifier = Modifier
                         .size(25.dp),
                     tint = tint
@@ -104,13 +107,12 @@ fun ProductTopBarSection(navController: NavController) {
             }
 
 
-
             var expanded by remember { mutableStateOf(false) }
 
             IconButton(onClick = { expanded = !expanded }) {
                 Icon(
                     painter = painterResource(R.drawable.menu_dots),
-                    contentDescription ="",
+                    contentDescription = "",
                     modifier = Modifier
                         .size(25.dp),
                     tint = MaterialTheme.colors.darkText
@@ -121,8 +123,15 @@ fun ProductTopBarSection(navController: NavController) {
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
+                val priceListJsonString = Gson().toJson(priceList)
                 DropdownMenuItem(
-                    onClick = { expanded=  false }
+                    onClick = {
+                        expanded = false
+                        navController.navigate(
+                            Screen.Chart.route
+                                    + "?jsonString=${priceListJsonString}"
+                        )
+                    }
                 ) {
                     Row(
                         modifier = Modifier
@@ -132,7 +141,7 @@ fun ProductTopBarSection(navController: NavController) {
 
                         Icon(
                             painter = painterResource(R.drawable.chart),
-                            contentDescription ="",
+                            contentDescription = "",
                             modifier = Modifier
                                 .size(16.dp)
                         )
@@ -151,7 +160,7 @@ fun ProductTopBarSection(navController: NavController) {
                 }
 
                 DropdownMenuItem(
-                    onClick = { expanded=  false }
+                    onClick = { expanded = false }
                 ) {
                     Row(
                         modifier = Modifier
@@ -161,7 +170,7 @@ fun ProductTopBarSection(navController: NavController) {
 
                         Icon(
                             painter = painterResource(R.drawable.share),
-                            contentDescription ="",
+                            contentDescription = "",
                             modifier = Modifier
                                 .size(16.dp)
                         )
