@@ -43,7 +43,7 @@ import com.farzin.newdigikala.ui.theme.unSelectedBottomBar
 import com.farzin.newdigikala.util.DigitHelper
 
 @Composable
-fun SellerInfoSection() {
+fun SellerInfoSection(productPrice: Long) {
 
 
     Divider(
@@ -115,7 +115,7 @@ fun SellerInfoSection() {
                 ) {
 
                     Text(
-                        text = "${DigitHelper.digitByLang("101")}% رضایت خریداران معتبر",
+                        text = "${DigitHelper.digitByLang("85")}% رضایت خریداران معتبر",
                         style = Typography.h6,
                         color = MaterialTheme.colors.semiDarkText
                     )
@@ -342,7 +342,11 @@ fun SellerInfoSection() {
             Column {
 
                 Text(
-                    text = "${stringResource(R.string.manufacturer_price)} 111 ${stringResource(R.string.toman)}",
+                    text = "${stringResource(R.string.manufacturer_price)} ${
+                        DigitHelper.digitByLangAndSeparator(
+                            productPrice.toString()
+                        )
+                    } ${stringResource(R.string.toman)}",
                     style = Typography.h6,
                     color = MaterialTheme.colors.darkText,
                 )

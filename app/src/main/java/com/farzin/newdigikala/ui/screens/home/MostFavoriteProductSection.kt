@@ -13,17 +13,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.navArgument
 import com.farzin.newdigikala.data.model.home.StoreProduct
 import com.farzin.newdigikala.data.remote.NetworkResult
 import com.farzin.newdigikala.ui.theme.spacing
 import com.farzin.newdigikala.viewmodel.HomeViewModel
 import com.farzin.newdigikala.R
+import com.farzin.newdigikala.navigation.Screen
 import com.farzin.newdigikala.ui.theme.DarkCyan
 import com.farzin.newdigikala.ui.theme.darkText
 
 @Composable
 fun MostFavoriteProductSection(
     viewModel: HomeViewModel = hiltViewModel(),
+    navController: NavController
 ) {
     var mostFavoriteList by remember {
         mutableStateOf<List<StoreProduct>>(emptyList())
@@ -85,7 +89,9 @@ fun MostFavoriteProductSection(
 
         LazyRow {
             items(mostFavoriteList) { item ->
-                MostFavoriteProductsOffer(item)
+                MostFavoriteProductsOffer(item){
+                    navController.navigate(Screen.ProductDetail.withArgs(item._id))
+                }
             }
             item {
                 MostFavoriteProductsShowMore()

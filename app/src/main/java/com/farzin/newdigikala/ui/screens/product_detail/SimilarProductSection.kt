@@ -18,10 +18,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.farzin.newdigikala.data.model.home.StoreProduct
 import com.farzin.newdigikala.data.remote.NetworkResult
 import com.farzin.newdigikala.ui.theme.spacing
 import com.farzin.newdigikala.R
+import com.farzin.newdigikala.navigation.Screen
 import com.farzin.newdigikala.ui.screens.home.MostFavoriteProductsOffer
 import com.farzin.newdigikala.ui.screens.home.MostFavoriteProductsShowMore
 import com.farzin.newdigikala.ui.theme.DarkCyan
@@ -33,6 +35,7 @@ import kotlinx.coroutines.flow.collectLatest
 fun SimilarProductSection(
     categoryId: String,
     viewModel: ProductDetailViewModel = hiltViewModel(),
+    navController: NavController
 ) {
     var similarProductList by remember {
         mutableStateOf<List<StoreProduct>>(emptyList())
@@ -101,7 +104,9 @@ fun SimilarProductSection(
 
         LazyRow {
             items(similarProductList) { item ->
-                MostFavoriteProductsOffer(item)
+                MostFavoriteProductsOffer(item){
+                    navController.navigate(Screen.ProductDetail.withArgs(item._id))
+                }
             }
         }
 

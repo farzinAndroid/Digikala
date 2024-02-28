@@ -2,6 +2,7 @@ package com.farzin.newdigikala.ui.screens.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
@@ -25,7 +26,7 @@ import com.farzin.newdigikala.util.Constants
 import com.farzin.newdigikala.util.DigitHelper
 
 @Composable
-fun MostFavoriteProductsOffer(item: StoreProduct) {
+fun MostFavoriteProductsOffer(item: StoreProduct,onClick:()->Unit) {
 
     Column(
         modifier = Modifier
@@ -33,7 +34,8 @@ fun MostFavoriteProductsOffer(item: StoreProduct) {
             .padding(
                 vertical = MaterialTheme.spacing.semiLarge,
                 horizontal = MaterialTheme.spacing.semiSmall
-            ),
+            )
+            .clickable { onClick() },
     ) {
 
         Row {

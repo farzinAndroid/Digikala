@@ -78,7 +78,7 @@ private fun SwipeRefreshSection(vm: HomeViewModel, navController: NavHostControl
             item { CenterBannerSection(1) }
             item { BestSellerOfferSection() }
             item { CenterBannerSection(2) }
-            item { MostFavoriteProductSection() }
+            item { MostFavoriteProductSection(navController=navController) }
             item { CenterBannerSection(3) }
             item { MostVisitedOfferSection() }
             item { CenterBannerSection(4) }

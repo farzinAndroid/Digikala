@@ -129,8 +129,8 @@ fun ProductDetailScreen(
                     item { ProductDetailImageSlider(sliderImage) }
                     item { ProductDetailHeaderSection(item = productDetail) }
                     item { ProductDetailSelectedColorSection(colors = colorList) }
-                    item { SellerInfoSection() }
-                    item { SimilarProductSection(categoryId = categoryId) }
+                    item { SellerInfoSection(productPrice = productDetail.price ?: 0) }
+                    item { SimilarProductSection(categoryId = categoryId,navController=navController) }
                     item { ProductDescriptionSection(navController, description, technical) }
                     item {
                         ProductCommentsSection(
