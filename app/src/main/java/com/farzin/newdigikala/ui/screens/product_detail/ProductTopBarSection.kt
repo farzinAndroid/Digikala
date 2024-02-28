@@ -39,6 +39,7 @@ import androidx.navigation.NavController
 import com.farzin.newdigikala.R
 import com.farzin.newdigikala.data.model.product_detail.Price
 import com.farzin.newdigikala.data.model.product_detail.ProductDetail
+import com.farzin.newdigikala.data.model.profile.FavItem
 import com.farzin.newdigikala.navigation.Screen
 import com.farzin.newdigikala.ui.theme.darkText
 import com.farzin.newdigikala.ui.theme.spacing
@@ -91,28 +92,17 @@ fun ProductTopBarSection(navController: NavController, product: ProductDetail) {
                 )
             }
 
-            var checked by remember { mutableStateOf(false) }
-
-            IconToggleButton(
-                checked = checked,
-                onCheckedChange = {
-                    checked = !checked
-                }
-            ) {
-
-                val transition = updateTransition(checked, "icon transition")
-                val tint by transition.animateColor(label = "icon transition") { isChecked ->
-                    if (isChecked) Color.Red else MaterialTheme.colors.darkText
-                }
-
-                Icon(
-                    imageVector = if (checked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                    contentDescription = "",
-                    modifier = Modifier
-                        .size(25.dp),
-                    tint = tint
+            DisplayFavoriteToggleButton(
+                favItem = FavItem(
+                    id = product._id ?: "",
+                    name = product.name ?: "",
+                    seller = product.seller ?: "",
+                    price = product.price ?: 0L,
+                    discountPercent = product.discountPercent ?: 0,
+                    image = product.imageSlider?.get(0)?.image ?: "",
+                    star = product.star ?: 0.0
                 )
-            }
+            )
 
 
             var expanded by remember { mutableStateOf(false) }
