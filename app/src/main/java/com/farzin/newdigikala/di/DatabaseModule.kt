@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import com.farzin.newdigikala.data.db.DigikalaDatabase
+import com.farzin.newdigikala.data.db.DigikalaDatabase.Companion.MIGRATION_1_TO_2
 import com.farzin.newdigikala.util.Constants.DATABASE_NAME
 import javax.inject.Singleton
 
@@ -23,6 +24,8 @@ object DatabaseModule {
         context,
         DigikalaDatabase::class.java,
         DATABASE_NAME
-    ).build()
+    )
+        .addMigrations(MIGRATION_1_TO_2)
+        .build()
 
 }
