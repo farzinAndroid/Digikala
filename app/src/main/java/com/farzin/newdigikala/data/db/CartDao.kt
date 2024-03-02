@@ -29,5 +29,11 @@ interface CartDao {
     @Query("select total(count) as count from shopping_cart where cartStatus=:status")
     fun getCartItemsCount(status: CartStatus): Flow<Int>
 
+    @Query("select exists( select * from shopping_cart where itemId = :id)")
+    fun isItemInBasket(id:String) : Flow<Boolean>
+
+    @Query("select total(count) as count from shopping_cart where itemId=:id")
+    fun getItemCount(id: String): Flow<Int>
+
 
 }

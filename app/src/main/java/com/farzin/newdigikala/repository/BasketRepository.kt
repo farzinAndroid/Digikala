@@ -7,6 +7,7 @@ import com.farzin.newdigikala.data.model.home.StoreProduct
 import com.farzin.newdigikala.data.remote.BaseApiResponse
 import com.farzin.newdigikala.data.remote.BasketApiInterface
 import com.farzin.newdigikala.data.remote.NetworkResult
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 
@@ -43,6 +44,13 @@ class BasketRepository @Inject constructor(
     suspend fun changeCartItemCount(id: String, newCount: Int) {
         dao.changeCountCartItem(id, newCount)
     }
+
+    fun isItemInBasket(id: String): Flow<Boolean> =
+        dao.isItemInBasket(id)
+
+    fun getItemCount(id: String): Flow<Int> =
+        dao.getItemCount(id)
+
 
 
 }

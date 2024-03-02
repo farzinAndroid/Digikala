@@ -117,7 +117,7 @@ fun ProductDetailScreen(
 
         Scaffold(
             bottomBar = {
-                ProductDetailBottomBarSection(item = productDetail)
+                ProductDetailBottomBarSection(item = productDetail, navController = navController)
             },
             topBar = {
                 ProductTopBarSection(navController,productDetail)

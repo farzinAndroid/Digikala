@@ -201,6 +201,9 @@ After confirming the comment, go to the club missions page and get your points</
     <string name="color">Color</string>
     <string name="not_selected">not selected</string>
 
+    <string name="in_your_basket">In your basket</string>
+    <string name="view_in_carts">View in carts</string>
+
 
 
 </resources>
