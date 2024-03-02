@@ -13,25 +13,25 @@ import retrofit2.http.Query
 
 interface ProductDetailApiInterface {
 
-    @GET("v1/getProductById")
+    @GET("getProductById")
     suspend fun getProductById(
         @Query("id") id: String,
     ): Response<ResponseResult<ProductDetail>>
 
 
-    @GET("v1/getSimilarProducts")
+    @GET("getSimilarProducts")
     suspend fun getSimilarProducts(
         @Query("categoryId") categoryId: String,
     ): Response<ResponseResult<List<StoreProduct>>>
 
 
-    @POST("v1/setNewComment")
+    @POST("setNewComment")
     suspend fun setNewComment(
         @Body newComment: NewComment
     ): Response<ResponseResult<String>>
 
 
-    @GET("v1/getAllProductComments")
+    @GET("getAllProductComments")
     suspend fun getAllProductComments(
         @Query("id") id: String,
         @Query("pageSize") pageSize: Int,

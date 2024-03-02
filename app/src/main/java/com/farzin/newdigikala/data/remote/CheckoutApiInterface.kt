@@ -11,12 +11,12 @@ import retrofit2.http.Query
 
 interface CheckoutApiInterface {
 
-    @GET("v1/getShippingCost")
+    @GET("getShippingCost")
     suspend fun getShippingCost(
         @Query("address") address: String,
     ): Response<ResponseResult<Int>>
 
-    @POST("v1/setNewOrder")
+    @POST("setNewOrder")
     suspend fun setNewOrder(
         @Body orderDetails: OrderDetails,
     ): Response<ResponseResult<String>>

@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 interface CategoryApiInterface {
 
-    @GET("v1/getSubCategories")
+    @GET("getSubCategories")
     suspend fun getSubCategories(): Response<ResponseResult<SubCategory>>
 
 }

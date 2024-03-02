@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface AddressApiInterface {
 
-    @GET("v1/getUserAddress")
+    @GET("getUserAddress")
     suspend fun getUserAddressList(
         @Query("token") token: String,
     ): Response<ResponseResult<List<UserAddress>>>

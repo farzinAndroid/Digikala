@@ -10,34 +10,34 @@ import retrofit2.http.GET
 
 interface HomeApiInterface {
 
-    @GET("v1/getSlider")
+    @GET("getSlider")
     suspend fun getSlider(): Response<ResponseResult<List<Slider>>>
 
-    @GET("v1/getAmazingProducts")
+    @GET("getAmazingProducts")
     suspend fun getAmazingItems(): Response<ResponseResult<List<AmazingItem>>>
 
-    @GET("v1/getSuperMarketAmazingProducts")
+    @GET("getSuperMarketAmazingProducts")
     suspend fun getAmazingSuperMarketItems(): Response<ResponseResult<List<AmazingItem>>>
 
-    @GET("v1/get4Banners")
+    @GET("get4Banners")
     suspend fun getProposalBanners(): Response<ResponseResult<List<Slider>>>
 
-    @GET("v1/getCategories")
+    @GET("getCategories")
     suspend fun getCategories(): Response<ResponseResult<List<MainCategory>>>
 
-    @GET("v1/getCenterBanners")
+    @GET("getCenterBanners")
     suspend fun getCenterBanners(): Response<ResponseResult<List<Slider>>>
 
-    @GET("v1/getBestsellerProducts")
+    @GET("getBestsellerProducts")
     suspend fun getBestSellerItems(): Response<ResponseResult<List<StoreProduct>>>
 
-    @GET("v1/getMostVisitedProducts")
+    @GET("getMostVisitedProducts")
     suspend fun getMostVisitedItems(): Response<ResponseResult<List<StoreProduct>>>
 
-    @GET("v1/getMostFavoriteProducts")
+    @GET("getMostFavoriteProducts")
     suspend fun getMostFavoriteItems(): Response<ResponseResult<List<StoreProduct>>>
 
-    @GET("v1/getMostDiscountedProducts")
+    @GET("getMostDiscountedProducts")
     suspend fun getMostDiscountedItems(): Response<ResponseResult<List<StoreProduct>>>
 
 
