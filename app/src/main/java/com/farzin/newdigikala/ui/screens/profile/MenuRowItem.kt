@@ -22,15 +22,18 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.farzin.newdigikala.ui.theme.darkText
 import com.farzin.newdigikala.ui.theme.settingArrow
 import com.farzin.newdigikala.ui.theme.spacing
 
 @Composable
 fun MenuRowItem(
     icon: @Composable ()->Unit,
+    addComposable: @Composable (()->Unit)? = null,
     text: String,
     isHaveDivider: Boolean,
-    onClick:()->Unit = {}
+    color: Color = MaterialTheme.colors.darkText,
+    onClick:()->Unit = {},
 ) {
 
     Row(
@@ -71,15 +74,20 @@ fun MenuRowItem(
                 Text(
                     style = MaterialTheme.typography.h5,
                     fontWeight = FontWeight.Bold,
-                    text = text
+                    text = text,
+                    color = color
                 )
 
-                Icon(
-                    Icons.Outlined.KeyboardArrowLeft,
-                    contentDescription = "",
-                    modifier = Modifier.size(24.dp),
-                    tint = MaterialTheme.colors.settingArrow
-                )
+                if (addComposable == null){
+                    Icon(
+                        Icons.Outlined.KeyboardArrowLeft,
+                        contentDescription = "",
+                        modifier = Modifier.size(24.dp),
+                        tint = MaterialTheme.colors.settingArrow
+                    )
+                }else{
+                    addComposable()
+                }
 
 
             }

@@ -55,7 +55,7 @@ fun ProfileScreen(
 ) {
 
 
-    if (!dataStore.getUserToken().isNullOrBlank()) {
+    if (dataStore.getUserToken() != "null") {
         Profile(navController = navController)
     } else {
         when (profileViewModel.screenState) {
@@ -265,7 +265,9 @@ private fun ProfileTopBarSection(navController: NavController) {
             )
         }
 
-        IconButton(onClick = {}) {
+        IconButton(onClick = {
+            navController.navigate(Screen.Home.route)
+        }) {
             Icon(
                 Icons.Filled.Close,
                 contentDescription = "Close",

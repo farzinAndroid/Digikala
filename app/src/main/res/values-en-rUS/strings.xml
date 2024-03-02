@@ -177,7 +177,7 @@ After confirming the comment, go to the club missions page and get your points</
     <string name="version_app">App Version: %s</string>
     <string name="truelearn_technical_team">Truelearn Technical Team (3T)</string>
 
-    <string name="farsi">فارسی</string>
+    <string name="persian">فارسی</string>
     <string name="english">English</string>
 
     <string name="completion_of_user_information"> Completion of user information </string>

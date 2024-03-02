@@ -109,6 +109,12 @@ class BasketViewModel @Inject constructor(private val repo: BasketRepository) : 
         }
     }
 
+    fun deleteAllCartItems() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repo.deleteAllCartItems()
+        }
+    }
+
     fun isItemInBasket(id: String): Flow<Boolean> =
             repo.isItemInBasket(id)
 

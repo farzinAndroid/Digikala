@@ -23,11 +23,13 @@ import com.farzin.newdigikala.ui.theme.darkText
 import com.farzin.newdigikala.ui.theme.spacing
 import com.farzin.newdigikala.util.Constants
 import com.farzin.newdigikala.viewmodel.BasketViewModel
+import com.farzin.newdigikala.viewmodel.DataStoreViewModel
 
 @Composable
 fun ShoppingCart(
     navController: NavController,
     viewModel: BasketViewModel = hiltViewModel(),
+    dataStoreViewModel: DataStoreViewModel = hiltViewModel(),
 ) {
 
     val cartDetail by viewModel.cartDetail.collectAsState()
@@ -52,7 +54,7 @@ fun ShoppingCart(
         ) {
 
             item {
-                if (Constants.USER_TOKEN == "null") {
+                if (dataStoreViewModel.getUserToken() == "null") {
                     LoginOrRegisterSection(navController)
                 }
             }
