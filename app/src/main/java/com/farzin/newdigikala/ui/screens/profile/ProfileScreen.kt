@@ -1,11 +1,23 @@
 package com.farzin.newdigikala.ui.screens.profile
 
 import androidx.compose.foundation.Image
-import com.farzin.newdigikala.R
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.material.*
+import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
@@ -21,9 +33,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.farzin.newdigikala.R
+import com.farzin.newdigikala.navigation.Screen
 import com.farzin.newdigikala.ui.components.CenterBannerItem
-import com.farzin.newdigikala.ui.theme.*
+import com.farzin.newdigikala.ui.theme.darkText
+import com.farzin.newdigikala.ui.theme.selectedBottomBar
+import com.farzin.newdigikala.ui.theme.semiDarkText
+import com.farzin.newdigikala.ui.theme.spacing
 import com.farzin.newdigikala.util.Constants
 import com.farzin.newdigikala.util.DigitHelper.digitByLang
 import com.farzin.newdigikala.viewmodel.DataStoreViewModel
@@ -38,7 +56,7 @@ fun ProfileScreen(
 
 
     if (!dataStore.getUserToken().isNullOrBlank()) {
-        Profile()
+        Profile(navController = navController)
     } else {
         when (profileViewModel.screenState) {
             ProfileScreenState.LOGIN_STATE -> {
@@ -46,7 +64,7 @@ fun ProfileScreen(
             }
 
             ProfileScreenState.PROFILE_STATE -> {
-                Profile()
+                Profile(navController = navController)
             }
 
             ProfileScreenState.REGISTER_STATE -> {
@@ -59,14 +77,14 @@ fun ProfileScreen(
 }
 
 @Composable
-fun Profile() {
+fun Profile(navController: NavController) {
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(bottom = 60.dp),
     ) {
-        item { ProfileTopBarSection() }
+        item { ProfileTopBarSection(navController = navController) }
         item { ProfileHeaderSection() }
         item { ProfileMiddleSection() }
         item { MyOrdersSection() }
@@ -80,27 +98,67 @@ fun Profile() {
 @Composable
 private fun ProfileMenuSection() {
     MenuRowItem(
-        painter = painterResource(id = R.drawable.digi_plus_icon),
+        icon = {
+            Image(
+                painter = painterResource(id = R.drawable.digi_plus_icon),
+                contentDescription = "",
+                modifier = Modifier
+                    .size(36.dp)
+                    .padding(MaterialTheme.spacing.small)
+            )
+        },
         text = stringResource(id = R.string.digi_plus),
         isHaveDivider = true
     )
     MenuRowItem(
-        painter = painterResource(id = R.drawable.digi_fav_icon),
+        icon = {
+            Image(
+                painter = painterResource(id = R.drawable.digi_fav_icon),
+                contentDescription = "",
+                modifier = Modifier
+                    .size(36.dp)
+                    .padding(MaterialTheme.spacing.small)
+            )
+        },
         text = stringResource(id = R.string.fav_list),
         isHaveDivider = true
     )
     MenuRowItem(
-        painter = painterResource(id = R.drawable.digi_comments_icon),
+        icon = {
+            Image(
+                painter = painterResource(id = R.drawable.digi_comments_icon),
+                contentDescription = "",
+                modifier = Modifier
+                    .size(36.dp)
+                    .padding(MaterialTheme.spacing.small)
+            )
+        },
         text = stringResource(id = R.string.my_comments),
         isHaveDivider = true
     )
     MenuRowItem(
-        painter = painterResource(id = R.drawable.digi_adresses_icon),
+        icon = {
+            Image(
+                painter = painterResource(id = R.drawable.digi_adresses_icon),
+                contentDescription = "",
+                modifier = Modifier
+                    .size(36.dp)
+                    .padding(MaterialTheme.spacing.small)
+            )
+        },
         text = stringResource(id = R.string.addresses),
         isHaveDivider = true
     )
     MenuRowItem(
-        painter = painterResource(id = R.drawable.digi_profile_icon),
+        icon = {
+            Image(
+                painter = painterResource(id = R.drawable.digi_profile_icon),
+                contentDescription = "",
+                modifier = Modifier
+                    .size(36.dp)
+                    .padding(MaterialTheme.spacing.small)
+            )
+        },
         text = stringResource(id = R.string.profile_data),
         isHaveDivider = false
     )
@@ -187,13 +245,13 @@ private fun MyOrdersItem(
 }
 
 @Composable
-private fun ProfileTopBarSection() {
+private fun ProfileTopBarSection(navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        IconButton(onClick = { }) {
+        IconButton(onClick = { navController.navigate(Screen.Settings.route) }) {
             Icon(
                 painter = painterResource(
                     id = R.drawable.digi_settings
