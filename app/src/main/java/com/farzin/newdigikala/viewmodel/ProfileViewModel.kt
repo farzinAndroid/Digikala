@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import com.farzin.newdigikala.data.model.profile.LoginRequest
 import com.farzin.newdigikala.data.model.profile.LoginResponse
+import com.farzin.newdigikala.data.model.profile.SetUserNameRequest
 import com.farzin.newdigikala.data.remote.NetworkResult
 import com.farzin.newdigikala.repository.ProfileRepository
 import com.farzin.newdigikala.ui.screens.profile.ProfileScreenState
@@ -42,6 +43,15 @@ class ProfileViewModel @Inject constructor(private val repo: ProfileRepository) 
             loginResponse.emit(repo.login(loginRequest))
         }
     }
+
+
+    val setUserNameResponse = MutableStateFlow<NetworkResult<String>>(NetworkResult.Loading())
+    fun setUserName(setUserNameRequest: SetUserNameRequest){
+        viewModelScope.launch {
+            setUserNameResponse.emit(repo.setUserName(setUserNameRequest))
+        }
+    }
+
 
 
 }

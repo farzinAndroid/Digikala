@@ -176,6 +176,8 @@ private fun CommentForm(
         mutableStateOf(0f)
     }
 
+    val context = LocalContext.current
+
     val scoreText = when (sliderValue.toInt()) {
         1 -> ""
         2 -> stringResource(R.string.very_bad)
@@ -390,13 +392,18 @@ private fun CommentForm(
             onClick = {
                 loading = true
 
+                val name = if (Constants.USER_NAME == "null")
+                    context.getString(R.string.unknown_user)
+                else
+                    Constants.USER_NAME.replace("-","")
+
                 val newComment = NewComment(
                     token = Constants.USER_TOKEN,
                     productId = productId,
                     title = commentTitle,
                     description = commentBody,
                     star = (sliderValue - 1).toInt(),
-                    userName = "کاربر مهمان" //todo change user name
+                    userName = name
                 )
 
                 if (newComment.title.isBlank()) {
@@ -441,9 +448,9 @@ private fun CommentForm(
                 .padding(vertical = MaterialTheme.spacing.medium)
         ) {
 
-            if (loading){
+            if (loading) {
                 OurLoading(height = 30.dp, isDark = true)
-            } else{
+            } else {
 
                 Text(
                     text = stringResource(R.string.set_new_comment),

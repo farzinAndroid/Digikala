@@ -243,6 +243,7 @@ fun logOut(
         saveUserId("null")
         saveUserPassword("null")
         saveUserPhoneNumber("null")
+        saveUserName("null")
     }
     profileViewModel.screenState = ProfileScreenState.LOGIN_STATE
     navController.navigate(Screen.Profile.route)

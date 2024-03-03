@@ -7,6 +7,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.farzin.newdigikala.data.remote.NetworkResult
 import com.farzin.newdigikala.util.Constants.USER_ID
 import com.farzin.newdigikala.util.Constants.USER_LANGUAGE
+import com.farzin.newdigikala.util.Constants.USER_NAME
 import com.farzin.newdigikala.util.Constants.USER_PASSWORD
 import com.farzin.newdigikala.util.Constants.USER_PHONE
 import com.farzin.newdigikala.util.Constants.USER_TOKEN
@@ -37,6 +38,10 @@ fun AppConfig(
                             dataStore.saveUserPhoneNumber(user.phone)
                             dataStore.saveUserPassword(USER_PASSWORD)
                             USER_TOKEN = user.token
+
+                            dataStore.saveUserName(user.name ?: "null")
+
+
                             getDataStoreVariables(dataStore)
 
                             Log.e("TAG", "refresh token")
@@ -61,4 +66,5 @@ private fun getDataStoreVariables(dataStore: DataStoreViewModel) {
     USER_PASSWORD = dataStore.getUserPassword().toString()
     USER_TOKEN = dataStore.getUserToken().toString()
     USER_ID = dataStore.getUserId().toString()
+    USER_NAME = dataStore.getUserName().toString()
 }

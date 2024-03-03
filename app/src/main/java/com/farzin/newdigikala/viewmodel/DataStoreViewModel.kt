@@ -21,6 +21,7 @@ class DataStoreViewModel @Inject constructor(
         const val USER_ID_KEY = "USER_ID_KEY"
         const val USER_PHONE_KEY = "USER_PHONE_KEY"
         const val USER_PASSWORD_KEY = "USER_PASSWORD_KEY"
+        const val USER_NAME_KEY = "USER_NAME_KEY"
     }
 
     fun saveUserLanguage(value: String) {
@@ -72,6 +73,16 @@ class DataStoreViewModel @Inject constructor(
 
     fun getUserPassword(): String? = runBlocking {
         repo.getString(USER_PASSWORD_KEY)
+    }
+
+    fun saveUserName(value: String) {
+        viewModelScope.launch {
+            repo.putString(USER_NAME_KEY, value)
+        }
+    }
+
+    fun getUserName(): String? = runBlocking {
+        repo.getString(USER_NAME_KEY)
     }
 
 }

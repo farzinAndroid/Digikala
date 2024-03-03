@@ -18,6 +18,7 @@ import com.farzin.newdigikala.ui.screens.product_detail.ProductDetailScreen
 import com.farzin.newdigikala.ui.screens.product_detail.ProductTechnicalFeaturesScreen
 import com.farzin.newdigikala.ui.screens.product_detail.SetNewCommentScreen
 import com.farzin.newdigikala.ui.screens.profile.ProfileScreen
+import com.farzin.newdigikala.ui.screens.profile.UserAccountScreen
 import com.farzin.newdigikala.ui.screens.settings.SettingsScreen
 import com.farzin.newdigikala.ui.screens.splash.SplashScreen
 
@@ -212,6 +213,10 @@ fun SetupNavGraph(navController: NavHostController) {
 
         composable(Screen.Settings.route){
             SettingsScreen(navController=navController)
+        }
+
+        composable(Screen.UserAccount.route){
+            UserAccountScreen(navController=navController)
         }
 
 

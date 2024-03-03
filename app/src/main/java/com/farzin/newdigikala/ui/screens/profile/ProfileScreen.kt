@@ -1,6 +1,7 @@
 package com.farzin.newdigikala.ui.screens.profile
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,6 +39,7 @@ import androidx.navigation.NavHostController
 import com.farzin.newdigikala.R
 import com.farzin.newdigikala.navigation.Screen
 import com.farzin.newdigikala.ui.components.CenterBannerItem
+import com.farzin.newdigikala.ui.theme.DarkCyan
 import com.farzin.newdigikala.ui.theme.darkText
 import com.farzin.newdigikala.ui.theme.selectedBottomBar
 import com.farzin.newdigikala.ui.theme.semiDarkText
@@ -85,18 +87,18 @@ fun Profile(navController: NavController) {
             .padding(bottom = 60.dp),
     ) {
         item { ProfileTopBarSection(navController = navController) }
-        item { ProfileHeaderSection() }
-        item { ProfileMiddleSection() }
+        item { ProfileHeaderSection(navController = navController) }
+        item { ProfileMiddleSection(navController) }
         item { MyOrdersSection() }
         item { CenterBannerItem(painter = painterResource(id = R.drawable.digiclub1)) }
-        item { ProfileMenuSection() }
+        item { ProfileMenuSection(navController) }
         item { CenterBannerItem(painter = painterResource(id = R.drawable.digiclub2)) }
     }
 }
 
 
 @Composable
-private fun ProfileMenuSection() {
+private fun ProfileMenuSection(navController: NavController) {
     MenuRowItem(
         icon = {
             Image(
@@ -160,7 +162,10 @@ private fun ProfileMenuSection() {
             )
         },
         text = stringResource(id = R.string.profile_data),
-        isHaveDivider = false
+        isHaveDivider = false,
+        onClick = {
+            navController.navigate(Screen.UserAccount.route)
+        }
     )
 }
 
@@ -280,14 +285,35 @@ private fun ProfileTopBarSection(navController: NavController) {
 }
 
 @Composable
-private fun ProfileHeaderSection() {
+private fun ProfileHeaderSection(navController: NavController) {
     Spacer(modifier = Modifier.height(MaterialTheme.spacing.biggerMedium))
 
-    Text(
-        modifier = Modifier.fillMaxWidth(),
-        text = "نام یوزر",
-        textAlign = TextAlign.Center
-    )
+
+    if (Constants.USER_NAME == "null") {
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    navController.navigate(Screen.UserAccount.route)
+                },
+            text = stringResource(R.string.completion_of_user_information),
+            textAlign = TextAlign.Center,
+            color = MaterialTheme.colors.DarkCyan,
+            style = MaterialTheme.typography.h5
+        )
+    } else {
+        Text(
+            modifier = Modifier
+                .fillMaxWidth(),
+            text = Constants.USER_NAME.replace("-",""),
+            textAlign = TextAlign.Center,
+            color = MaterialTheme.colors.darkText,
+            style = MaterialTheme.typography.h4,
+            fontWeight = FontWeight.Bold
+        )
+    }
+
+
 
     Text(
         modifier = Modifier.fillMaxWidth(),
@@ -387,7 +413,7 @@ private fun ProfileHeaderSection() {
 
 
 @Composable
-private fun ProfileMiddleSection() {
+private fun ProfileMiddleSection(navController: NavController) {
 
     Divider(
         modifier = Modifier
@@ -405,7 +431,12 @@ private fun ProfileMiddleSection() {
             .fillMaxWidth()
             .padding(vertical = MaterialTheme.spacing.biggerMedium)
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally)
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.clickable {
+                navController.navigate(Screen.UserAccount.route)
+            }
+        )
         {
             Image(
                 painter = painterResource(id = R.drawable.digi_user),

@@ -55,6 +55,9 @@ fun RegisterScreen(
                             Constants.USER_TOKEN = user.token
                             dataStore.saveUserPassword(profileViewModel.inputPasswordState)
 
+                            dataStore.saveUserName(user.name ?: "null")
+                            Constants.USER_NAME = user.name ?: "null"
+
                             profileViewModel.screenState = ProfileScreenState.PROFILE_STATE
                         }
                     }
