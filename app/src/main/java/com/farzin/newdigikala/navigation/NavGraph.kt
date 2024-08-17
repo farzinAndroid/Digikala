@@ -9,6 +9,7 @@ import androidx.navigation.navArgument
 import com.farzin.newdigikala.ui.screens.basket.BasketScreen
 import com.farzin.newdigikala.ui.screens.category.CategoryScreen
 import com.farzin.newdigikala.ui.screens.checkout.CheckoutScreen
+import com.farzin.newdigikala.ui.screens.favorite_list.FavoriteListScreen
 import com.farzin.newdigikala.ui.screens.home.HomeScreen
 import com.farzin.newdigikala.ui.screens.home.WebPageScreen
 import com.farzin.newdigikala.ui.screens.product_detail.AllCommentScreen
@@ -217,6 +218,11 @@ fun SetupNavGraph(navController: NavHostController) {
 
         composable(Screen.UserAccount.route){
             UserAccountScreen(navController=navController)
+        }
+
+
+        composable(Screen.FavoriteList.route){
+            FavoriteListScreen(navController=navController)
         }
 
 
