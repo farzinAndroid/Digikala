@@ -178,7 +178,7 @@
     <string name="report_error_by_shaking_the_phone">گزارش خطا با تکان دادن گوشی</string>
     <string name="sign_out">خروج از حساب کاربری</string>
     <string name="changing_lang">تغییر زبان</string>
-    <string name="version_app">App Version: %s</string>
+    <string name="version_app">App Version:</string>
     <string name="truelearn_technical_team">Truelearn Technical Team (3T)</string>
 
 

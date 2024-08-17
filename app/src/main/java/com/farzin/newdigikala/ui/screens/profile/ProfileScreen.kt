@@ -90,9 +90,21 @@ fun Profile(navController: NavController) {
         item { ProfileHeaderSection(navController = navController) }
         item { ProfileMiddleSection(navController) }
         item { MyOrdersSection() }
-        item { CenterBannerItem(painter = painterResource(id = R.drawable.digiclub1)) }
+        item {
+            CenterBannerItem(
+                painter = painterResource(id = R.drawable.digiclub1),
+                navController,
+                ""
+            )
+        }
         item { ProfileMenuSection(navController) }
-        item { CenterBannerItem(painter = painterResource(id = R.drawable.digiclub2)) }
+        item {
+            CenterBannerItem(
+                painter = painterResource(id = R.drawable.digiclub2),
+                navController,
+                ""
+            )
+        }
     }
 }
 
@@ -110,7 +122,12 @@ private fun ProfileMenuSection(navController: NavController) {
             )
         },
         text = stringResource(id = R.string.digi_plus),
-        isHaveDivider = true
+        isHaveDivider = true,
+        onClick = {
+            navController.navigate(
+                Screen.WebView.route + "?url=${Constants.DIGIPLUS_URL}"
+            )
+        }
     )
     MenuRowItem(
         icon = {
@@ -305,7 +322,7 @@ private fun ProfileHeaderSection(navController: NavController) {
         Text(
             modifier = Modifier
                 .fillMaxWidth(),
-            text = Constants.USER_NAME.replace("-",""),
+            text = Constants.USER_NAME.replace("-", ""),
             textAlign = TextAlign.Center,
             color = MaterialTheme.colors.darkText,
             style = MaterialTheme.typography.h4,
@@ -386,6 +403,11 @@ private fun ProfileHeaderSection(navController: NavController) {
 
         Column(
             modifier = Modifier
+                .clickable {
+                    navController.navigate(
+                        Screen.WebView.route + "?url=${Constants.DIGI_WALLET}"
+                    )
+                }
                 .weight(0.49f),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -452,7 +474,15 @@ private fun ProfileMiddleSection(navController: NavController) {
             )
         }
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally)
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .clickable {
+                    navController.navigate(
+                        Screen.WebView.route + "?url=${Constants.DIGI_CLUB}"
+                    )
+                }
+        )
         {
             Image(
                 painter = painterResource(id = R.drawable.digi_club),
@@ -469,7 +499,12 @@ private fun ProfileMiddleSection(navController: NavController) {
         }
 
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally)
+        Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier
+            .clickable {
+                navController.navigate(
+                    Screen.WebView.route + "?url=${Constants.TRUELEARN_CONTACT_US}"
+                )
+            })
         {
             Image(
                 painter = painterResource(id = R.drawable.digi_contact_us),

@@ -48,7 +48,14 @@ object Constants {
 
     const val DIGI_WALLET = "https://www.mydigipay.com/"
     const val DIGI_CLUB = "https://www.digikala.com/digiclub/"
-    const val TURLEARN_CONTACT_US = "https://truelearn.ir/contact/"
+    const val TRUELEARN_CONTACT_US = "https://truelearn.ir/contact/"
+
+
+    var isFromPurchase = false
+    var afterPurchaseUrl = ""
+    var purchaseOrderId = ""
+    var purchasePrice = ""
+
 
 
 

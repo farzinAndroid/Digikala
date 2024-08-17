@@ -2,13 +2,15 @@ package com.farzin.newdigikala.ui.screens.settings
 
 import android.app.Activity
 import android.content.Intent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -31,10 +33,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.farzin.newdigikala.BuildConfig
 import com.farzin.newdigikala.MainActivity
 import com.farzin.newdigikala.R
 import com.farzin.newdigikala.navigation.Screen
@@ -42,6 +47,7 @@ import com.farzin.newdigikala.ui.screens.profile.MenuRowItem
 import com.farzin.newdigikala.ui.screens.profile.ProfileScreenState
 import com.farzin.newdigikala.ui.theme.digikalaRed
 import com.farzin.newdigikala.ui.theme.selectedBottomBar
+import com.farzin.newdigikala.ui.theme.semiDarkText
 import com.farzin.newdigikala.ui.theme.spacing
 import com.farzin.newdigikala.util.Constants
 import com.farzin.newdigikala.viewmodel.BasketViewModel
@@ -56,11 +62,15 @@ fun SettingsScreen(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .verticalScroll(rememberScrollState())
+//            .verticalScroll(rememberScrollState())
     ) {
 
         SettingHeader(navController = navController)
         SettingsMenuSection(navController)
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        BrandingSection()
 
 
     }
@@ -225,7 +235,7 @@ fun SettingsMenuSection(
         addComposable = {},
         color = MaterialTheme.colors.digikalaRed,
         onClick = {
-            logOut(dataStoreViewModel, navController, profileViewModel,basketViewModel)
+            logOut(dataStoreViewModel, navController, profileViewModel, basketViewModel)
         }
     )
 
@@ -235,8 +245,8 @@ fun logOut(
     dataStoreViewModel: DataStoreViewModel,
     navController: NavController,
     profileViewModel: ProfileViewModel,
-    basketViewModel: BasketViewModel
-){
+    basketViewModel: BasketViewModel,
+) {
     basketViewModel.deleteAllCartItems()
     dataStoreViewModel.apply {
         saveUserToken("null")
@@ -278,6 +288,53 @@ fun ChangeLanguage(dataStoreViewModel: DataStoreViewModel = hiltViewModel()) {
         Text(text = stringResource(R.string.persian))
     }
 
+}
+
+
+@Composable
+fun BrandingSection() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = MaterialTheme.spacing.medium)
+    ) {
+
+        Image(
+            painter = painterResource(R.drawable.digi_red_english),
+            contentDescription = "",
+            modifier = Modifier
+                .width(100.dp)
+        )
+
+        Text(
+            text = "${stringResource(id = R.string.version_app)} ${BuildConfig.VERSION_NAME}",
+            style = MaterialTheme.typography.h6,
+            color = MaterialTheme.colors.semiDarkText
+        )
+
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Text(
+                text = stringResource(R.string.truelearn_technical_team),
+                style = MaterialTheme.typography.h6,
+                color = MaterialTheme.colors.semiDarkText
+            )
+
+            Image(
+                painter = painterResource(R.drawable.truelearn_icon),
+                contentDescription = "",
+                modifier = Modifier
+                    .height(24.dp)
+            )
+
+        }
+
+    }
 }
 
 
