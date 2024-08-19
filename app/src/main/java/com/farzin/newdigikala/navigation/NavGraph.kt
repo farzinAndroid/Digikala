@@ -6,6 +6,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.farzin.newdigikala.ui.screens.address.AddAddressScreen
+import com.farzin.newdigikala.ui.screens.address.ShowAddressScreen
 import com.farzin.newdigikala.ui.screens.basket.BasketScreen
 import com.farzin.newdigikala.ui.screens.category.CategoryScreen
 import com.farzin.newdigikala.ui.screens.checkout.CheckoutScreen
@@ -22,7 +24,6 @@ import com.farzin.newdigikala.ui.screens.profile.ProfileScreen
 import com.farzin.newdigikala.ui.screens.profile.UserAccountScreen
 import com.farzin.newdigikala.ui.screens.settings.SettingsScreen
 import com.farzin.newdigikala.ui.screens.splash.SplashScreen
-import com.farzin.newdigikala.util.Constants
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
@@ -220,17 +221,40 @@ fun SetupNavGraph(navController: NavHostController) {
             }
         }
 
-        composable(Screen.Settings.route){
-            SettingsScreen(navController=navController)
+        composable(Screen.Settings.route) {
+            SettingsScreen(navController = navController)
         }
 
-        composable(Screen.UserAccount.route){
-            UserAccountScreen(navController=navController)
+        composable(Screen.UserAccount.route) {
+            UserAccountScreen(navController = navController)
         }
 
 
-        composable(Screen.FavoriteList.route){
-            FavoriteListScreen(navController=navController)
+        composable(Screen.FavoriteList.route) {
+            FavoriteListScreen(navController = navController)
+        }
+
+
+        composable(route = Screen.ShowAddress.route + "/{isFromBasket}",
+            arguments = listOf(
+                navArgument("isFromBasket") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
+                }
+            )) {
+
+            it.arguments?.getString("isFromBasket")?.let { isFromBasket ->
+                ShowAddressScreen(
+                    navController = navController,
+                    isFromBasket = isFromBasket.toInt()
+                )
+            }
+        }
+
+
+        composable(Screen.AddAddressScreen.route) {
+            AddAddressScreen(navController = navController)
         }
 
 

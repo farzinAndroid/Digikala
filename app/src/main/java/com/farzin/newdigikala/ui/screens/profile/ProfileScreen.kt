@@ -179,7 +179,10 @@ private fun ProfileMenuSection(navController: NavController) {
             )
         },
         text = stringResource(id = R.string.addresses),
-        isHaveDivider = true
+        isHaveDivider = true,
+        onClick = {
+            navController.navigate(Screen.ShowAddress.withArgs(-1))
+        }
     )
     MenuRowItem(
         icon = {

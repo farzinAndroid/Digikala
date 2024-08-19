@@ -214,6 +214,19 @@
 
     <string name="unknown_user">کاربر بدون نام</string>
 
+    <string name="address_details">اطلاعات کامل آدرس جدید را وارد نمایید</string>
+    <string name="phone_number">شماره تماس</string>
+    <string name="postal_code">کد پستی</string>
+    <string name="address">آدرس</string>
+    <string name="check_net">اتصال اینترنت تلفن همراه خود را بررسی کنید</string>
+
+
+    <string name="processing_orders">در حال پردازش</string>
+    <string name="delivered_orders">تحویل شده</string>
+    <string name="canceled_orders">لغو شده</string>
+    <string name="returned_orders">مرجوع شده</string>
+
+
 
 
 

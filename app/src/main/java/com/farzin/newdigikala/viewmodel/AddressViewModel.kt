@@ -2,6 +2,7 @@ package com.farzin.newdigikala.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.farzin.newdigikala.data.model.address.AddAddressRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import com.farzin.newdigikala.data.model.address.UserAddress
 import com.farzin.newdigikala.data.remote.NetworkResult
@@ -19,13 +20,20 @@ class AddressViewModel @Inject constructor(private val repo: AddressRepository) 
         MutableStateFlow<NetworkResult<List<UserAddress>>>(NetworkResult.Loading())
 
 
-    init {
-        getUserAddressList(Constants.USER_TOKEN)
-    }
+    val addNewAddressResponse =
+        MutableStateFlow<NetworkResult<String>>(NetworkResult.Loading())
 
-    private fun getUserAddressList(token: String) {
+
+
+    fun getUserAddressList(token: String) {
         viewModelScope.launch {
             userAddressList.emit(repo.getUserAddressList(token))
+        }
+    }
+
+    fun saveUserAddress(addAddressRequest: AddAddressRequest) {
+        viewModelScope.launch {
+            addNewAddressResponse.emit(repo.saveUserAddress(addAddressRequest))
         }
     }
 
