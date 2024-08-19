@@ -157,7 +157,16 @@ private fun ProfileMenuSection(navController: NavController) {
             )
         },
         text = stringResource(id = R.string.my_comments),
-        isHaveDivider = true
+        isHaveDivider = true,
+        onClick = {
+            navController.navigate(
+                Screen.AllComment.withArgs(
+                    " ",
+                    "1",
+                    Constants.USER_COMMENTS
+                )
+            )
+        }
     )
     MenuRowItem(
         icon = {

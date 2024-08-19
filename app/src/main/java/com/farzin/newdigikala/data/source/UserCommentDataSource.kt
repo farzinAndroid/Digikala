@@ -6,9 +6,9 @@ import androidx.paging.PagingState
 import com.farzin.newdigikala.data.model.product_detail.Comment
 import com.farzin.newdigikala.repository.CommentRepository
 
-class ProductCommentDataSource(
+class UserCommentDataSource(
     private val productDetailRepository: CommentRepository,
-    val productId: String,
+    private val token:String
 ) : PagingSource<Int, Comment>() {
     override fun getRefreshKey(state: PagingState<Int, Comment>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
@@ -20,8 +20,8 @@ class ProductCommentDataSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Comment> {
         return try {
             val nextPage = params.key ?: 1
-            val response = productDetailRepository.getAllProductComments(
-                id = productId,
+            val response = productDetailRepository.getUserComments(
+                token = token,
                 pageSize = 5,
                 pageNumber = nextPage
             ).data

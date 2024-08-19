@@ -42,7 +42,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
@@ -64,7 +63,7 @@ import com.farzin.newdigikala.ui.theme.roundedShape
 import com.farzin.newdigikala.ui.theme.semiDarkText
 import com.farzin.newdigikala.ui.theme.spacing
 import com.farzin.newdigikala.util.Constants
-import com.farzin.newdigikala.viewmodel.ProductDetailViewModel
+import com.farzin.newdigikala.viewmodel.CommentViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -168,7 +167,7 @@ private fun Header(
 private fun CommentForm(
     productId: String,
     navController: NavController,
-    viewModel: ProductDetailViewModel = hiltViewModel(),
+    viewModel: CommentViewModel = hiltViewModel(),
 ) {
 
 

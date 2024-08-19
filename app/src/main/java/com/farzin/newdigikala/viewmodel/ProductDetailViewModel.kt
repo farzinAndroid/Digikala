@@ -34,10 +34,6 @@ class ProductDetailViewModel @Inject constructor(private val repo: ProductDetail
         MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
 
 
-    val newCommentResult =
-        MutableStateFlow<NetworkResult<String>>(NetworkResult.Loading())
-
-
     fun getProductById(id: String) {
         viewModelScope.launch {
             productDetails.emit(repo.getProductById(id))
@@ -48,22 +44,6 @@ class ProductDetailViewModel @Inject constructor(private val repo: ProductDetail
         viewModelScope.launch {
             similarProducts.emit(repo.getSimilarProducts(categoryId))
         }
-    }
-
-    fun setNewComment(newComment: NewComment) {
-        viewModelScope.launch {
-            newCommentResult.emit(repo.setNewComment(newComment))
-        }
-    }
-
-
-    var commentsList: Flow<PagingData<Comment>> = flow { emit(PagingData.empty()) }
-    fun getAllProductComments(productId:String) {
-        commentsList = Pager(
-            PagingConfig(5)
-        ){
-            ProductCommentDataSource(repo,productId)
-        }.flow.cachedIn(viewModelScope)
     }
 
 }

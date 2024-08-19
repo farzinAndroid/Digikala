@@ -29,13 +29,14 @@ import com.farzin.newdigikala.ui.theme.LightCyan
 import com.farzin.newdigikala.ui.theme.Typography
 import com.farzin.newdigikala.ui.theme.darkText
 import com.farzin.newdigikala.ui.theme.spacing
+import com.farzin.newdigikala.util.Constants
 
 @Composable
 fun ProductCommentsSection(
-    comments:List<Comment>,
-    commentsCount:Int,
+    comments: List<Comment>,
+    commentsCount: Int,
     navController: NavController,
-    productId:String
+    productId: String,
 ) {
 
     Divider(
@@ -57,7 +58,7 @@ fun ProductCommentsSection(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(MaterialTheme.spacing.semiLarge),
-            verticalAlignment =Alignment.CenterVertically,
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
@@ -76,7 +77,13 @@ fun ProductCommentsSection(
                 color = MaterialTheme.colors.LightCyan,
                 modifier = Modifier
                     .clickable {
-                        navController.navigate(Screen.AllComment.withArgs(productId,commentsCount))
+                        navController.navigate(
+                            Screen.AllComment.withArgs(
+                                productId,
+                                commentsCount,
+                                Constants.PRODUCT_COMMENTS
+                            )
+                        )
                     }
             )
 
@@ -87,15 +94,21 @@ fun ProductCommentsSection(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = MaterialTheme.spacing.medium)
-        ){
+        ) {
 
-            items(comments){comment->
+            items(comments) { comment ->
                 CommentsCard(comment)
             }
 
             item {
-                CommentsCardShowMore(){
-                    navController.navigate(Screen.AllComment.withArgs(productId,commentsCount))
+                CommentsCardShowMore() {
+                    navController.navigate(
+                        Screen.AllComment.withArgs(
+                            productId,
+                            commentsCount,
+                            Constants.PRODUCT_COMMENTS
+                        )
+                    )
                 }
             }
 

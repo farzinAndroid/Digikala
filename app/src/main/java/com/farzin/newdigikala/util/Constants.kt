@@ -51,6 +51,10 @@ object Constants {
     const val TRUELEARN_CONTACT_US = "https://truelearn.ir/contact/"
 
 
+    const val PRODUCT_COMMENTS = "PRODUCT_COMMENTS"
+    const val USER_COMMENTS = "USER_COMMENTS"
+
+
     var isFromPurchase = false
     var afterPurchaseUrl = ""
     var purchaseOrderId = ""

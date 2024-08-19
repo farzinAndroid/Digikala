@@ -22,6 +22,7 @@ import com.farzin.newdigikala.ui.screens.profile.ProfileScreen
 import com.farzin.newdigikala.ui.screens.profile.UserAccountScreen
 import com.farzin.newdigikala.ui.screens.settings.SettingsScreen
 import com.farzin.newdigikala.ui.screens.splash.SplashScreen
+import com.farzin.newdigikala.util.Constants
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
@@ -166,7 +167,7 @@ fun SetupNavGraph(navController: NavHostController) {
 
 
         composable(
-            route = Screen.AllComment.route + "/{productId}/{commentCount}",
+            route = Screen.AllComment.route + "/{productId}/{commentCount}/{pageName}",
             arguments = listOf(
                 navArgument("productId") {
                     type = NavType.StringType
@@ -177,19 +178,26 @@ fun SetupNavGraph(navController: NavHostController) {
                     type = NavType.StringType
                     nullable = true
                     defaultValue = ""
+                },
+                navArgument("pageName") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = ""
                 }
             )
         ) {
 
             it.arguments?.getString("productId")?.let { id ->
                 it.arguments?.getString("commentCount")?.let { commentCount ->
-                    AllCommentScreen(
-                        navController = navController,
-                        id = id,
-                        commentCount = commentCount
-                    )
+                    it.arguments?.getString("pageName")?.let { pageName ->
+                        AllCommentScreen(
+                            navController = navController,
+                            id = id,
+                            commentCount = commentCount,
+                            pageName = pageName
+                        )
+                    }
                 }
-
 
             }
         }

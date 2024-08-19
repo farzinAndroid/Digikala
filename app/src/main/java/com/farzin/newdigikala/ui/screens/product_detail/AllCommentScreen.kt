@@ -39,7 +39,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
-import androidx.paging.PagingSource
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
@@ -54,22 +53,32 @@ import com.farzin.newdigikala.ui.theme.grayAlpha
 import com.farzin.newdigikala.ui.theme.searchBarBg
 import com.farzin.newdigikala.ui.theme.semiDarkText
 import com.farzin.newdigikala.ui.theme.spacing
+import com.farzin.newdigikala.util.Constants
 import com.farzin.newdigikala.util.DigitHelper
-import com.farzin.newdigikala.viewmodel.ProductDetailViewModel
+import com.farzin.newdigikala.viewmodel.CommentViewModel
 
 @Composable
 fun AllCommentScreen(
     navController: NavController,
     id: String,
     commentCount: String,
-    productDetailViewModel: ProductDetailViewModel = hiltViewModel(),
+    commentsViewModel: CommentViewModel = hiltViewModel(),
+    pageName: String,
 ) {
 
-    LaunchedEffect(true){
-        productDetailViewModel.getAllProductComments(id)
+    LaunchedEffect(true) {
+        if (pageName == Constants.PRODUCT_COMMENTS)
+            commentsViewModel.getAllProductComments(id)
+        else
+            commentsViewModel.getUserComments()
+
     }
 
-    val commentsList = productDetailViewModel.commentsList.collectAsLazyPagingItems()
+    val commentsList = if (pageName == Constants.PRODUCT_COMMENTS)
+        commentsViewModel.productCommentsList.collectAsLazyPagingItems()
+    else
+        commentsViewModel.userCommentsList.collectAsLazyPagingItems()
+
 
 
     Column(modifier = Modifier.fillMaxWidth()) {
@@ -90,9 +99,14 @@ fun AllCommentScreen(
                 tint = MaterialTheme.colors.darkText
             )
 
-
+            Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
             Text(
-                text = "${DigitHelper.digitByLang(commentCount)} ${stringResource(id = R.string.comment)}",
+                text = if (pageName == Constants.PRODUCT_COMMENTS) "${
+                    DigitHelper.digitByLang(
+                        commentCount
+                    )
+                } ${stringResource(id = R.string.comment)}"
+                else stringResource(R.string.all_comments),
                 textAlign = TextAlign.Start,
                 style = MaterialTheme.typography.h3,
                 fontWeight = FontWeight.Bold,
@@ -109,15 +123,15 @@ fun AllCommentScreen(
                 .background(MaterialTheme.colors.searchBarBg)
         )
 
-        LazyColumn(Modifier.fillMaxSize()){
+        LazyColumn(Modifier.fillMaxSize()) {
 
             items(
                 count = commentsList.itemCount,
-                key = commentsList.itemKey {comment->
+                key = commentsList.itemKey { comment ->
                     comment._id
                 },
                 contentType = commentsList.itemContentType { "Comments" }
-            ){
+            ) {
                 CommentsItem(item = commentsList[it]!!)
             }
 
@@ -131,15 +145,15 @@ fun AllCommentScreen(
 
             commentsList.loadState.apply {
 
-                when{
-                    refresh is LoadState.Loading->{
+                when {
+                    refresh is LoadState.Loading -> {
                         item {
                             val config = LocalConfiguration.current
                             OurLoading(config.screenHeightDp.dp, true)
                         }
                     }
 
-                    append is LoadState.Loading->{
+                    append is LoadState.Loading -> {
                         item {
                             Column(
                                 modifier = Modifier
@@ -153,7 +167,7 @@ fun AllCommentScreen(
                         }
                     }
 
-                    append is LoadState.Error->{
+                    append is LoadState.Error -> {
                         // todo error handle
                     }
                 }
@@ -164,7 +178,6 @@ fun AllCommentScreen(
         }
     }
 }
-
 
 
 @Composable
