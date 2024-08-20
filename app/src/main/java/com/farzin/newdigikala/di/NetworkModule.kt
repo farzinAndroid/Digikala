@@ -1,18 +1,20 @@
 package com.farzin.newdigikala.di
 
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import com.farzin.newdigikala.util.Constants
 import com.farzin.newdigikala.util.Constants.API_KEY
 import com.farzin.newdigikala.util.Constants.BASE_URL
 import com.farzin.newdigikala.util.Constants.TIMEOUT_IN_SECOND
 import com.farzin.newdigikala.util.Constants.USER_LANGUAGE
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 
@@ -36,8 +38,14 @@ object NetworkModule {
         .writeTimeout(TIMEOUT_IN_SECOND, TimeUnit.SECONDS)
         .addInterceptor { chain ->
             val request = chain.request().newBuilder()
-                .addHeader("x-api-key", API_KEY)
-                .addHeader("lang", USER_LANGUAGE)
+
+            if (chain.request().url.toString().startsWith(BASE_URL)) {
+                request
+                    .addHeader("x-api-key", API_KEY)
+                    .addHeader("lang", USER_LANGUAGE)
+            }
+
+
             chain.proceed(request.build())
         }
         .addInterceptor(interceptor())
@@ -48,6 +56,17 @@ object NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build()
+
+
+    @Provides
+    @Singleton
+    @Named("zarinpal")
+    fun provideZarrinpalRetrofit(okHttpClient: OkHttpClient): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(Constants.ZARRINPAL_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

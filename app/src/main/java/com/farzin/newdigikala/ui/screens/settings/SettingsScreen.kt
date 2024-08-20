@@ -254,6 +254,7 @@ fun logOut(
         saveUserPassword("null")
         saveUserPhoneNumber("null")
         saveUserName("null")
+        saveUserAddressIndex("0")
     }
     Constants.USER_TOKEN = "null"
     profileViewModel.screenState = ProfileScreenState.LOGIN_STATE

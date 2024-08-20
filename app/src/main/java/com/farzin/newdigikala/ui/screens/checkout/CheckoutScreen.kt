@@ -24,6 +24,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.farzin.newdigikala.data.model.checkout.OrderDetails
 import com.farzin.newdigikala.data.remote.NetworkResult
+import com.farzin.newdigikala.navigation.Screen
 import com.farzin.newdigikala.ui.screens.basket.BuyProcessContinue
 import com.farzin.newdigikala.ui.screens.basket.CartPriceDetailSection
 import com.farzin.newdigikala.util.Constants
@@ -41,6 +42,7 @@ fun CheckoutScreen(
 
 
     val coroutineScope = rememberCoroutineScope()
+    val cartDetail by basketViewModel.cartDetail.collectAsState()
     val currentCartItems by basketViewModel.ourCurrentCartItems.collectAsState()
     val cartDetails by basketViewModel.cartDetail.collectAsState()
 
@@ -82,6 +84,7 @@ fun CheckoutScreen(
     when (setNewOrderResult) {
         is NetworkResult.Success -> {
             orderId = setNewOrderResult.data ?: ""
+            navController.navigate(Screen.ConfirmPurchase.withArgs(orderId , cartDetail.payablePrice + shippingCost))
             Log.e("TAG", orderId)
 //            loading = false
         }

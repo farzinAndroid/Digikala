@@ -11,15 +11,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import dagger.hilt.android.AndroidEntryPoint
 import com.farzin.newdigikala.navigation.BottomNavigationBar
 import com.farzin.newdigikala.navigation.SetupNavGraph
 import com.farzin.newdigikala.ui.components.AppConfig
 import com.farzin.newdigikala.ui.components.ChangeStatusBarColor
 import com.farzin.newdigikala.ui.theme.DigikalaTheme
+import com.farzin.newdigikala.util.Constants
 import com.farzin.newdigikala.util.Constants.ENGLISH_LANG
 import com.farzin.newdigikala.util.Constants.USER_LANGUAGE
 import com.farzin.newdigikala.util.LocaleUtils
+import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -66,4 +67,20 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        if (
+            intent != null &&
+            intent.data != null &&
+            intent.data?.scheme == "farzin" &&
+            intent.data?.host == "digikala"
+        ) {
+            val url = intent.data.toString()
+            Log.e("TAG","url : $url")
+            Constants.isFromPurchase = true
+            Constants.afterPurchaseUrl = url
+        }
+    }
+
 }

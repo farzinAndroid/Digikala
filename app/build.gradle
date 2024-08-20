@@ -19,6 +19,15 @@ android {
         abortOnError false
     }
 
+    signingConfigs{
+        release{
+            storeFile file('Y:\\Users\\farzin\\AndroidStudioProjects\\NewDigiKala\\key0.jks')
+            keyAlias = 'key0'
+            keyPassword = '123456'
+            storePassword = '123456'
+        }
+    }
+
     buildFeatures {
         buildConfig true
     }
@@ -44,6 +53,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -119,9 +129,6 @@ dependencies {
     //pager
     implementation "com.google.accompanist:accompanist-pager:0.29.0-alpha"
     implementation "com.google.accompanist:accompanist-pager-indicators:0.29.0-alpha"
-
-    //zarinpal
-    implementation 'com.zarinpal:payment-provider-ktx:0.5.3'
 
 
     //paging3

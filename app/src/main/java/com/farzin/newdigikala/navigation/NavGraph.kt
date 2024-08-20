@@ -11,6 +11,7 @@ import com.farzin.newdigikala.ui.screens.address.ShowAddressScreen
 import com.farzin.newdigikala.ui.screens.basket.BasketScreen
 import com.farzin.newdigikala.ui.screens.category.CategoryScreen
 import com.farzin.newdigikala.ui.screens.checkout.CheckoutScreen
+import com.farzin.newdigikala.ui.screens.confirm_purchase.ConfirmPurchaseScreen
 import com.farzin.newdigikala.ui.screens.favorite_list.FavoriteListScreen
 import com.farzin.newdigikala.ui.screens.home.HomeScreen
 import com.farzin.newdigikala.ui.screens.home.WebPageScreen
@@ -256,6 +257,34 @@ fun SetupNavGraph(navController: NavHostController) {
         composable(Screen.AddAddressScreen.route) {
             AddAddressScreen(navController = navController)
         }
+
+        composable(route = Screen.ConfirmPurchase.route + "/{orderId}/{orderPrice}",
+            arguments = listOf(
+                navArgument("orderId") {
+                    type = NavType.StringType
+                    defaultValue = " "
+                    nullable = true
+                },
+                navArgument("orderPrice") {
+                    type = NavType.StringType
+                    defaultValue = " "
+                    nullable = true
+                }
+            )
+        ) {
+            it.arguments!!.getString("orderId")?.let { orderId ->
+                it.arguments!!.getString("orderPrice")?.let { orderPrice ->
+                    ConfirmPurchaseScreen(
+                        navController = navController,
+                        orderId = orderId,
+                        orderPrice = orderPrice
+                    )
+                }
+            }
+
+
+        }
+
 
 
     }

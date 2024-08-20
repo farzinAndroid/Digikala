@@ -3,10 +3,13 @@ package com.farzin.newdigikala.ui.screens.splash
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import com.farzin.newdigikala.R
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -15,10 +18,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.farzin.newdigikala.R
 import com.farzin.newdigikala.data.remote.CheckConnection
 import com.farzin.newdigikala.navigation.Screen
 import com.farzin.newdigikala.ui.components.Loading3Dots
 import com.farzin.newdigikala.ui.theme.splashBg
+import com.farzin.newdigikala.util.Constants
+import com.farzin.newdigikala.util.Constants.purchaseOrderId
+import com.farzin.newdigikala.util.Constants.purchasePrice
 import kotlinx.coroutines.delay
 
 @Composable
@@ -30,15 +37,15 @@ fun SplashScreen(navController: NavHostController) {
 
 
     Splash(
-        isNetworkAvailable=isNetworkAvailable,
+        isNetworkAvailable = isNetworkAvailable,
         onRetryClicked = {
-            if(CheckConnection.isNetworkAvailable(context)){
+            if (CheckConnection.isNetworkAvailable(context)) {
                 navController.navigate(Screen.Home.route) {
                     popUpTo(Screen.Splash.route) {
                         inclusive = true
                     }
                 }
-            }else{
+            } else {
                 Toast.makeText(
                     context,
                     context.getString(R.string.check_net),
@@ -49,19 +56,34 @@ fun SplashScreen(navController: NavHostController) {
     )
     LaunchedEffect(true) {
         delay(2500)
-        if (isNetworkAvailable){
-            navController.navigate(Screen.Home.route) {
-                popUpTo(Screen.Splash.route) {
-                    inclusive = true
+        if (isNetworkAvailable) {
+
+            if (Constants.isFromPurchase) {
+                navController.navigate(
+                    Screen.ConfirmPurchase.withArgs(
+                        purchaseOrderId,
+                        purchasePrice
+                    )
+                ) {
+                    popUpTo(Screen.Splash.route) {
+                        inclusive = true
+                    }
+                }
+            } else {
+                navController.navigate(Screen.Home.route) {
+                    popUpTo(Screen.Splash.route) {
+                        inclusive = true
+                    }
                 }
             }
+
         }
     }
 }
 
 
 @Composable
-fun Splash(isNetworkAvailable:Boolean,onRetryClicked: () -> Unit) {
+fun Splash(isNetworkAvailable: Boolean, onRetryClicked: () -> Unit) {
     Box(
         modifier = Modifier
             .background(MaterialTheme.colors.splashBg)
@@ -91,9 +113,9 @@ fun Splash(isNetworkAvailable:Boolean,onRetryClicked: () -> Unit) {
                 .padding(20.dp),
             contentAlignment = Alignment.BottomCenter
         ) {
-            if (isNetworkAvailable){
+            if (isNetworkAvailable) {
                 Loading3Dots(false)
-            }else{
+            } else {
                 ReTry(
                     onRetryClicked = onRetryClicked
                 )
